@@ -1,0 +1,76 @@
+page-login {
+    .padding {
+      padding-top: 50%;
+  
+  }
+  
+  .ion-content{
+    background: #34ace0;
+    background: linear-gradient(to bottom, #34ace0, #dcdde1);
+  }
+  .ion-card{
+    background: rgba(0,0,0,0.2) ;
+    text-align:inherit;
+    box-shadow: 0 0 5px #E0E0E0;
+    margin-top: -30px;
+  }
+  .round-button{
+    border: none;
+    background-color:white;
+    color: white;
+    padding: 0px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 40px;
+  }
+  .button2 {
+    border-radius: 100px;
+    padding: 0px; 
+    width: 150px;
+    height: 150px; 
+    
+  }
+  
+  }
+  .img{
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .content-form{
+    background: transparent;
+    margin-top: 10px;
+    color: white;
+  
+  }
+  .text-input:-ms-input-placeholder {
+    color: white;
+  }
+  .text-input::-moz-placeholder {
+    color: white;
+  }
+  .text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: white;
+  }
+  .login-button{
+    border-radius:30px;
+    color: #0a3580;
+    background: white;
+    margin-top: 50px;
+    height: 45.5px;
+  
+  }
+  .multi-bg-example {
+    width: 100%;
+    height: 100%;
+       background-image:linear-gradient( to top right, #0a3580,#29539b 40%,#6590da 10%, #0a3580 10% );
+       background-repeat: no-repeat,
+        no-repeat,
+        no-repeat;
+    background-position: bottom right,
+        left,
+        right;
+  }
+  

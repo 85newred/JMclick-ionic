@@ -1,0 +1,23 @@
+page-leavecancel {
+    .ion-content{
+        background: #f1f2f6; 
+       }
+    .p{
+        color: #607D8B;
+      }
+    .detail{
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+    .ion-avatar{
+        background: #3498db;
+        border-radius: 70px;
+    }
+    .none{
+        position: relative;
+        text-align: center; 
+        font-weight: bold;
+        font-size: 20px;
+        color: grey;
+    }
+}

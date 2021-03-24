@@ -1,0 +1,50 @@
+page-myapprovaldetail {
+    .ion-title{
+        text-align: center;
+    }
+    .button-pending{
+        border-radius: 70%;
+        width: 40px;
+        background-color: #fed330;
+    }
+    .button-approve{
+        background-color:#21a321;
+    }
+    .navbar-title {
+        text-overflow: inherit;
+        white-space: normal;
+    }
+    div.dashed {
+        border-style: outset;
+        padding: 10px;
+        // outline-style: outset;
+        border-color: #34ace0; 
+        box-shadow: 5px 10px #2a5368;
+    }
+    .center{
+        text-align: center;
+    }
+    .button-cancel{
+        background-color: red;
+    }
+    .thumbnail-container {
+        overflow-x:scroll;
+        width:100%;
+        // padding: 0 15px;
+    }
+    .thumbnail-list {
+        white-space:nowrap;
+        list-style: none;
+        padding: 0;
+    }
+    .thumbnail-list li {
+        display: inline-block;
+    }
+    .thumbnail-image {
+        display: block;
+        padding:2px;
+        max-width: 100px;
+        height:auto;
+    }
+
+}

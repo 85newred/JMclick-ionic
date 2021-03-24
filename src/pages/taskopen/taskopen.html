@@ -1,0 +1,22 @@
+
+
+  <ion-content>
+    <div *ngIf="task && task.length < 1">
+      <p class="none">No record found</p>
+    </div>
+  <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList($event)"></ion-searchbar>
+
+    <ion-item  *ngFor="let t of task" (click)="gotoPage(t)">
+      <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+        <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+      </ion-avatar>
+      <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[t.Id] ? 'New ': ''}}</b></p>
+      <h3>Project Name : {{t.Project_Name}}</h3>
+      <p>Site Name: {{t.Site_Name}}</p>
+      <p>Due Date: {{t.Due_Date}}</p>
+      <p>Assigned By: {{t.Created_By}}</p>
+      <p>Assigned Date: {{t.created_at}}</p>
+    </ion-item>
+
+  </ion-content>
+

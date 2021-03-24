@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="darkblue">
+        <ion-toolbar>
+            <ion-title>Asset Transfer</ion-title>
+        </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+  
+<ion-content  class="ion-content">      
+  <form novalidate (ngSubmit)="transferstaff()" [formGroup]="signupform">
+
+    <ion-item>
+      <ion-label stacked color="primary" class="required">PIC Type</ion-label>
+      <ion-select placeholder="Please select" (ngModelChange)="setStaff($event)" 
+      [(ngModel)]="PIC_Type" formControlName="PIC_Type" 
+      [class.error1]="!signupform.controls.PIC_Type.valid && signupform.controls.PIC_Type.dirty">
+          <ion-option value="Staff" >Staff</ion-option>
+      </ion-select>
+   </ion-item>
+
+    <ion-item>
+      <ion-label stacked color="primary">Transfer to [Staff]</ion-label>
+      <P class="error" *ngIf="signupform.get('Staff_Name').hasError('required') && signupform.get('Staff_Name').touched">
+        Please select your staff
+        </P>
+      <ionic-selectable item-content placeholder="Please select"  [(ngModel)]="Staff_Name" 
+      [items]="StaffOptions" formControlName="Staff_Name" [canSearch]="true" [canClear]="false" 
+      (onSearch)="searchStaff($event)"
+      [class.error1]="!signupform.controls.Staff_Name.valid && signupform.controls.Staff_Name.dirty">
+      <!-- <ion-option *ngFor="let item of items" value="{{item.Id}}">{{item.Name}}</ion-option> -->
+    </ionic-selectable>
+    </ion-item>
+
+    <br><br>
+
+    <button ion-button full item-right class="doc-button" [disabled]="signupform.invalid">Submit</button>
+  </form>
+</ion-content>

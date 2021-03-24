@@ -1,0 +1,48 @@
+page-advance {
+    .ion-content{ 
+        background: #f1f2f6;
+       }
+    .p{
+        color: #0a3580;
+        padding-left: 5px;
+    }
+    .ion-title{
+      text-align: center;
+      color: white;
+    }
+    .item{
+        background-color: white;
+        color: #0a3580;
+    }
+    .round-button{
+      border: none;
+      background-color:transparent;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      margin-right: 20px;
+  
+    }
+    .button1 {
+      border-radius: 50px;
+      background-image:linear-gradient( to top, #0a3580,#29539b 50%,#779ee2 ); 
+      box-shadow: 0 0 5px #3498db;
+    }
+    .button2
+      {border-radius: 50px;
+        background-image:linear-gradient( to top, #0a3580,#29539b 50%,#779ee2 ); 
+        box-shadow: 0 0 5px #3498db;
+    }
+    .button6 {
+      border-radius: 50px;
+      background-image:linear-gradient( to top, #0a3580,#29539b 50%,#779ee2 ); 
+      box-shadow: 0 0 5px #3498db;
+    }
+  
+  
+  }
+  

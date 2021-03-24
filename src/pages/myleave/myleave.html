@@ -1,0 +1,133 @@
+<ion-header>
+
+    <ion-navbar color="secondary">
+      <ion-title>Leave Submission</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+
+  <ion-content  class="ion-content">
+    <ion-list>
+      <form novalidate (ngSubmit)="submitClaim()" [formGroup]="signupform">
+
+      <ion-item>
+        <ion-label stacked color="primary" class="required">Leave Type</ion-label>
+        <ion-select placeholder="please select" [(ngModel)]="Leave_Type" (ngModelChange)="fetchCalculatedLeaveDays($event)" formControlName="Leave_Type" [class.error1]="!signupform.controls.Leave_Type.valid && signupform.controls.Leave_Type.dirty">
+          <ion-option *ngFor="let type of types" value="{{type.Option}}">{{type.Option}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('Leave_Type').hasError('required') ) && signupform.get('Leave_Type').touched">
+        <div class="error" *ngIf="signupform.get('Leave_Type').hasError('required') && signupform.get('Leave_Type').touched">
+          Please select your leave type
+        </div>
+      </ion-item>
+
+     <!-- <ion-item>
+        <ion-label stacked color="primary" class="required">Leave Term</ion-label>
+        <ion-select placeholder="please select" [(ngModel)]="Leave_Term" formControlName="Leave_Term" [class.error1]="!signupform.controls.Leave_Term.valid && signupform.controls.Leave_Term.dirty">
+          <ion-option value="Full Day">Full Day</ion-option>
+          <ion-option value="Afternoon">Half Day Afternoon[1pm-6pm]</ion-option>
+          <ion-option value="Morning">Half Day Morning</ion-option>
+        </ion-select>
+      </ion-item> -->
+
+      <ion-item>
+        <!-- <div alert-radio-label> -->
+        <ion-label stacked color="primary" class="required">Department</ion-label>
+        <ion-select  text-wrap placeholder="please select" [(ngModel)]="Department" (ngModelChange)="setApproverOptions($event)" formControlName="Department" [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">
+          <ion-option text-wrap alert-radio-label *ngFor="let depart of departs" value="{{depart.Id}}">{{depart.Project_Name}}</ion-option>
+        </ion-select>
+        <!-- </div> -->
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('Department').hasError('required') ) && signupform.get('Department').touched">
+        <div class="error" *ngIf="signupform.get('Department').hasError('required') && signupform.get('Department').touched">
+          Please select your department
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="primary" class="required">Approver</ion-label>
+        <ion-select disabled  placeholder="please select" [(ngModel)]="Approver" formControlName="Approver" [class.error1]="!signupform.controls.Approver.valid && signupform.controls.Approver.dirty">
+          <ion-option *ngFor="let app of approverOptions" value="{{app.Id}}">{{app.Name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('Approver').hasError('required') ) && signupform.get('Approver').touched">
+        <div class="error" *ngIf="signupform.get('Approver').hasError('required') && signupform.get('Approver').touched">
+          Please select your approver
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="primary" class="required">Start Date</ion-label>
+          <ion-datetime
+          pickerFormat="DD MMM YYYY" [(ngModel)]="Start_Date"
+          displayFormat="DD MM YYYY" placeholder="Choose start date" max="2200" (ngModelChange)="fetchCalculatedLeaveDays($event)" formControlName="Start_Date" [class.error1]="!signupform.controls.Start_Date.valid && signupform.controls.Start_Date.dirty">
+          </ion-datetime>
+        </ion-item>
+        <ion-item no-lines *ngIf="( signupform.get('Start_Date').hasError('required') ) && signupform.get('Start_Date').touched">
+          <div class="error" *ngIf="signupform.get('Start_Date').hasError('required') && signupform.get('Start_Date').touched">
+            Please select your start date
+          </div>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked color="primary" class="required">End Date</ion-label>
+          <ion-datetime
+            pickerFormat="DD MMM YYYY" [(ngModel)]="End_Date"
+            displayFormat="DD MM YYYY" placeholder="Choose end date" max="2200" (ngModelChange)="fetchCalculatedLeaveDays($event)" formControlName="End_Date" [class.error1]="!signupform.controls.End_Date.valid && signupform.controls.End_Date.dirty">
+          </ion-datetime>
+        </ion-item>
+        <ion-item no-lines *ngIf="( signupform.get('End_Date').hasError('required') ) && signupform.get('End_Date').touched">
+            <div class="error" *ngIf="signupform.get('End_Date').hasError('required') && signupform.get('End_Date').touched">
+              Please select your end date
+            </div>
+          </ion-item>
+
+        <ion-item>
+          <ion-icon item-end name="ios-settings" (click)="presentLeaveModal()"></ion-icon>
+          <ion-label stacked color="primary">Total Leave Days </ion-label>
+          <ion-label>{{ getLeaveDays() }}</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked color="primary" class="required">Reason</ion-label>
+          <ion-textarea type="text" [(ngModel)]="Reason" placeholder="State your reason here" formControlName="Reason" [class.error1]="!signupform.controls.Reason.valid && signupform.controls.Reason.dirty"></ion-textarea>
+        </ion-item>
+        <ion-item no-lines *ngIf="( signupform.get('Reason').hasError('required') ) && signupform.get('Reason').touched">
+          <div class="error" *ngIf="signupform.get('Reason').hasError('required') && signupform.get('Reason').touched">
+            Please select your reason
+          </div>
+        </ion-item>
+
+        <div class="thumbnail-container">
+          <ul class="thumbnail-list">
+            <li *ngFor="let imageN of imagesN"><span><img class="thumbnail-image" [src]="imageN"></span></li>
+          </ul>
+        </div>
+
+        <button ion-button icon-right type="button" full (click)="onTakePicture()">
+          Take Picture <ion-icon name="camera"></ion-icon>
+        </button>
+
+
+        <button class="center" full ion-button type="button" (click)="getImage()" color="primary">
+          Get from Gallery <ion-icon name="aperture"></ion-icon>
+        </button>
+
+        <button ion-button icon-right full type="button" class="center" (click)="clearImage()">
+          Clear
+        </button>
+        
+        <!-- <br><br>
+        <button ion-buttpn block type="button" (click)="test()">TEST</button> -->
+<br><br>
+        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Submit</button>
+
+      </form>
+
+      <style>
+        .required:after { content:" *"; color:red; }
+      </style>
+    </ion-list>
+  </ion-content>

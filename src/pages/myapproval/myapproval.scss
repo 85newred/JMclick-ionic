@@ -1,0 +1,21 @@
+page-myapproval {
+  .ion-content{
+    background-color: #f1f2f6;
+  }
+  .ion-avatar{
+    background: #3498db;
+    border-radius: 70px;
+  }
+  .detail{
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  .none{
+    position: relative;
+    text-align: center; 
+    font-weight: bold;
+    font-size: 20px;
+    color: grey;
+  }
+}
+    

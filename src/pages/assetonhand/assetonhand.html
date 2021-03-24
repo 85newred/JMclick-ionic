@@ -1,0 +1,46 @@
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Asset on hand detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+  
+<ion-content padding class="ion-content">
+  <div class="notice-body">
+    <div class="date" hidden>
+      <p>{{Start_Date}}</p>
+      <p>{{created_at}}</p>
+      <p>submitted by: {{Created_By}}</p>
+    </div>
+
+    <div class="title-notice">
+      <br>
+      <h1>{{Title}}</h1>
+    </div>
+
+    <div class="notice-content">
+      <ion-card class="text" text-wrap>
+        <pre>Label: {{Label}}</pre>
+        <p>Type: {{Type}} </p>
+        <p>Serial No: {{Serial_No}} </p>
+        <p>IMEI: {{EMEI}} </p>
+        <p>Model No: {{Model_No}} </p>
+        <p *ngIf="Type == 'Car'">Car No: {{Car_No}} </p>
+        <p>Color: {{Color}}</p>
+        <p>Taken Date: {{Date}}</p>
+        <p>Transfer To: {{Transfer_To}}</p>
+        <p>Transfer Date Time: {{Transfer_Date_Time}}</p>
+        <p>Remarks: {{Remarks}}</p>
+      </ion-card>
+    </div>
+
+  </div>
+
+  <br>
+  <button full ion-button type="button" [navPush]="assethistory" [navParams]="asset">History</button>
+  <button *ngIf="Type == 'Car'" full ion-button type="button" [navPush]="assettransfer" [navParams]="transferstaff">Transfer</button>
+  <button full ion-button type="button" (click)="report()">Report</button>
+</ion-content>
+  

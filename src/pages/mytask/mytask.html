@@ -1,0 +1,14 @@
+<ion-header>
+
+    <ion-navbar color="secondary">
+      <ion-title>My Task</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+  <ion-content>
+    <ion-tabs tabsPlacement= 'top'>
+      <ion-tab [root]="tab1"  [tabBadge]="open" tabTitle="Open" tabsHideOnSubPages="true" [rootParams]="tab1Params"></ion-tab>
+      <ion-tab [root]="tab2"  [tabBadge]="close" tabTitle="Close" tabsHideOnSubPages="true" [rootParams]="tab2Params"></ion-tab>
+    </ion-tabs>
+  </ion-content>

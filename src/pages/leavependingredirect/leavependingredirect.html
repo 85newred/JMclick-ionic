@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="darkblue">
+        <ion-toolbar>
+            <ion-title>Leave Pending  Redirect</ion-title>
+        </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+  
+<ion-content  class="ion-content">      
+  <form novalidate (ngSubmit)="redirectLeave()" [formGroup]="signupform">
+
+    <ion-item>
+      <ion-label stacked color="primary">Approver</ion-label>
+      <P class="error" *ngIf="signupform.get('Approver').hasError('required') && signupform.get('Approver').touched">
+        Please select your approver
+        </P>
+      <ion-select placeholder="please select" [(ngModel)]="Approver" formControlName="Approver" [class.error1]="!signupform.controls.Approver.valid && signupform.controls.Approver.dirty">
+          <ion-option *ngFor="let app of apps" value="{{app.Id}}">{{app.Name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <br><br>
+
+    <button ion-button full item-right class="doc-button" [disabled]="signupform.invalid">Submit</button>
+  </form>
+</ion-content>

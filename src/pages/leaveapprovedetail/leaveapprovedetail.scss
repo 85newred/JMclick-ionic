@@ -1,0 +1,28 @@
+page-leaveapprovedetail {
+    div.dashed {
+        border-style: outset;
+        padding: 10px;
+        // outline-style: outset;
+        border-color: #34ace0; 
+        box-shadow: 5px 10px #2a5368;
+    }
+    .thumbnail-container {
+        overflow-x:scroll;
+        width:100%;
+        // padding: 0 15px;
+    }
+    .thumbnail-list {
+        white-space:nowrap;
+        list-style: none;
+        padding: 0;
+    }
+    .thumbnail-list li {
+        display: inline-block;
+    }
+    .thumbnail-image {
+        display: block;
+        padding:2px;
+        max-width: 100px;
+        height:auto;
+    }
+}

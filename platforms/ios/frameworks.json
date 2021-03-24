@@ -1,0 +1,13 @@
+{
+    "Security.framework": 2,
+    "SystemConfiguration.framework": 3,
+    "ImageIO.framework": 2,
+    "CoreLocation.framework": 3,
+    "AVFoundation.framework": 1,
+    "UIKit.framework": 1,
+    "Foundation.framework": 1,
+    "QuartzCore.framework": 3,
+    "MessageUI.framework": 1,
+    "Accelerate.framework": 1,
+    "Photos.framework": 1
+}

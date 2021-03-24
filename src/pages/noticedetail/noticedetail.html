@@ -1,0 +1,39 @@
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Notice detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+  
+<ion-content padding class="ion-content">
+  <div class="notice-body">
+    <div class="date" hidden>
+      <p>{{Start_Date}}</p>
+      <p>{{created_at}}</p>
+    </div>
+
+    <div class="title-notice">
+      <br>
+      <h1>{{Title}}</h1>
+    </div>
+
+    <div class="notice-content">
+      <div class="text">
+        <pre>{{Content}}</pre>
+      </div>
+
+      <div *ngIf="Attachment !== null">
+        <div  *ngFor="let file of Attachment.split('|'); let i = index">
+          <img ng-reflect-src *ngIf="file.substr(file.lastIndexOf('.') + 1).toUpperCase() == 'PNG' || file.substr(file.lastIndexOf('.') + 1).toUpperCase() == 'JPG' || file.substr(file.lastIndexOf('.') + 1).toUpperCase() == 'JPEG'; else elseBlock" [src]="'https://jmclicks.com/' + file" onError="src = 'assets/imgs/blank.png'" imageViewer>
+            
+          <!-- <ng-template #elseBlock><button ion-button block (click)="download(file, FileName.split('|')[i])">{{FileName.split('|')[i]}} [Download]</button><br>
+          </ng-template> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>
+  

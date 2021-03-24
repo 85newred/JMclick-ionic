@@ -1,0 +1,36 @@
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Holiday</ion-title>
+  </ion-navbar>
+</ion-header>
+  
+<ion-content class="ion-content">
+
+  <div class="box">
+    <p class="p">Calendar</p>
+    <ion-item class="ion-item">
+      <div *ngIf="calendarOptions">
+        <ng-fullcalendar #ucCalendar [options]="calendarOptions"></ng-fullcalendar>
+    </div>
+    </ion-item>
+  </div>
+
+  <ion-item *ngFor="let item of items; let i = index;">
+    <ion-row>
+      <ion-col date>
+          {{item.Start_Date}} <p class="p">{{ myFunction(item.Start_Date) }}</p> - <br>
+          {{item.End_Date}} <p class="p">{{ myFunction(item.End_Date) }}</p>
+      </ion-col>
+      <!-- <ion-col date>
+        {{item.End_Date}}<br>
+        <p class="p">{{ myFunction(item.End_Date) }} </p> 
+    </ion-col> -->
+      <ion-col event>
+        <div text-wrap>
+          <p class="a">{{item.Holiday}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-item>  
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Details
+    </ion-title>
+    <ion-buttons end>
+      <button color='secondary' ion-button (click)='closeModal()'>Close</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <ion-item>
+    <p style="color:blueviolet" ALIGN=RIGHT ><b></b></p>
+    <h3>PR NO : {{ pr }} </h3>
+    <p>Project Name : {{project}}</p>
+    <p>Region : {{region}}</p>
+    <p></p>
+  </ion-item>
+
+  <ion-item>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <button ion-button block color='primary' (click)='accept()'>Accept</button>
+      </div>
+      <div class="col"></div>
+    </div>
+  </ion-item>
+  <ion-item>
+    <button ion-button block color="primary" (click)="pdf()">View</button>
+  </ion-item>
+  <ion-item hidden>
+    <button ion-button block color="primary" (click)="reject()">Reject</button>
+  </ion-item>
+</ion-content>

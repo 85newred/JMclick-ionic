@@ -1,0 +1,90 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com-badrit-base64": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "com.telerik.plugins.nativepagetransitions": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-advanced-http": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-app-preferences": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-document-viewer": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-file-opener2": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-telerik-imagepicker": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "com.softoya.jmclick"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.softoya.jmclicks"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-filechooser": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-filepath": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-android-support-gradle-release": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    }
+  },
+  "dependent_plugins": {}
+}

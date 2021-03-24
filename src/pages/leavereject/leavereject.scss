@@ -1,0 +1,24 @@
+page-leavereject {
+    .ion-content{
+      background: #f1f2f6;
+    }
+    
+    .ion-avatar{
+        background: #3498db;
+        border-radius: 70px;
+    }
+    .p{
+        color: #ff0000;
+    }
+    .detail{
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+    .none{
+        position: relative;
+        text-align: center; 
+        font-weight: bold;
+        font-size: 20px;
+        color: grey;
+    }
+}

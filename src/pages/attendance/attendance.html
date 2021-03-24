@@ -1,0 +1,129 @@
+<!--
+Generated template for the AttendancePage page.
+
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Attendance</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="ion-content">
+  <div class="content-detail">
+
+    <!-- Name: {{Name}}
+    <ion-label>
+    {{formattedDate}}
+    </ion-label> -->
+
+    <div class="ion-item-body">
+      <ion-item class="ion-item-item">
+        <h2 class="title">{{Name}}</h2>
+        <h4>{{formattedDate}} </h4>
+
+      </ion-item>
+    </div>
+
+    <br><br>
+
+    <div [hidden]="!hideUI">
+      <div>
+        <h2 class="title">Site Name: {{Site_Name_Display}}</h2>
+      </div>
+    </div>
+
+    <div class="box">
+      <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content>
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+      </ion-refresher-content>
+      </ion-refresher> -->
+
+
+      <ion-item text-center color="primary" class="top-border">
+        Latitude: {{ Latitude_In }}<br>
+        Longitude: {{ Longitude_In }}
+      </ion-item>
+
+      <br>
+
+      <button ion-button class="button-color" type="button" (click)="doRefresh()">Refresh</button>
+
+      <br>
+      <form novalidate (ngSubmit)="submitTimeIn()" [formGroup]="signupform">
+
+      <!-- Check Type Dropdown -->
+      <div class="box-content">
+        <ion-item class="ion-item" [hidden]="hideUI">
+          <ion-label stacked color="primary"  class="required">Check In Type
+            <p class="error" *ngIf="signupform.get('Check_In_Type').hasError('required') && signupform.get('Check_In_Type').touched">
+            Please select your check in type
+            </p>
+          </ion-label>
+          <ion-select [(ngModel)]="Check_In_Type" formControlName="Check_In_Type" [class.error1]="!signupform.controls.Check_In_Type.valid && signupform.controls.Check_In_Type.dirty">
+
+            <ion-option *ngFor="let type of types" value="{{type.Option}}">{{type.Option}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <!-- Project Dropdown -->
+      <div class="box-content">
+        <ion-item class="ion-item" [hidden]="hideUI">
+          <ion-label stacked color="primary"  class="required">Project
+            <p class="error" *ngIf="signupform.get('Department').hasError('required') && signupform.get('Department').touched">
+            Please select your project
+            </p>
+          </ion-label>
+          <!-- <ion-select text-wrap [(ngModel)]="Department" formControlName="Department" [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">
+            <ion-option *ngFor="let depart of departs" value="{{depart.Id}}">{{depart.Project_Name}}</ion-option>
+          </ion-select> -->
+          <ionic-selectable item-content [(ngModel)]="Department" formControlName="Department" itemValueField="Id" [items]="departs" [canSearch]="true" [canClear]="false" itemTextField="Project_Name"  [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">{{Project_Name}}
+          </ionic-selectable>
+        </ion-item>
+      </div>
+
+
+      <!-- Sitename textarea -->
+      <div class="box-content">
+        <ion-item class=ion-item  [hidden]="hideUI">
+          <ion-label stacked color="primary" class="required">Site Name</ion-label>
+          <ion-input type="text" [(ngModel)]="Site_Name" placeholder="State if not in the list" formControlName="Site_Name" [class.error1]="!signupform.controls.Site_Name.valid && signupform.controls.Site_Name.dirty"></ion-input>
+          <div class="error" *ngIf="signupform.get('Site_Name').hasError('required') && signupform.get('Site_Name').touched">
+            Please insert your site name
+          </div>
+        </ion-item>
+      </div>
+
+      <!-- Work Description textarea -->
+      <div class="box-content">
+        <ion-item class=ion-item  [hidden]="hideUI">
+          <ion-label stacked color="primary">Work Description</ion-label>
+          <ion-input type="text" [(ngModel)]="Work_Description" placeholder="State Work Description" formControlName="Work_Description" [class.error1]="!signupform.controls.Work_Description.valid && signupform.controls.Work_Description.dirty"></ion-input>
+          <div class="error" *ngIf="signupform.get('Work_Description').hasError('required') && signupform.get('Work_Description').touched">
+            Please insert your Work Description
+          </div>
+        </ion-item>
+      </div>
+
+      <!-- Time In Button -->
+      <button ion-button full  class="bottom-border" type="submit" [hidden]="hideUI" [disabled]="signupform.invalid || disabled">Time In</button>
+    </form>
+
+      <br>
+
+      <button ion-button full  class="bottom-border" type="submit" (click)="submitTimeOut()" [disabled]='disabledOut'
+      [hidden]="!hideUI">Time out</button>
+
+    </div>
+  </div>
+  <style>
+    .required:after { content:" *"; color:red; }
+  </style>
+</ion-content>

@@ -1,0 +1,98 @@
+
+<ion-header>
+
+    <ion-navbar color="secondary">
+      <ion-title >{{tempStatus == "Open" ? "Update Task":"View Task"}}</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+
+  <ion-content padding *ngIf="tempStatus == 'Open'">
+
+    <h1 text-center>{{Start_Date}}</h1>
+    <ion-item>
+      <ion-label stacked color="primary">Project Name</ion-label>
+      <ion-input    value="{{project}}" disabled="true" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked color="primary">Site Name</ion-label>
+      <ion-input  value="{{site}}" disabled="true" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked color="primary">Due Date</ion-label>
+      <ion-input  value="{{due}}" disabled="true" ></ion-input>
+    </ion-item>
+
+    <form novalidate (ngSubmit)="updateTask()" [formGroup]="signupform">
+
+          <ion-item>
+            <ion-label stacked color="primary">Status</ion-label>
+            <ion-select  [(ngModel)]="Status_Val" formControlName="Status_Val">
+              <ion-option value="Open">Open</ion-option>
+              <ion-option value="Close">Close</ion-option>
+            </ion-select>
+          </ion-item>
+
+
+        <ion-item>
+          <ion-label stacked color="primary">Completed Date</ion-label>
+          <ion-datetime
+            pickerFormat="DD MMM YYYY" [(ngModel)]="Completed_Date"
+            displayFormat="DD MM YYYY" placeholder="Choose Completed date" max="2200" formControlName="Completed_Date" [class.error1]="!signupform.controls.Completed_Date.valid && signupform.controls.Completed_Date.dirty">
+            </ion-datetime>
+        </ion-item>
+
+        <ion-item>
+        <ion-label stacked color="primary">Remarks</ion-label>
+          <ion-textarea [(ngModel)]="Remarks" formControlName="Remarks" value="{{Remarks}}"></ion-textarea>
+        </ion-item>
+        <ion-item *ngIf="imagesN.length > 0">
+          <ion-label stacked color="primary">Image</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-slides class="image-slider" >
+            <ion-slide *ngFor="let img of taskImage">
+              <img [src]="'https://jmclicks.com' + img.Web_Path" imageviewer width="100" height="200">
+            </ion-slide>
+          </ion-slides>
+        </ion-item>
+
+        <ion-item *ngFor="let img of imagesN;">
+          <ion-thumbnail slot="start">
+              <img [src]="img.path" width="30px" height="30px">
+          </ion-thumbnail>
+          <ion-icon slot="icon-only"  name="trash" (click)="deleteImage(img.id)"></ion-icon>
+        </ion-item>
+
+
+
+
+        <button ion-button icon-right type="button" full (click)="selectImage()">
+        <ion-icon name="camera"></ion-icon>Picture</button>
+        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Update</button>
+      </form>
+
+
+  </ion-content>
+  <ion-content *ngIf="tempStatus == 'Close'">
+    <ion-item>
+      <p style="color:blueviolet" ALIGN=RIGHT ><b></b></p>
+      <h3>Project Name : {{project}}</h3>
+      <p>Site Name: {{site}}</p>
+      <p>Due Date: {{due}}</p>
+      <p>Completed Date: {{completed}}</p>
+      <p>Remarks: {{Remarks}}</p>
+
+    </ion-item>
+
+    <ion-item>
+      <ion-slides class="image-slider" >
+        <ion-slide *ngFor="let img of taskImage">
+          <img [src]="'https://jmclicks.com' + img.Web_Path" imageviewer width="100" height="200">
+        </ion-slide>
+      </ion-slides>
+    </ion-item>
+  </ion-content>

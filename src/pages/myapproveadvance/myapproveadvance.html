@@ -1,0 +1,32 @@
+<!--
+  Generated template for the LeavependingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content class="ion-content">
+
+  <ion-item *ngFor="let item of items;" (click)="gotoPage(item)">
+    <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+      <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+    </ion-avatar>
+    <p style="color:rgb(72, 48, 95)" ALIGN=RIGHT ><b>{{ notifications[item.Id] ? 'New ': ''}}</b></p>
+
+    <div text-wrap class="detail">
+      <h2>{{item.Project_Name}}</h2>
+      <p class="p-detail">
+        {{item.Start_Date}}
+      <br>
+      RM {{item.Total_Requested}}
+      <br>
+      Approver : {{item.Approver}}
+      </p>
+    </div>
+    <p class="p">{{item.Status}}</p>
+  </ion-item>
+  
+</ion-content>
+    

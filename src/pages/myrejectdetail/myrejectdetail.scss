@@ -1,0 +1,86 @@
+page-myrejectdetail {
+        .ion-content{ 
+            background-color: #ebe8e8;
+           // background-image: linear-gradient(190deg, #1e4486 0%, #000538 74%);    
+           //background-image: url('../../assets/img/wallpaper.jpg');  
+           //background-size: cover; 
+           //background-image: linear-gradient(#29539b,#29539b) ;
+       }
+       .grid{
+           background-color: white;
+       }
+    
+     
+    
+       
+       .col{
+           border: solid rgb(189, 182, 182) 0.02pt;
+    
+           &[total]{
+               text-align: center;
+           }
+           &[total-advance]{
+               font-weight: bold;
+           }
+       }
+       .item{
+           //background-color: rgba(0,0,0,0.5);
+           //background-color: #29539b36;
+           //background-color: rgba(240, 248, 255, 0.432);
+           background-color: white;
+       }
+       .item-select.item ion-label {
+           color: #005eff !important; //your color here for selected option
+       }
+       .item-datetime.item ion-label {
+           color: #005eff !important; //your color here for selected option
+       }
+       .item-textarea.item ion-label {
+           color: #005eff !important; //your color here for selected option
+       }
+    
+       .item-select.item ion-select {
+           color: black !important; //your color here for selected option
+       }
+       .item-datetime.item ion-datetime {
+           color: black !important; //your color here for selected option
+       }
+       .item-textarea.item ion-textarea {
+           color: black !important; //your color here for selected option
+       }
+           .add{
+             background: white;
+             width: 150px;
+         
+           }
+           .add-button{
+             text-align: center;
+         
+           }
+           .doc-button{
+             border-radius: 50px;
+             background-color: #29539b;
+           }
+           .text-input::-webkit-input-placeholder {
+             text-indent: 0;
+             //color: rgb(139, 135, 135);
+             color: rgb(153, 150, 150);
+           }
+    
+           ion-label {
+            margin: 0;
+            display: block;
+            overflow: hidden;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            font-size: inherit;
+            text-overflow: ellipsis;
+            white-space: pre-wrap;
+          }
+    
+    }
+    
+
+

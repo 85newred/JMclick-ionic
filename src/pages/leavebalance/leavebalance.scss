@@ -1,0 +1,66 @@
+page-leavebalance {
+
+    ion-header {
+        .toolbar {
+        //   position: absolute;
+
+        //   .toolbar-background-md {
+        //     background: transparent;
+        //   }
+            .toolbar-title-md {
+            color: white;
+            // text-align: center;
+            // padding-right: 10%;
+            }
+        }
+        .bar-button-default-md:hover:not(.disable-hover), .bar-button-clear-md-default:hover:not(.disable-hover), .bar-button-md-default:hover:not(.disable-hover) {
+            color: white;
+        }
+        .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default {
+            color:rgb(0, 0, 0);
+        }
+        .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+            color: black;
+        }        
+    }
+
+    .ion-content-body {
+        // background: linear-gradient(to bottom, #000046 0, #240b36 );
+        background: #ecf0f1;
+    }
+
+    .ion-item-body {
+        margin: 0px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        // max-height: 240px;
+        // background: white;
+    }
+
+    .ion-item-item {
+        // background: white;
+        border-radius: 8px;
+        text-align: center;
+        white-space: pre-line;
+        border-style: dotted;
+        // max-height: 230px;
+    }
+
+    .title {
+        font-size: 15px;
+        font-weight: bold;
+        white-space: pre-line;
+        padding-bottom: 3px;
+    }
+
+    .balance {
+        color: #f53d3d;
+        font-size: 30px;
+    }
+
+    .balance2 {
+        color: #29d307;
+        font-size: 30px;
+    }
+
+}

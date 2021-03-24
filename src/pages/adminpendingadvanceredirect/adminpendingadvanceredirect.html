@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="darkblue">
+        <ion-toolbar>
+            <ion-title>Advance Pending Redirect</ion-title>
+        </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form novalidate (ngSubmit)="redirectAdvance()" [formGroup]="signupform">
+
+    <div class="div1">
+    <ion-list>
+      <ion-item>
+        <ion-label>Approver:</ion-label>
+        <ion-select [(ngModel)]="Approver"  formControlName="Approver" [class.error1]="!signupform.controls.Approver.valid && signupform.controls.Approver.dirty">
+        <ion-option *ngFor="let app of apps" value="{{app.Id}}">{{app.Name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('Approver').hasError('required') ) && signupform.get('Approver').touched">
+        <div class="error" *ngIf="signupform.get('Approver').hasError('required') && signupform.get('Approver').touched">
+          Please select your Approver
+        </div>
+      </ion-item>
+    </ion-list>
+    </div>
+
+    <div class="center">
+      <button ion-button block color="primary" type="submit"  [disabled]="signupform.invalid">Submit</button>
+    </div>
+  </form>
+</ion-content>
+      

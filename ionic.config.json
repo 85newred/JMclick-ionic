@@ -1,0 +1,7 @@
+{
+  "name": "jmclick",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

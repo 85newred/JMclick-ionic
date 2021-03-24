@@ -1,0 +1,25 @@
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>New Job</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="job && job.length < 1">
+    <p class="none">No record found</p>
+  </div>
+  <ion-item  *ngFor="let j of job" (click)="popup(j)">
+    <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+      <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+    </ion-avatar>
+    <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? 'New ': ''}}</b></p>
+    <h3>PR NO: {{j.pr_no}}</h3>
+    <p>Project Name: {{j.Project_Name}}</p>
+    <p>Region: {{j.region}}</p>
+    <p>Created By: {{j.createdBy}}</p>
+    <p>Created At: {{j.created_at}}</p>
+  </ion-item>
+
+</ion-content>
+

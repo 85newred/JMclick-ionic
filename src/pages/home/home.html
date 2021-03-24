@@ -1,0 +1,187 @@
+
+
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+  <div class="flb">
+    <img src="" class="img-slide">
+  </div>
+</div>
+
+
+<ion-content  class="ion-content">
+
+<ion-slides class="ion-slides header" autoplay="3000" loop="false" speed="900" pager="true">
+  <ion-slide  class="slider1">
+    <img class="s1" src="assets/img/logo-round.png">
+      <p>Jalur Millenium Sdn Bhd</p>
+
+  </ion-slide>
+
+  <ion-slide>
+    <div class="profile">
+      <ion-item class="item-profile" no-lines>
+        <ion-avatar>
+          <img class="s1" [src]="'https://jmclicks.com' + userImage" onError="src = 'assets/imgs/default.png'">
+        </ion-avatar>
+      </ion-item>
+    </div>
+
+    <div class="text-profile">
+      <p>{{Name}}</p>
+      <p>{{Position}}</p>
+    </div>
+  </ion-slide>
+
+  <!-- <ion-slide>
+    <div>
+      <ion-img width="120" height="120" [src]="'http://localhost:8200/jmclicks/public' + userImage" class="round-button button-profile"></ion-img>
+    </div>
+    <div class="text-profile">
+      <p>{{Name}}</p>
+      <p>{{Position}}</p>
+    </div>
+
+  </ion-slide>
+ -->
+
+
+ </ion-slides>
+
+  <!---------------------------------------------------------------------------->
+<!--home.html-->
+  <div padding class="padding-left">
+
+    <div class = "row">
+      <div class = "col a">
+        <button  class="round-button-menu button1" (click)='onGoToNotice()'>
+            <ion-icon ios="ios-megaphone" md="md-megaphone" style="zoom:2.0;"></ion-icon>
+            <div class="test" *ngIf="user_type == 'Staff'">
+              <ion-badge color="danger" *ngIf="noticeBadgeCount > 0" float-right>{{ noticeBadgeCount +  allProjectBadgeCount}}</ion-badge>
+            </div>
+            <div class="test" *ngIf="user_type == 'Contractor'">
+              <ion-badge color="danger" *ngIf="allContractorBadgeCount > 0" float-right>{{ allContractorBadgeCount}}</ion-badge>
+            </div>
+          </button>
+        <div>Notice</div>
+      </div>
+      <div class = "col a" *ngIf="user_type != 'Staff'">
+        <button  class="round-button-menu button8" (click)='onGoToMyJob()'>
+            <ion-icon ios="ios-hammer" md="md-hammer" style="zoom:2.0;"></ion-icon>
+            <div class="test">
+              <ion-badge color="danger" *ngIf="jobBadgeCount > 0" float-right>{{ jobBadgeCount }}</ion-badge>
+            </div>
+          </button>
+        <div>My Job</div>
+      </div>
+      <div class = "col a" *ngIf="user_type != 'Contractor'">
+        <button class="round-button-menu button4" (click)='advance()'>
+            <ion-icon ios="logo-usd" md="logo-usd" style="zoom:2.0;"></ion-icon>
+            <div class="test">
+              <ion-badge color="danger" *ngIf="allAdvanceBadgeCount > 0" float-right>{{ allAdvanceBadgeCount }}</ion-badge>
+            </div>
+          </button>
+        <div>Advance</div>
+     </div>
+
+     <div class = "col a" *ngIf="user_type != 'Staff'">
+      <button  class="round-button-menu button8" (click)='onGoToTask()'>
+          <ion-icon ios="ios-construct" md="md-construct" style="zoom:2.0;"></ion-icon>
+          <div class="test">
+            <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge>
+          </div>
+        </button>
+      <div>Task</div>
+    </div>
+
+     <div class = "col a" *ngIf="user_type != 'Contractor'">
+      <button class="round-button-menu button3" (click)='onGoToAttendance()'>
+          <ion-icon ios="ios-done-all" md="md-done-all" style="zoom:2.0;"></ion-icon>
+          </button>
+      <div>Attendance</div>
+    </div>
+    </div>
+
+      <div class = "row" >
+        <div class = "col a" *ngIf="user_type != 'Contractor'">
+        <button  class="round-button-menu button6" (click)='onGoToTimesheet()'>
+            <ion-icon ios="ios-list-box" md="md-list-box" style="zoom:2.0;"></ion-icon>
+          </button>
+        <div>Timesheet</div>
+      </div>
+
+      <div class = "col a " *ngIf="user_type != 'Contractor'">
+        <button class="round-button-menu button5"  (click)='onGoToLeaves()'>
+            <ion-icon ios="ios-calendar" md="md-calendar" style="zoom:2.0;"></ion-icon>
+            <div class="test">
+              <ion-badge color="danger" *ngIf=" allLeaveBadgeCount > 0" float-right>{{ allLeaveBadgeCount }}</ion-badge>
+            </div>
+          </button>
+        <div>Leave</div>
+      </div>
+
+        <div class = "col a">
+          <button class="round-button-menu button7" (click)='onGoToHoliday()'>
+              <ion-icon ios="ios-plane" md="md-plane" style="zoom:2.0;"></ion-icon>
+            </button>
+          <div>Holiday</div>
+      </div>
+
+
+    </div>
+    <div class="row">
+      <div class = "col a" *ngIf="user_type == 'Staff'">
+        <button  class="round-button-menu button9" (click)='onGoToSchedule()'>
+          <img src="assets/img/schedules2.png" height="30px" width="30px">
+            
+            <div class="test">
+              <ion-badge color="danger" *ngIf="allScheduleBadge > 0" float-right>{{ allScheduleBadge }}</ion-badge>
+            </div>
+          </button>
+        <div>Schedules</div>
+      </div>
+      
+      <div class = "col a" *ngIf="user_type == 'Staff'">
+        <button  class="round-button-menu button8" (click)='onGoToTask()'>
+            <ion-icon ios="ios-construct" md="md-construct" style="zoom:2.0;"></ion-icon>
+            <div class="test">
+              <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge>
+            </div>
+          </button>
+        <div>Task</div>
+      </div>
+
+      <div class = "col a" *ngIf="user_type == 'Staff'">
+        <button  class="round-button-menu button10" (click)='onGoToAsset()'>
+            <ion-icon ios="ios-construct" md="md-construct" style="zoom:2.0;"></ion-icon>
+            <div class="test">
+              <!-- <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge> -->
+            </div>
+          </button>
+        <div>Assets</div>
+      </div>
+
+      
+    </div>
+
+    
+  <br>
+</div>
+
+
+</ion-content>
+<!-- <ion-footer>
+
+    <button ion-button full icon-start class="button-logout" (click)="logout()">
+      <ion-icon name="log-out"></ion-icon>Log out
+    </button>
+</ion-footer> -->
+<ion-footer>
+  <div class="text-footer">
+    &#169; Copyright 2016 Softoya International Sdn. Bhd. All rights reserved. <a style="color:white" href="https://jmclicks.com/policy.php"> Privacy Policy </a> <br>
+    <b>Ver. : {{VersionNumber}}</b>
+    <!-- <p> {{deviceUUID}}</p>
+    <p>{{deviceModel}} </p> -->
+  </div>
+  <button ion-button full icon-start class="button-logout" (click)="logout()">
+    <ion-icon name="log-out"></ion-icon>Log out
+  </button>
+</ion-footer>

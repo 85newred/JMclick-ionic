@@ -1,0 +1,26 @@
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>All Task Assign</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="task && task.length < 1">
+    <p class="none">No record found</p>
+  </div>
+  <ion-item  *ngFor="let t of task">
+    <!-- <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+      <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+    </ion-avatar> -->
+    <!-- <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[t.Id] ? 'New ': ''}}</b></p> -->
+    <p>Staff: {{t.Staff}}</p>
+    <p>Site Name: {{t.Site_Name}}</p>
+    <p>Assigned Date: {{t.created_at}}</p>
+    <p>Due Date: {{t.Due_Date}}</p>
+    <p>Completed Date: {{t.Completed_Date}}</p>
+    <p>Remarks: {{t.Remarks}}</p>
+    <p>Status: {{t.Status}}</p>
+  </ion-item>
+
+</ion-content>
+

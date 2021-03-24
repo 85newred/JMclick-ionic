@@ -1,0 +1,70 @@
+page-leavependingdetail {
+    .ion-title{
+        text-align: center;
+    }
+    .button-pending{
+        border-radius: 70%;
+        width: 40px;
+        background-color: #fed330;
+    }
+    .button-redirect{
+        background-color:#21a321;
+    }
+    .navbar-title {
+        text-overflow: inherit;
+        white-space: normal;
+    }
+    div.dashed {
+        border-style: outset;
+        padding: 10px;
+        // outline-style: outset;
+        border-color: #34ace0; 
+        box-shadow: 5px 10px #2a5368;
+    }
+    .center{
+        text-align: center;
+    }
+    .button-cancel{
+        background-color: red;
+    }
+    .col-detail{
+        margin-left: -100px;
+        font-weight: bold;
+    }
+    .ion-content{
+        background: #f1f2f6;
+    }
+    .notice-body{
+        background: white;
+        padding: 5%;
+    }
+    .status{
+        color: #fed330;
+    }
+    .h1{
+        border-bottom-style: solid;
+        border-bottom-width: 0.2px;
+        border-bottom-color: #000000;
+    }
+
+    .thumbnail-container {
+        overflow-x:scroll;
+        width:100%;
+        // padding: 0 15px;
+    }
+    .thumbnail-list {
+        white-space:nowrap;
+        list-style: none;
+        padding: 0;
+    }
+    .thumbnail-list li {
+        display: inline-block;
+    }
+    .thumbnail-image {
+        display: block;
+        padding:2px;
+        max-width: 100px;
+        height:auto;
+    }
+
+}

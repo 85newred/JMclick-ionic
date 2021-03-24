@@ -1,0 +1,52 @@
+<!--
+  Generated template for the AssetreportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="darkblue">
+        <ion-toolbar>
+            <ion-title>Asset Report</ion-title>
+        </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form novalidate (ngSubmit)="report()" [formGroup]="signupform">
+
+    <div class="div1">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked color="primary" class="required">Issue</ion-label>
+        <ion-textarea type="text" [(ngModel)]="Issue" placeholder="State your issue here" formControlName="Issue" [class.error1]="!signupform.controls.Issue.valid && signupform.controls.Issue.dirty"></ion-textarea>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('Issue').hasError('required') ) && signupform.get('Issue').touched">
+        <div class="error" *ngIf="signupform.get('Issue').hasError('required') && signupform.get('Issue').touched">
+          Please input your Issue
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="primary" class="required">Need Replacement?</ion-label>
+        <ion-select placeholder="please select" [(ngModel)]="Replacement" formControlName="Replacement" [class.error1]="!signupform.controls.Replacement.valid && signupform.controls.Replacement.dirty">
+          <ion-option value="Yes">Yes</ion-option>
+          <ion-option value="No">No</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('Replacement').hasError('required') ) && signupform.get('Replacement').touched">
+        <div class="error" *ngIf="signupform.get('Replacement').hasError('required') && signupform.get('Replacement').touched">
+          Need replacement?
+        </div>
+      </ion-item>
+    </ion-list>
+    </div>
+
+    
+
+    <div class="center">
+      <button ion-button block color="primary" type="submit"  [disabled]="signupform.invalid">Submit</button>
+    </div>
+  </form>
+</ion-content>
+      

@@ -1,0 +1,35 @@
+<!--
+  Generated template for the NoticePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Assets on hand</ion-title>
+  </ion-navbar>
+
+</ion-header>  
+  
+<ion-content class="ion-content background">
+  <ion-list >
+    <ion-col *ngFor="let item of items;">
+      <ion-grid [navPush]="assetonhandpage" [navParams]="item">
+        <ion-item>
+          <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[item.Id] ? 'New ': ''}}</b></p>
+          <ion-avatar item-start class="ion-avatar">
+            <ion-icon ios="ios-megaphone" md="md-megaphone" style="zoom:2.0;"></ion-icon>
+          </ion-avatar>
+          <div class="date">
+            <!-- <p>{{item.End_Date}}</p> -->
+          </div>
+          <div text-wrap>
+            <h2>Taken Date: {{item.Date}}</h2>
+            <h2>Asset Type: {{item.Type}}</h2>
+          </div>
+        </ion-item>
+      </ion-grid>
+    </ion-col>
+  </ion-list>
+</ion-content>

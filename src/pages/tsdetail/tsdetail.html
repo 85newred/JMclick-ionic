@@ -1,0 +1,35 @@
+<!--
+  Generated template for the TsdetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>Timesheet Details</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding class="ion-content">
+    <ion-card *ngFor="let item of items;">
+      <ion-card-header color="primary">
+          {{item.Date}} ({{ myFunction(item.Date) }})
+      </ion-card-header>
+      <ion-card-content color="primary">
+        Time In: {{item.Time_In}}  <br>        
+        Time Out: {{item.Time_Out}} <br>
+        Status  : {{item.Status}}<br>
+        Check In Type: {{item.Check_In_Type}}<br>
+        Site  : {{item.Site_Name}}<br>
+        Project Name: {{item.Project_Name}}<br>
+        <!-- Approver: {{item.Approver}}<br> -->
+        Remarks: {{item.Remarks}}<br>
+        Work Description: {{item.Work_Description}}
+      </ion-card-content>
+    </ion-card>
+  
+  </ion-content>
+  
+
+
+  

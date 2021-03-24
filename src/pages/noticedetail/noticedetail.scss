@@ -1,0 +1,33 @@
+page-noticedetail {
+  .ion-content{
+    //background: #f1f2f6;
+    background: #ffffff;
+    color: black;
+  }
+  .title-notice{
+    text-align:center;
+  }
+  .notice-content{
+    text-align: justify;
+  }
+  .notice-body{
+    background: #ffffff;
+    box-shadow: #4f547a46;
+    padding: 5%;
+    margin-left: -20px;
+    margin-right: -20px;       
+    margin-top: -20px;
+    padding-bottom: 20px;
+  }
+
+  p {
+    text-align: justify;
+  }
+  
+  pre {
+    // text-align: left;
+    white-space: pre-line;
+    // text-align: justify;
+  }
+}
+  

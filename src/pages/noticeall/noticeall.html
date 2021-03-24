@@ -1,0 +1,59 @@
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>All Notice</ion-title>
+  </ion-navbar>
+
+</ion-header> 
+<ion-content  class="ion-content">
+
+  <br>
+
+  <br>
+
+  <div style="text-align: center">
+    <div *ngIf="(isObject(user) && user.User_Type == 'Staff')">
+      <div class = "col a">
+        <button  class="round-button-menu button1" (click)='onGoToNotice()'>
+            <img src="assets/img/business_team.png" width="56" height="56">
+          </button>
+          <div class="test">
+            <ion-badge color="danger" *ngIf="allStaffBadgeCount > 0" float-right>{{ allStaffBadgeCount }}</ion-badge>
+          </div>
+        <div style="color:black">Staff</div>
+      </div>
+    </div>
+    <br>
+    <div class = "col a" *ngIf="(isObject(user) && user.User_Type == 'Contractor')">
+      <button  class="round-button-menu button2" (click)='onGoToNoticeContractor()'>
+          <img src="assets/img/contractor.png" width="56" height="56">
+        </button>
+        <div class="test">
+          <ion-badge color="danger" *ngIf="allContractorBadgeCount > 0" float-right>{{ allContractorBadgeCount }}</ion-badge>
+        </div>
+      <div style="color:black">Contractor</div>
+    </div>
+    <br>
+    <div class = "col a" *ngIf="(isObject(user) && user.User_Type == 'Staff')">
+      <button  class="round-button-menu button3" (click)='onGoToNoticeProject()'>
+        <img src="assets/img/project.png" width="56" height="56">
+      </button>
+      <div class="test">
+        <ion-badge color="danger" *ngIf="allProjectBadgeCount > 0" float-right>{{ allProjectBadgeCount }}</ion-badge>
+      </div>
+      <div style="color:black">Project/Department</div>
+    </div>
+
+    <!-- <br>
+
+    <button ion-button style="width: 50%; margin-top: 10pt" (click)="onGoToNotice()">General</button>
+    <br>
+    <button ion-button style="width: 50%; margin-top: 10pt" (click)="onGoToNotice()">Contractor</button>
+    <br>
+    <button ion-button style="width: 50%; margin-top: 10pt" (click)="onGoToNotice()">Project</button> -->
+
+  </div>
+  <br>
+
+
+</ion-content>

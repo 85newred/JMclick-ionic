@@ -1,0 +1,80 @@
+page-attendance {
+    .ion-title{
+        text-align: center;
+        color: white;
+      }
+    .ion-content{
+        background: #f1f2f6;
+        color: #0a3580;
+            text-align: center; 
+    }    
+    .ion-item{
+        background: white;
+    }
+    .ion-item-item {
+        background: white;
+        // border-radius: 8px;
+        text-align: center;
+        white-space: pre-line;
+        padding-top: 2px;
+        color: #0a3580;
+    }
+
+    .box{
+        padding-top: 50px;
+    }
+    .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: rgba(0,0,0,0.55);
+    }
+    .top-border{
+        background: #0a3580;
+    }
+    .bottom-border{
+        background: #0a3580;
+    }
+    .bottom-border:hover{
+        background-color: #00256e9c; 
+    }
+
+    // .title {
+    //     font-size: 16px;
+    //     font-weight: bold;
+    //     // white-space: pre-line;
+    //     color: #0a3580;
+    //     text-align: center; 
+    // }
+
+    .button-color {
+        background: #0a3580;
+    }
+
+    .box-content {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    
+  
+}
+
+.green{
+    .toast-md .toast-wrapper {
+    background: green;
+    color:green;
+    }
+    button{
+        color: rgb(2, 255, 2);
+    }
+
+    .message{
+        color: #44bd32;
+    }
+
+    .toast-md .toast-message {
+        padding: 19px 16px 17px;
+        font-size: 1.5rem;
+        /* color: #fff; */
+        text-align: center;
+        color: #22ff00;
+    }
+}

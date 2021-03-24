@@ -1,0 +1,54 @@
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Leave Activity</ion-title>
+  </ion-navbar>
+</ion-header>
+  
+<ion-content class="ion-content">
+
+  <section class = "home-container">
+    <p class="p"> My Application<br></p>
+
+    <ion-list>
+
+      <ion-item (click)='myLeave()'>
+        <button class="round-button button1" >
+          <img src="assets/img/calendar (2).png" height="30px" width="30px">
+        </button>
+        My Leave
+      </ion-item>
+
+      <ion-item (click)='leavestatus()'>
+        <button class="round-button button2" >
+          <img src="assets/img/leave-status.png" width="30px" height="30px" >
+        </button>
+        <ion-badge color="danger" *ngIf="allLeaveBadgeCount > 0" item-end>{{ allLeaveBadgeCount }}</ion-badge>
+        Leave Status
+      </ion-item>
+
+      <ion-item (click)='LeaveBalance()'>
+        <button class="round-button button1" >
+          <img src="assets/icon/clipboard.png" height="30px" width="30px">
+        </button>
+        Leave Balance
+      </ion-item>
+
+    </ion-list>
+
+    <p class="p">My Approval</p>
+
+    <ion-list>
+      <ion-item (click)='myapproval()'>
+        <button class="round-button button6">
+          <img src="assets/img/myapproval (2).png" width="30px" height="30px">
+        </button>
+        <ion-badge color="danger" *ngIf="pendingLeaveBadgeCount > 0" item-end>{{ pendingLeaveBadgeCount }}</ion-badge>
+        My Approval
+      </ion-item>
+    </ion-list>
+
+  </section>
+  
+</ion-content>
+  

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Task</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="ion-content">
+  <section class="home-container">
+    <ion-list>
+
+      <ion-item (click)='assign()' *ngIf="user_type == 'Staff' && template == 64 || template == 63">
+        <button class="round-button button6" >
+          <img src="assets/img/admin (1).png" height="30px" width="30px">
+        </button>
+        Assign Task
+      </ion-item>
+
+      <ion-item (click)='myTask()'>
+        <button class="round-button button6" >
+          <img src="assets/img/myapproval (2).png" height="30px" width="30px">
+        </button>
+        <ion-badge color="danger" *ngIf="jobBadge > 0" item-end>{{ jobBadge }}</ion-badge>
+        My Task
+      </ion-item>
+
+      <ion-item (click)='allTask()' *ngIf="user_type != 'Contractor'">
+        <button class="round-button button6" >
+          <img src="assets/img/alltask2.png" height="30px" width="30px">
+        </button>
+        All Task Assign
+      </ion-item>
+
+    </ion-list>
+  </section>
+</ion-content>

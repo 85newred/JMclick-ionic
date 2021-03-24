@@ -1,0 +1,23 @@
+
+
+<ion-content padding class="multi-bg-example">
+
+  <div class="img">
+    <button class="button button2">
+      <img src="assets/img/logo-round.png" width="150px" height="150px">
+    </button>
+  </div>
+
+  <form [formGroup]="credentials" (ngSubmit)="login()" >
+    <ion-item class="content-form">
+      <ion-input type="text" placeholder="Email Address" formControlName="StaffId"></ion-input>
+    </ion-item>
+    <ion-item class="content-form" >
+      <ion-input type="password" placeholder="Password" formControlName="Password"></ion-input>
+    </ion-item>
+    <div>
+      <button ion-button block type="submit" [disabled]="!credentials.valid">Login</button>
+    </div>
+  </form>
+
+</ion-content>

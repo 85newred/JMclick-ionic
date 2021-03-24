@@ -1,0 +1,91 @@
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Assign Task</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+  <ion-content  class="ion-content">
+    <ion-list>
+      <form novalidate (ngSubmit)="submitTask()" [formGroup]="signupform">
+      <ion-item>
+        <ion-label stacked color="primary" class="required">Project Name</ion-label>
+        <ion-select placeholder="Please select" [(ngModel)]="Project_Name" formControlName="Project_Name" [class.error1]="!signupform.controls.Project_Name.valid && signupform.controls.Project_Name.dirty">
+          <ion-option *ngFor="let p of project" value="{{p.Id}}">{{p.Project_Name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('Project_Name').hasError('required') ) && signupform.get('Project_Name').touched">
+        <div class="error" *ngIf="signupform.get('Project_Name').hasError('required') && signupform.get('Project_Name').touched">
+          Please select project name
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="primary" class="required">Site Name</ion-label>
+        <ion-input placeholder="Enter Site Name" [(ngModel)]="Site_Name" formControlName="Site_Name" [class.error1]="!signupform.controls.Site_Name.valid && signupform.controls.Site_Name.dirty"></ion-input>
+      </ion-item>
+
+      <ion-item no-lines *ngIf="( signupform.get('Site_Name').hasError('required') ) && signupform.get('Site_Name').touched">
+        <div class="error" *ngIf="signupform.get('Site_Name').hasError('required') && signupform.get('Site_Name').touched">
+          Please type site name.
+        </div>
+      </ion-item>
+
+      <ion-item>
+          <ion-label stacked color="primary" class="required">Due Date</ion-label>
+            <ion-datetime
+            pickerFormat="DD MMM YYYY" [(ngModel)]="Due_Date"
+            displayFormat="DD MM YYYY" placeholder="Choose Due date" max="2200" formControlName="Due_Date" [class.error1]="!signupform.controls.Due_Date.valid && signupform.controls.Due_Date.dirty">
+            </ion-datetime>
+          </ion-item>
+          <ion-item no-lines *ngIf="( signupform.get('Due_Date').hasError('required') ) && signupform.get('Due_Date').touched">
+            <div class="error" *ngIf="signupform.get('Due_Date').hasError('required') && signupform.get('Due_Date').touched">
+              Please select your due date
+            </div>
+          </ion-item>
+
+     <ion-item>
+        <ion-label stacked color="primary" class="required">PIC Type</ion-label>
+        <ion-select placeholder="Please select" (ngModelChange)="setStaff($event)" [(ngModel)]="PIC_Type" formControlName="PIC_Type" [class.error1]="!signupform.controls.PIC_Type.valid && signupform.controls.PIC_Type.dirty">
+            <ion-option value="Staff">Staff</ion-option>
+            <ion-option value="Contractor">Contractor</ion-option>
+        </ion-select>
+     </ion-item>
+
+     <ion-item no-lines *ngIf="( signupform.get('PIC_Type').hasError('required') ) && signupform.get('PIC_Type').touched">
+        <div class="error" *ngIf="signupform.get('PIC_Type').hasError('required') && signupform.get('PIC_Type').touched">
+          Please select pic type
+        </div>
+      </ion-item>
+
+      <ion-item >
+        <ion-label color="primary" stacked  class="required">Staff</ion-label>
+        <ionic-selectable item-content placeholder="Please select"  [(ngModel)]="Staff_Name" [items]="StaffOptions" formControlName="Staff_Name" [canSearch]="true" [canClear]="false" (onSearch)="searchStaff($event)" [class.error1]="!signupform.controls.Staff_Name.valid && signupform.controls.Staff_Name.dirty">
+            <!-- <ion-option *ngFor="let staff of StaffOptions" value="{{staff.Name}}">{{staff.Name}}</ion-option> -->
+        </ionic-selectable>
+      </ion-item>
+
+      <ion-item no-lines *ngIf="( signupform.get('Staff_Name').hasError('required') ) && signupform.get('Staff_Name').touched">
+        <div class="error" *ngIf="signupform.get('Staff_Name').hasError('required') && signupform.get('Staff_Name').touched">
+          Please select Staff
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" stacked class="required">Remarks</ion-label>
+        <ion-textarea placeholder="Enter your remarks here..."[(ngModel)]="Remarks" formControlName="Remarks" ></ion-textarea>
+      </ion-item>
+
+        <br><br>
+
+        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Submit</button>
+
+      </form>
+
+      <style>
+        .required:after { content:" *"; color:red; }
+      </style>
+    </ion-list>
+  </ion-content>

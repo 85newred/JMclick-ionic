@@ -1,0 +1,36 @@
+page-timesheet {
+  
+  .ion-content {
+    background-color: white;
+    text-align: center;
+  }
+
+  .ion-item {
+    background-color: white;
+  }
+
+  .text-input::-moz-placeholder {
+    color: #6da2ff;
+  }
+
+  .text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: #6da2ff;
+  }
+
+  .p {
+    padding-top: 20px;
+  }
+  
+  .box {
+    margin-top: -15px;
+    height: 50%;
+    //background-image: url('../../assets/img/wallpaper.jpg');  
+    //background-size: cover; 
+    background-image:linear-gradient( to top,#29539b,#5385db ); 
+    color: white;
+  }
+
+    
+}
+   

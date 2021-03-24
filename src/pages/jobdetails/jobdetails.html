@@ -1,0 +1,91 @@
+
+<ion-header>
+
+    <ion-navbar color="secondary">
+      <ion-title>Job</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+
+  <ion-content padding>
+
+    <h1 text-center>{{Start_Date}}</h1>
+
+    <ion-item>
+      <ion-label stacked color="primary">PR NO</ion-label>
+      <ion-input    value="{{pr}}" disabled="true" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked color="primary">Project Name</ion-label>
+      <ion-input    value="{{project}}" disabled="true" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked color="primary">Site Code</ion-label>
+      <ion-input    value="{{sitecode}}" disabled="true" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked color="primary">Region</ion-label>
+      <ion-input  value="{{region}}" disabled="true" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked color="primary">Payment Terms</ion-label>
+      <ion-label disabled="true" >{{payment_term}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked color="primary">Created By</ion-label>
+      <ion-input  value="{{requestorName}}" disabled="true" ></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf='oriStatus == "Rejected"'>
+      <ion-label stacked color="primary">Status</ion-label>
+      <ion-input  value="{{oriStatus}}" disabled="true" ></ion-input>
+    </ion-item>
+
+    <form novalidate (ngSubmit)="updateStatus()" [formGroup]="signupform" *ngIf='oriStatus != "Rejected" || oriStatus != "ISDP Open" || oriStatus != "ISDP Close"'>
+      <div  *ngIf="oriStatus != 'ISDP Open' && oriStatus != 'ISDP Close'">
+
+        <ion-item *ngIf="oriStatus != 'ISDP Open' || oriStatus != 'ISDP Close'">
+          <ion-label stacked color="primary">Status</ion-label>
+          <ion-select  [(ngModel)]="status" formControlName="status">
+            <ion-option value="In-Progress">In-Progress</ion-option>
+            <ion-option value="KIV">KIV</ion-option>
+            <ion-option value="Complete">Complete</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>Invoice</ion-item>
+        
+        <ion-item *ngIf="invoicePath && invoicePath.length > 0">
+          <ion-thumbnail slot="start" *ngIf="invoicePath[0].ext != 'pdf'">
+            <img [src]="invoicePath[0].path" width="30px" height="30px">
+          </ion-thumbnail>
+          <span *ngIf="invoicePath[0].ext == 'pdf'">{{invoicePath[0].name}}</span>
+          <ion-icon slot="icon-only"  name="trash" (click)="deleteInvoice()"></ion-icon>
+        </ion-item>
+        
+        <button ion-button icon-right type="button" full (click)="selectImage()">
+          <ion-icon name="camera"></ion-icon> Upload Invoice
+        </button>
+        
+        <ion-item>
+          Task:
+        </ion-item>
+        
+        <ion-item *ngFor="let t of taskFileView;">
+          <ion-thumbnail slot="start" *ngIf="t.ext != 'pdf'">
+            <img [src]="t.path" width="30px" height="30px">
+          </ion-thumbnail>
+          <span *ngIf="t.ext == 'pdf'">{{t.name}}</span>
+          <ion-icon slot="icon-only"  name="trash" (click)="deleteTask(t.id)"></ion-icon>
+        </ion-item>
+        
+        <button ion-button icon-right type="button" full (click)="selectTask()">
+          <ion-icon name="camera"></ion-icon> Upload Document</button>
+          <button *ngIf="oriStatus != 'ISDP Open' && oriStatus != 'ISDP Close'" ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Update</button>
+          
+        </div>
+      </form>
+  </ion-content>

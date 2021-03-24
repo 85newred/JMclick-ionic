@@ -1,0 +1,35 @@
+page-holiday {
+    .col{
+        
+        &[date]{
+            max-width: 120px;
+            border-right: solid rgb(175, 175, 175) 0.02px;
+            text-align: center;
+        }
+        &[event]{
+            max-width: 400px;
+            text-align: center;
+        
+        }
+        
+    }
+    .p{
+        font-weight: bold;
+        color: #29539b;
+        font-size: 15px;
+    }
+
+    .p {
+        padding-left: 18px;
+        // padding-top: 20px;
+      }
+    .a{
+        position: absolute;
+        top: 42%;
+        font-weight: bold;
+        color: black;
+        font-size: 15px;
+        width: 100%; 
+    }
+
+}

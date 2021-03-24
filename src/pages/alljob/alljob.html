@@ -1,0 +1,215 @@
+<!-- 
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-list>
+
+    </ion-list>
+    <ion-row>
+      <ion-col>
+        <ion-title>My Job</ion-title>
+      </ion-col>
+      <ion-col>
+        <ion-searchbar showCancelButton="always"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-tabs tabsPlacement= 'top'>
+    
+    <ion-tab [root]="tab1" [tabBadge]="progressBadge" tabTitle="In-Progress" tabsHideOnSubPages="true" [rootParams]="tab1Params"></ion-tab>
+    <ion-tab [root]="tab2" [tabBadge]="kivBadge" tabTitle="KIV" tabsHideOnSubPages="true" [rootParams]="tab2Params" ></ion-tab>
+    <ion-tab [root]="tab3" [tabBadge]="completeBadge" tabTitle="Completed" tabsHideOnSubPages="true" [rootParams]="tab3Params" ></ion-tab>
+    <ion-tab [root]="tab4" [tabBadge]="rejectedBadge" tabTitle="Rejected" tabsHideOnSubPages="true" [rootParams]="tab4Params" ></ion-tab>
+  </ion-tabs>
+</ion-content> -->
+
+    <!-- <ion-tabs tabsPlacement= 'top'>
+    <ion-grid>
+      <ion-slides pager>
+
+        <ion-slide>
+          <div class="slide" (click)=int1()>
+            <ion-tab [root]="tab1" [tabBadge]="progressBadge" tabTitle="In-Progress" tabsHideOnSubPages="true" [rootParams]="tab1Params"></ion-tab>
+            <br>
+              <br>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="slide" (click)=int1()>
+            <ion-tab [root]="tab1" [tabBadge]="progressBadge" tabTitle="In-Progress" tabsHideOnSubPages="true" [rootParams]="tab1Params"></ion-tab>
+            <br>
+              <br>
+            </div>
+        </ion-slide>
+  
+        <ion-slide>
+          <ion-tab [root]="tab2" [tabBadge]="kivBadge" tabTitle="KIV" tabsHideOnSubPages="true" [rootParams]="tab2Params" ></ion-tab>
+        </ion-slide>
+  
+        <ion-slide>
+          <ion-tab [root]="tab3" [tabBadge]="completeBadge" tabTitle="Completed" tabsHideOnSubPages="true" [rootParams]="tab3Params" ></ion-tab>
+        </ion-slide>
+  
+        <ion-slide>
+          <ion-tab [root]="tab4" [tabBadge]="rejectedBadge" tabTitle="Rejected" tabsHideOnSubPages="true" [rootParams]="tab4Params" ></ion-tab>
+        </ion-slide>
+
+      </ion-slides>
+    </ion-grid>
+  </ion-tabs>
+  </ion-content> -->
+
+  <ion-header mode="md">
+    <ion-navbar color="secondary">
+      <ion-row>
+        <ion-col>
+          <ion-title>My Job</ion-title>
+        </ion-col>
+        <!-- <ion-col>
+          <ion-searchbar showCancelButton="always"></ion-searchbar>
+        </ion-col> -->
+      </ion-row>    
+    </ion-navbar>
+    <ion-toolbar mode="md" color="light">
+        <ion-segment #segments mode="md" [(ngModel)]="page" >
+            
+            <ion-segment-button value="0" (click)="selectedTab(0)">
+              All Job           
+            </ion-segment-button>
+            <ion-segment-button value="1" (click)="selectedTab(1)">
+              In-Progress            
+            </ion-segment-button>
+            <ion-segment-button value="2" (click)="selectedTab(2)">
+                KIV
+            </ion-segment-button>
+            <ion-segment-button value="3" (click)="selectedTab(3)">
+                Completed
+            </ion-segment-button>
+            <ion-segment-button value="4" (click)="selectedTab(4)">
+                ISDP Open
+            </ion-segment-button>
+            <ion-segment-button value="5" (click)="selectedTab(5)">
+                ISDP Close
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <ion-slides #slider (ionSlideDidChange)="slideChanged()">
+        <ion-slide>
+          <div *ngIf="joball && joball.length < 1">
+            <p class="none">No record found</p>
+          </div>
+          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList0($event)"></ion-searchbar>
+      
+          <ion-item  *ngFor="let j of joball" (click)="details(j)">
+            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+              <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+            </ion-avatar>
+            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? 'New ': ''}}</b></p>
+            <h3>PR NO: {{j.pr_no}}</h3>
+            <p>Project Name: {{j.Project_Name}}</p>
+            <p>Site Id: {{j.Site_ID}}</p>
+            <p>Site Code: {{j.Site_Name}} </p>
+            <p>Created At: {{j.created_at}}</p>
+          </ion-item>
+        </ion-slide>
+        <ion-slide>
+          <div *ngIf="job && job.length < 1">
+            <p class="none">No record found</p>
+          </div>
+          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList1($event)"></ion-searchbar>
+      
+          <ion-item  *ngFor="let j of job" (click)="details(j)">
+            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+              <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+            </ion-avatar>
+            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? 'New ': ''}}</b></p>
+            <h3>PR NO: {{j.pr_no}}</h3>
+            <p>Project Name: {{j.Project_Name}}</p>
+            <p>Site Id: {{j.Site_ID}}</p>
+            <p>Site Code: {{j.Site_Name}} </p>
+            <p>Created At: {{j.created_at}}</p>
+          </ion-item>
+        </ion-slide>
+        <ion-slide>
+          <div *ngIf="job2 && job2.length < 1">
+            <p class="none">No record found</p>
+          </div>
+          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList2($event)"></ion-searchbar>
+        
+          <ion-item  *ngFor="let j of job2" (click)="details(j)">
+            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+              <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+            </ion-avatar>
+            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? 'New ': ''}}</b></p>
+            <h3>PR NO: {{j.pr_no}}</h3>
+            <p>Project Name: {{j.Project_Name}}</p>
+            <p>Site Id: {{j.Site_ID}}</p>
+            <p>Site Code: {{j.Site_Name}} </p>
+            <p>Created At: {{j.created_at}}</p>
+        
+          </ion-item>
+        </ion-slide>
+        <ion-slide>
+          <div *ngIf="job3 && job3.length < 1">
+            <p class="none">No record found</p>
+          </div>
+          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList3($event)"></ion-searchbar>
+        
+          <ion-item  *ngFor="let j of job3" (click)="details(j)">
+            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+              <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+            </ion-avatar>
+            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? 'New ': ''}}</b></p>
+            <h3>PR NO: {{j.pr_no}}</h3>
+            <p>Project Name: {{j.Project_Name}}</p>
+            <p>Site Id: {{j.Site_ID}}</p>
+            <p>Site Code: {{j.Site_Name}} </p>
+            <p>Created At: {{j.created_at}}</p>
+          </ion-item>
+        </ion-slide>
+        <ion-slide>
+          <div *ngIf="jobopen && jobopen.length < 1">
+            <p class="none">No record found</p>
+          </div>
+          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList4($event)"></ion-searchbar>
+      
+          <ion-item  *ngFor="let j of jobopen" (click)="details(j)">
+            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+              <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+            </ion-avatar>
+            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? 'New ': ''}}</b></p>
+            <h3>PR NO: {{j.pr_no}}</h3>
+            <p>Project Name: {{j.Project_Name}}</p>
+            <p>Site Id: {{j.Site_ID}}</p>
+            <p>Site Code: {{j.Site_Name}} </p>
+            <p>Created At: {{j.created_at}}</p>
+          </ion-item>
+        </ion-slide>
+        <ion-slide>
+          <div *ngIf="jobclose && jobclose.length < 1">
+            <p class="none">No record found</p>
+          </div>
+          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList5($event)"></ion-searchbar>
+      
+          <ion-item  *ngFor="let j of jobclose" (click)="details(j)">
+            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">
+              <img src="assets/img/leave status (2).png"  width="20px" height="20px">
+            </ion-avatar>
+            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? 'New ': ''}}</b></p>
+            <h3>PR NO: {{j.pr_no}}</h3>
+            <p>Project Name: {{j.Project_Name}}</p>
+            <p>Site Id: {{j.Site_ID}}</p>
+            <p>Site Code: {{j.Site_Name}} </p>
+            <p>Created At: {{j.created_at}}</p>
+          </ion-item>        </ion-slide>
+    </ion-slides>
+</ion-content>
