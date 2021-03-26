@@ -1,7 +1,7 @@
 package me.apla.cordova;
 
 // this is not needed anymore
-// import com.softoya.jmclicks2.R;
+// import com.softoya.jmclicks.R;
 
 import android.app.Activity;
 import android.content.Context;

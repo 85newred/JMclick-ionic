@@ -71,7 +71,13 @@
 
 
         <button ion-button icon-right type="button" full (click)="selectImage()">
-        <ion-icon name="camera"></ion-icon>Picture</button>
+          <ion-icon name="camera"></ion-icon>Picture
+        </button>
+
+        <button ion-button icon-right type="button" full (click)="getImage()">
+          <ion-icon name="camera"></ion-icon>Get from Gallery
+        </button>
+
         <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Update</button>
       </form>
 

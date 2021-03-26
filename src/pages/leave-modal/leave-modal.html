@@ -42,9 +42,8 @@
                 <ion-select [(ngModel)]="Leave_Period[i]" *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)">
                     <ion-option value="Full Day"> Full Day
                   </ion-option>
-                    <ion-option value="Half Day Morning [9AM-1PM]">Half Day Morning [9AM-1PM]</ion-option>
-                    <ion-option value=" Half Day Afternoon [1PM-6PM]
-                    "> Half Day Afternoon [1PM-6PM]
+                    <ion-option value="AM">Half Day Morning [9AM-1PM]</ion-option>
+                    <ion-option value="PM"> Half Day Afternoon [1PM-6PM]
                   </ion-option>
                 </ion-select>
               </ion-item>

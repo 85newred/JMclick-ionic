@@ -8,8 +8,8 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_base64__ = __webpack_require__(102);
@@ -387,7 +387,7 @@ var TaskDetailPage = /** @class */ (function () {
     ;
     TaskDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-taskdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdetail/taskdetail.html"*/'\n\n<ion-header>\n\n\n\n    <ion-navbar color="secondary">\n\n      <ion-title >{{tempStatus == "Open" ? "Update Task":"View Task"}}</ion-title>\n\n    </ion-navbar>\n\n\n\n  </ion-header>\n\n\n\n\n\n  <ion-content padding *ngIf="tempStatus == \'Open\'">\n\n\n\n    <h1 text-center>{{Start_Date}}</h1>\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Project Name</ion-label>\n\n      <ion-input    value="{{project}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Site Name</ion-label>\n\n      <ion-input  value="{{site}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Due Date</ion-label>\n\n      <ion-input  value="{{due}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n\n\n    <form novalidate (ngSubmit)="updateTask()" [formGroup]="signupform">\n\n\n\n          <ion-item>\n\n            <ion-label stacked color="primary">Status</ion-label>\n\n            <ion-select  [(ngModel)]="Status_Val" formControlName="Status_Val">\n\n              <ion-option value="Open">Open</ion-option>\n\n              <ion-option value="Close">Close</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n\n\n        <ion-item>\n\n          <ion-label stacked color="primary">Completed Date</ion-label>\n\n          <ion-datetime\n\n            pickerFormat="DD MMM YYYY" [(ngModel)]="Completed_Date"\n\n            displayFormat="DD MM YYYY" placeholder="Choose Completed date" max="2200" formControlName="Completed_Date" [class.error1]="!signupform.controls.Completed_Date.valid && signupform.controls.Completed_Date.dirty">\n\n            </ion-datetime>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n        <ion-label stacked color="primary">Remarks</ion-label>\n\n          <ion-textarea [(ngModel)]="Remarks" formControlName="Remarks" value="{{Remarks}}"></ion-textarea>\n\n        </ion-item>\n\n        <ion-item *ngIf="imagesN.length > 0">\n\n          <ion-label stacked color="primary">Image</ion-label>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-slides class="image-slider" >\n\n            <ion-slide *ngFor="let img of taskImage">\n\n              <img [src]="\'https://jmclicks.com\' + img.Web_Path" imageviewer width="100" height="200">\n\n            </ion-slide>\n\n          </ion-slides>\n\n        </ion-item>\n\n\n\n        <ion-item *ngFor="let img of imagesN;">\n\n          <ion-thumbnail slot="start">\n\n              <img [src]="img.path" width="30px" height="30px">\n\n          </ion-thumbnail>\n\n          <ion-icon slot="icon-only"  name="trash" (click)="deleteImage(img.id)"></ion-icon>\n\n        </ion-item>\n\n\n\n\n\n\n\n\n\n        <button ion-button icon-right type="button" full (click)="selectImage()">\n\n        <ion-icon name="camera"></ion-icon>Picture</button>\n\n        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Update</button>\n\n      </form>\n\n\n\n\n\n  </ion-content>\n\n  <ion-content *ngIf="tempStatus == \'Close\'">\n\n    <ion-item>\n\n      <p style="color:blueviolet" ALIGN=RIGHT ><b></b></p>\n\n      <h3>Project Name : {{project}}</h3>\n\n      <p>Site Name: {{site}}</p>\n\n      <p>Due Date: {{due}}</p>\n\n      <p>Completed Date: {{completed}}</p>\n\n      <p>Remarks: {{Remarks}}</p>\n\n\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-slides class="image-slider" >\n\n        <ion-slide *ngFor="let img of taskImage">\n\n          <img [src]="\'https://jmclicks.com\' + img.Web_Path" imageviewer width="100" height="200">\n\n        </ion-slide>\n\n      </ion-slides>\n\n    </ion-item>\n\n  </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdetail/taskdetail.html"*/,
+            selector: 'page-taskdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdetail/taskdetail.html"*/'\n\n<ion-header>\n\n\n\n    <ion-navbar color="secondary">\n\n      <ion-title >{{tempStatus == "Open" ? "Update Task":"View Task"}}</ion-title>\n\n    </ion-navbar>\n\n\n\n  </ion-header>\n\n\n\n\n\n  <ion-content padding *ngIf="tempStatus == \'Open\'">\n\n\n\n    <h1 text-center>{{Start_Date}}</h1>\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Project Name</ion-label>\n\n      <ion-input    value="{{project}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Site Name</ion-label>\n\n      <ion-input  value="{{site}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Due Date</ion-label>\n\n      <ion-input  value="{{due}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n\n\n    <form novalidate (ngSubmit)="updateTask()" [formGroup]="signupform">\n\n\n\n          <ion-item>\n\n            <ion-label stacked color="primary">Status</ion-label>\n\n            <ion-select  [(ngModel)]="Status_Val" formControlName="Status_Val">\n\n              <ion-option value="Open">Open</ion-option>\n\n              <ion-option value="Close">Close</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n\n\n        <ion-item>\n\n          <ion-label stacked color="primary">Completed Date</ion-label>\n\n          <ion-datetime\n\n            pickerFormat="DD MMM YYYY" [(ngModel)]="Completed_Date"\n\n            displayFormat="DD MM YYYY" placeholder="Choose Completed date" max="2200" formControlName="Completed_Date" [class.error1]="!signupform.controls.Completed_Date.valid && signupform.controls.Completed_Date.dirty">\n\n            </ion-datetime>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n        <ion-label stacked color="primary">Remarks</ion-label>\n\n          <ion-textarea [(ngModel)]="Remarks" formControlName="Remarks" value="{{Remarks}}"></ion-textarea>\n\n        </ion-item>\n\n        <ion-item *ngIf="imagesN.length > 0">\n\n          <ion-label stacked color="primary">Image</ion-label>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-slides class="image-slider" >\n\n            <ion-slide *ngFor="let img of taskImage">\n\n              <img [src]="\'https://jmclicks.com\' + img.Web_Path" imageviewer width="100" height="200">\n\n            </ion-slide>\n\n          </ion-slides>\n\n        </ion-item>\n\n\n\n        <ion-item *ngFor="let img of imagesN;">\n\n          <ion-thumbnail slot="start">\n\n              <img [src]="img.path" width="30px" height="30px">\n\n          </ion-thumbnail>\n\n          <ion-icon slot="icon-only"  name="trash" (click)="deleteImage(img.id)"></ion-icon>\n\n        </ion-item>\n\n\n\n\n\n\n\n\n\n        <button ion-button icon-right type="button" full (click)="selectImage()">\n\n          <ion-icon name="camera"></ion-icon>Picture\n\n        </button>\n\n\n\n        <button ion-button icon-right type="button" full (click)="getImage()">\n\n          <ion-icon name="camera"></ion-icon>Get from Gallery\n\n        </button>\n\n\n\n        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Update</button>\n\n      </form>\n\n\n\n\n\n  </ion-content>\n\n  <ion-content *ngIf="tempStatus == \'Close\'">\n\n    <ion-item>\n\n      <p style="color:blueviolet" ALIGN=RIGHT ><b></b></p>\n\n      <h3>Project Name : {{project}}</h3>\n\n      <p>Site Name: {{site}}</p>\n\n      <p>Due Date: {{due}}</p>\n\n      <p>Completed Date: {{completed}}</p>\n\n      <p>Remarks: {{Remarks}}</p>\n\n\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-slides class="image-slider" >\n\n        <ion-slide *ngFor="let img of taskImage">\n\n          <img [src]="\'https://jmclicks.com\' + img.Web_Path" imageviewer width="100" height="200">\n\n        </ion-slide>\n\n      </ion-slides>\n\n    </ion-item>\n\n  </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdetail/taskdetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["v" /* NavParams */],
@@ -419,7 +419,7 @@ var TaskDetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_app_preferences__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_badge__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(177);
@@ -789,7 +789,7 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_preferences__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1187,14 +1187,14 @@ var LeavePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_base64__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_image_picker__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__leave_modal_leave_modal__ = __webpack_require__(507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1430,7 +1430,7 @@ var MyleavePage = /** @class */ (function () {
                 if (item == "Full Day") {
                     days += 1;
                 }
-                else if (item == 'Half Day Morning [9AM-1PM]' || item == 'Half Day Afternoon [1PM-6PM]') {
+                else if (item == 'AM' || item == 'PM') {
                     days += 0.5;
                 }
                 else if (item == '1 Hour') {
@@ -1759,7 +1759,7 @@ var LeaveModalPage = /** @class */ (function () {
     };
     LeaveModalPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-leave-modal',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leave-modal/leave-modal.html"*/'<!--\n  Generated template for the LeaveModalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-toolbar>\n      <ion-title>\n        Leave Period\n      </ion-title>\n      <ion-buttons start>\n        <button ion-button (click)="dismiss()">\n          <span ion-text color="primary">Done</span>          \n        </button>\n      </ion-buttons>\n    </ion-toolbar>\n  </ion-header>\n  \n  \n  <ion-content padding>\n      <div *ngIf="(Leave_Type == \'Maternity Leave\' || Leave_Type == \'Hospitalization Leave\'); then thenBlock else elseBlock"></div>\n      <ng-template #thenBlock>\n          <ion-item>\n            <ion-label>From: {{ leavelist[0].Date }}</ion-label>\n            <ion-label>To: {{ leavelist[leavelist.length-1].Date }}</ion-label>\n            <ion-label>Period: Full Day</ion-label>\n          </ion-item>                                                    \n      </ng-template>\n      <ng-template #elseBlock>\n          <div *ngIf="(Leave_Type != \'1 Hour Time Off\' && Leave_Type != \'2 Hours Time Off\'); then thenBlockTwo else elseBlockTwo"></div>\n          <ng-template #thenBlockTwo>                                  \n            <ion-list>\n              <ion-item *ngFor="let l of leavelist; index as i;">\n                <ion-label>{{ l.Date }}</ion-label>                              \n                <ion-input type="text" readonly value="{{ l.Day_Type_Description }}"></ion-input>\n              \n                <ion-label *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)" item-end>{{ l.Period }}</ion-label>\n              \n                <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ l.Period }}" *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)"></ion-input>\n              \n                <ion-select [(ngModel)]="Leave_Period[i]" *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)">\n                    <ion-option value="Full Day"> Full Day\n                  </ion-option>\n                    <ion-option value="Half Day Morning [9AM-1PM]">Half Day Morning [9AM-1PM]</ion-option>\n                    <ion-option value=" Half Day Afternoon [1PM-6PM]\n                    "> Half Day Afternoon [1PM-6PM]\n                  </ion-option>\n                </ion-select>\n              </ion-item>\n            </ion-list>                      \n          </ng-template>\n          <ng-template #elseBlockTwo>\n              <ion-list>\n                  <ion-item *ngFor="let l of leavelist; index as i;">\n                    <ion-label>{{ l.Date }}</ion-label>                              \n                    <ion-input type="text" readonly value="{{ l.Day_Type_Description }}"></ion-input>\n                  \n                    <ion-label *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)" item-end>{{ l.Period }}</ion-label>\n                  \n                    <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ l.Period }}" *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)"></ion-input>\n                    \n                    <ion-label *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)" item-end>{{ Leave_Type == \'1 Hour Time Off\' ? \'1 Hour\' : \'2 Hours\' }}</ion-label>\n                  \n                    <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ Leave_Type == \'1 Hour Time Off\' ? \'1 Hour\' : \'2 Hours\' }}" *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)"></ion-input>\n                    \n                  </ion-item>\n                </ion-list>              \n          </ng-template>\n      \n      </ng-template>      \n  </ion-content>'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leave-modal/leave-modal.html"*/,
+            selector: 'page-leave-modal',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leave-modal/leave-modal.html"*/'<!--\n  Generated template for the LeaveModalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-toolbar>\n      <ion-title>\n        Leave Period\n      </ion-title>\n      <ion-buttons start>\n        <button ion-button (click)="dismiss()">\n          <span ion-text color="primary">Done</span>          \n        </button>\n      </ion-buttons>\n    </ion-toolbar>\n  </ion-header>\n  \n  \n  <ion-content padding>\n      <div *ngIf="(Leave_Type == \'Maternity Leave\' || Leave_Type == \'Hospitalization Leave\'); then thenBlock else elseBlock"></div>\n      <ng-template #thenBlock>\n          <ion-item>\n            <ion-label>From: {{ leavelist[0].Date }}</ion-label>\n            <ion-label>To: {{ leavelist[leavelist.length-1].Date }}</ion-label>\n            <ion-label>Period: Full Day</ion-label>\n          </ion-item>                                                    \n      </ng-template>\n      <ng-template #elseBlock>\n          <div *ngIf="(Leave_Type != \'1 Hour Time Off\' && Leave_Type != \'2 Hours Time Off\'); then thenBlockTwo else elseBlockTwo"></div>\n          <ng-template #thenBlockTwo>                                  \n            <ion-list>\n              <ion-item *ngFor="let l of leavelist; index as i;">\n                <ion-label>{{ l.Date }}</ion-label>                              \n                <ion-input type="text" readonly value="{{ l.Day_Type_Description }}"></ion-input>\n              \n                <ion-label *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)" item-end>{{ l.Period }}</ion-label>\n              \n                <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ l.Period }}" *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)"></ion-input>\n              \n                <ion-select [(ngModel)]="Leave_Period[i]" *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)">\n                    <ion-option value="Full Day"> Full Day\n                  </ion-option>\n                    <ion-option value="AM">Half Day Morning [9AM-1PM]</ion-option>\n                    <ion-option value="PM"> Half Day Afternoon [1PM-6PM]\n                  </ion-option>\n                </ion-select>\n              </ion-item>\n            </ion-list>                      \n          </ng-template>\n          <ng-template #elseBlockTwo>\n              <ion-list>\n                  <ion-item *ngFor="let l of leavelist; index as i;">\n                    <ion-label>{{ l.Date }}</ion-label>                              \n                    <ion-input type="text" readonly value="{{ l.Day_Type_Description }}"></ion-input>\n                  \n                    <ion-label *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)" item-end>{{ l.Period }}</ion-label>\n                  \n                    <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ l.Period }}" *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)"></ion-input>\n                    \n                    <ion-label *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)" item-end>{{ Leave_Type == \'1 Hour Time Off\' ? \'1 Hour\' : \'2 Hours\' }}</ion-label>\n                  \n                    <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ Leave_Type == \'1 Hour Time Off\' ? \'1 Hour\' : \'2 Hours\' }}" *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)"></ion-input>\n                    \n                  </ion-item>\n                </ion-list>              \n          </ng-template>\n      \n      </ng-template>      \n  </ion-content>'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leave-modal/leave-modal.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["B" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
     ], LeaveModalPage);
@@ -1859,7 +1859,7 @@ var MyapprovalPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__myapprovalredirect_myapprovalredirect__ = __webpack_require__(510);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2029,8 +2029,8 @@ var MyapprovaldetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2104,7 +2104,7 @@ var MyApprovalRedirectPage = /** @class */ (function () {
         });
         // Approver
         this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/getapprover?token=' + val.token);
+            data = _this.http.get('https://jmclicks.com/api/getapprover3?token=' + val.token);
             data.subscribe(function (result) {
                 console.log(result);
                 _this.apps = result;
@@ -2357,7 +2357,7 @@ var LeavependingPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__leavependingredirect_leavependingredirect__ = __webpack_require__(514);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2502,8 +2502,8 @@ var LeavependingdetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3265,8 +3265,8 @@ var LeavebalancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_location_accuracy__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3645,7 +3645,7 @@ var AttendancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tsdetail_tsdetail__ = __webpack_require__(524);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng_fullcalendar__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4378,9 +4378,9 @@ var AdvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4845,7 +4845,7 @@ var MyapproveadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5071,7 +5071,7 @@ var MyrejectadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5283,7 +5283,7 @@ var MypendingadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5598,11 +5598,11 @@ var AdminpendingadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__adminpendingadvanceredirect_adminpendingadvanceredirect__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5874,8 +5874,8 @@ var AdminpendingdetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5948,7 +5948,7 @@ var AdminpendingadvanceredirectPage = /** @class */ (function () {
         });
         // Approver
         this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/getapprover?token=' + val.token);
+            data = _this.http.get('https://jmclicks.com/api/getapprover3?token=' + val.token);
             data.subscribe(function (result) {
                 console.log(result);
                 _this.apps = result;
@@ -6118,7 +6118,7 @@ var AdminapproveadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6473,7 +6473,7 @@ var AdminrejectadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6598,7 +6598,7 @@ var AdminrejectdetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_app_preferences__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_badge__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(177);
@@ -8053,8 +8053,8 @@ var TaskPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8901,7 +8901,7 @@ var NewJobPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular_platform_platform__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file__ = __webpack_require__(27);
@@ -9475,13 +9475,14 @@ var AllJobPage = /** @class */ (function () {
         console.log(ev.target.value);
         // this.gen();
         var serVal = ev.target.value;
-        if (serVal) {
+        if (serVal && serVal.trim() != '') {
             this.joball = this.joball.filter(function (item) {
                 return ((item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1)
                     // || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
                     // || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
                     || (item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1)
-                    || (item.Site_ID && item.Site_ID === 'string' && item.Site_ID.toLowerCase().indexOf(serVal.toLowerCase()) > -1));
+                    || (item.Site_ID && item.Site_ID.toLowerCase().indexOf(serVal.toLowerCase()) > -1)
+                    || (item.Site_Name && item.Site_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1));
             });
         }
         else {
@@ -10601,13 +10602,14 @@ var AssetPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_image_loader__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_document_viewer__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_opener__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__assethistory_assethistory__ = __webpack_require__(570);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__assettransfer_assettransfer__ = __webpack_require__(571);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__assetreport_assetreport__ = __webpack_require__(572);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_opener__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_platform_browser__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_camera__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__assethistory_assethistory__ = __webpack_require__(570);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__assettransfer_assettransfer__ = __webpack_require__(571);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__assetreport_assetreport__ = __webpack_require__(572);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10617,6 +10619,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -10645,7 +10648,7 @@ var httpOptions = {
  * Ionic pages and navigation.
  */
 var AssetonhandPage = /** @class */ (function () {
-    function AssetonhandPage(navCtrl, navParams, camera, domSanitizer, app, http, storage, ionicImageLoader, document, file, transfer, platform, alertCtrl, fileOpener) {
+    function AssetonhandPage(navCtrl, navParams, camera, domSanitizer, app, http, storage, ionicImageLoader, document, file, transfer, toast, platform, alertCtrl, fileOpener) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.camera = camera;
@@ -10657,15 +10660,18 @@ var AssetonhandPage = /** @class */ (function () {
         this.document = document;
         this.file = file;
         this.transfer = transfer;
+        this.toast = toast;
         this.platform = platform;
         this.alertCtrl = alertCtrl;
         this.fileOpener = fileOpener;
-        this.assethistory = __WEBPACK_IMPORTED_MODULE_11__assethistory_assethistory__["a" /* AssethistoryPage */];
-        this.assettransfer = __WEBPACK_IMPORTED_MODULE_12__assettransfer_assettransfer__["a" /* AssettransferPage */];
+        this.assethistory = __WEBPACK_IMPORTED_MODULE_12__assethistory_assethistory__["a" /* AssethistoryPage */];
+        this.assettransfer = __WEBPACK_IMPORTED_MODULE_13__assettransfer_assettransfer__["a" /* AssettransferPage */];
         this.token = '';
         this.TrackingId = '';
         this.asset = '';
         this.transferstaff = '';
+        this.Holder = '';
+        this.Acknowledge_Date_Time = '';
         this.loadData();
         this.Id = this.navParams.get('Id');
         this.Label = this.navParams.get('Label');
@@ -10681,11 +10687,14 @@ var AssetonhandPage = /** @class */ (function () {
         this.Remarks = this.navParams.get('Remarks');
         this.AssetId = this.navParams.get('AssetId');
         this.TrackingId = this.navParams.get('TrackingId');
+        this.Holder = this.navParams.get('Holder');
+        this.Acknowledge_Date_Time = this.navParams.get('Acknowledge_Date_Time');
+        console.log('holder', this.Holder);
         this.asset = { AssetId: this.AssetId };
         this.transferstaff = { AssetId: this.AssetId, Id: this.Id, TrackingId: this.TrackingId };
         console.log(this.Id);
         console.log(this.AssetId);
-        console.log(this.TrackingId);
+        console.log('track', this.TrackingId);
     }
     AssetonhandPage.prototype.loadData = function () {
         var data;
@@ -10701,33 +10710,84 @@ var AssetonhandPage = /** @class */ (function () {
         });
     };
     AssetonhandPage.prototype.Transfer = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_12__assettransfer_assettransfer__["a" /* AssettransferPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_13__assettransfer_assettransfer__["a" /* AssettransferPage */]);
     };
     AssetonhandPage.prototype.report = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_13__assetreport_assetreport__["a" /* AssetreportPage */], {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_14__assetreport_assetreport__["a" /* AssetreportPage */], {
             AssetId: this.AssetId,
             TrackingId: this.TrackingId
         });
         console.log(this.AssetId, 'asse');
     };
+    AssetonhandPage.prototype.Acknowledge = function () {
+        var _this = this;
+        this.storage.get("token").then(function (val) {
+            var confirm = _this.alertCtrl.create({
+                title: "Acknowledge",
+                message: "Click for Acknowledge",
+                buttons: [
+                    {
+                        text: "Acknowledge",
+                        handler: function () {
+                            _this.http
+                                .post("https://jmclicks.com/api/assetacknowledge?token=" + val.token, {
+                                TrackingId: _this.TrackingId
+                            }, httpOptions)
+                                .subscribe(function (res) {
+                                if (res == 1) {
+                                    // this.loadData();
+                                    _this.navCtrl.pop();
+                                    _this.toast
+                                        .show("Acknowledged", "3000", "center")
+                                        .subscribe(function (toast) {
+                                        // console.log(toast);
+                                    });
+                                }
+                                else {
+                                    _this.displayErrorAlert("Acknowledge operation failed!");
+                                }
+                            });
+                        },
+                    },
+                    {
+                        text: "Cancel",
+                        handler: function () {
+                            // console.log("no clicked");
+                        },
+                    },
+                ],
+            });
+            confirm.present();
+        });
+    };
+    AssetonhandPage.prototype.displayErrorAlert = function (err) {
+        console.log(err);
+        var alert = this.alertCtrl.create({
+            title: "Error",
+            subTitle: err,
+            buttons: ["OK"],
+        });
+        alert.present();
+    };
     AssetonhandPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-assetonhand',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetonhand/assetonhand.html"*/'\n\n<ion-header>\n\n  <ion-navbar color="secondary">\n\n    <ion-title>Asset on hand detail</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n  \n\n<ion-content padding class="ion-content">\n\n  <div class="notice-body">\n\n    <div class="date" hidden>\n\n      <p>{{Start_Date}}</p>\n\n      <p>{{created_at}}</p>\n\n      <p>submitted by: {{Created_By}}</p>\n\n    </div>\n\n\n\n    <div class="title-notice">\n\n      <br>\n\n      <h1>{{Title}}</h1>\n\n    </div>\n\n\n\n    <div class="notice-content">\n\n      <ion-card class="text" text-wrap>\n\n        <pre>Label: {{Label}}</pre>\n\n        <p>Type: {{Type}} </p>\n\n        <p>Serial No: {{Serial_No}} </p>\n\n        <p>IMEI: {{EMEI}} </p>\n\n        <p>Model No: {{Model_No}} </p>\n\n        <p *ngIf="Type == \'Car\'">Car No: {{Car_No}} </p>\n\n        <p>Color: {{Color}}</p>\n\n        <p>Taken Date: {{Date}}</p>\n\n        <p>Transfer To: {{Transfer_To}}</p>\n\n        <p>Transfer Date Time: {{Transfer_Date_Time}}</p>\n\n        <p>Remarks: {{Remarks}}</p>\n\n      </ion-card>\n\n    </div>\n\n\n\n  </div>\n\n\n\n  <br>\n\n  <button full ion-button type="button" [navPush]="assethistory" [navParams]="asset">History</button>\n\n  <button *ngIf="Type == \'Car\'" full ion-button type="button" [navPush]="assettransfer" [navParams]="transferstaff">Transfer</button>\n\n  <button full ion-button type="button" (click)="report()">Report</button>\n\n</ion-content>\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetonhand/assetonhand.html"*/,
+            selector: 'page-assetonhand',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetonhand/assetonhand.html"*/'\n\n<ion-header>\n\n  <ion-navbar color="secondary">\n\n    <ion-title>Asset on hand detail</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n  \n\n<ion-content padding class="ion-content">\n\n  <div class="notice-body">\n\n    <div class="date" hidden>\n\n      <p>{{Start_Date}}</p>\n\n      <p>{{created_at}}</p>\n\n      <p>submitted by: {{Created_By}}</p>\n\n    </div>\n\n\n\n    <div class="title-notice">\n\n      <br>\n\n      <h1>{{Title}}</h1>\n\n    </div>\n\n\n\n    <div class="notice-content">\n\n      <ion-card class="text" text-wrap>\n\n        <pre>Label: {{Label}}</pre>\n\n        <p>Type: {{Type}} </p>\n\n        <p>Serial No: {{Serial_No}} </p>\n\n        <p>IMEI: {{EMEI}} </p>\n\n        <p>Model No: {{Model_No}} </p>\n\n        <p *ngIf="Type == \'Car\'">Car No: {{Car_No}} </p>\n\n        <p>Color: {{Color}}</p>\n\n        <p>Taken Date: {{Date}}</p>\n\n        <p>Transfer To: {{Transfer_To}}</p>\n\n        <p>Transfer Date Time: {{Transfer_Date_Time}}</p>\n\n        <p>Remarks: {{Remarks}}</p>\n\n      </ion-card>\n\n    </div>\n\n\n\n  </div>\n\n\n\n  <br>\n\n  <div *ngIf="Type == \'Car\' && Transfer_To == Holder">\n\n    <button full ion-button type="button" (click)="Acknowledge()" >Acknowledge</button>\n\n  </div>\n\n\n\n  <button full ion-button type="button" [navPush]="assethistory" [navParams]="asset">History</button>\n\n  <button *ngIf="Type == \'Car\' && Transfer_To != Holder" full ion-button type="button" [navPush]="assettransfer" [navParams]="transferstaff">Transfer</button>\n\n  <button full ion-button type="button" (click)="report()">Report</button>\n\n</ion-content>\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetonhand/assetonhand.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__["a" /* Camera */],
-            __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["c" /* DomSanitizer */],
+            __WEBPACK_IMPORTED_MODULE_11__ionic_native_camera__["a" /* Camera */],
+            __WEBPACK_IMPORTED_MODULE_10__angular_platform_browser__["c" /* DomSanitizer */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
             __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_4_ionic_image_loader__["a" /* IonicImageLoader */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_document_viewer__["a" /* DocumentViewer */],
             __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__["a" /* File */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__["a" /* FileTransfer */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__["a" /* FileTransfer */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_toast__["a" /* Toast */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["x" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_opener__["a" /* FileOpener */]])
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_opener__["a" /* FileOpener */]])
     ], AssetonhandPage);
     return AssetonhandPage;
 }());
@@ -10748,7 +10808,7 @@ var AssetonhandPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_base64__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__ = __webpack_require__(503);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_chooser__ = __webpack_require__(502);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(27);
@@ -10759,7 +10819,7 @@ var AssetonhandPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_ionic_angular_navigation_nav_controller__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_toast__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11514,8 +11574,8 @@ var AssethistoryPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11634,14 +11694,15 @@ var AssettransferPage = /** @class */ (function () {
     };
     AssettransferPage.prototype.transferstaff = function () {
         var _this = this;
-        var a;
+        var a = '';
         a = this.Staff_Name;
         var data;
         this.storage.get('token').then(function (val) {
             data = _this.http.get('https://jmclicks.com/api/getstaff2?token=' + val.token + '&name=' + _this.Staff_Name);
             data.subscribe(function (result) {
                 console.log(result);
-                _this.StaffAll = result[0].Id;
+                _this.StaffAll = result;
+                console.log('sa', _this.StaffAll.Id);
             });
         });
         console.log('staffallId', this.StaffAll);
@@ -11659,12 +11720,23 @@ var AssettransferPage = /** @class */ (function () {
                     text: 'Yes',
                     handler: function () {
                         console.log('Yes clicked');
+                        var a = '';
+                        a = _this.Staff_Name;
+                        var data;
+                        _this.storage.get('token').then(function (val) {
+                            data = _this.http.get('https://jmclicks.com/api/getstaff2?token=' + val.token + '&name=' + _this.Staff_Name);
+                            data.subscribe(function (result) {
+                                console.log(result);
+                                _this.StaffAll = result;
+                                console.log('sa', _this.StaffAll.Id);
+                            });
+                        });
                         _this.storage.get('token').then(function (val) {
                             _this.http.post('https://jmclicks.com/api/assettransfer?token=' + val.token, {
                                 Name: _this.Staff_Name,
                                 TrackingId: _this.TrackingId,
                                 AssetId: _this.AssetId,
-                                Transfer_To: _this.StaffAll,
+                                Transfer_To: _this.StaffAll.Id,
                             }, httpOptions)
                                 .subscribe(function (res) {
                                 console.log(_this.Staff);
@@ -11712,10 +11784,10 @@ var AssettransferPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssetreportPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -11859,7 +11931,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_http__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_auth_auth__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_toast__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_file_opener__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_location_accuracy__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_onesignal__ = __webpack_require__(173);

@@ -167,9 +167,6 @@ export class AllJobPage{
       })
     });
 
-
-    
-
     this.storage.get('token').then((val)=>{
       this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token,{
         params:{
@@ -305,21 +302,19 @@ export class AllJobPage{
 
     let serVal = ev.target.value;
 
-    if (serVal) {
+    if (serVal && serVal.trim() != '') {
       this.joball = this.joball.filter((item) => {
         return ((item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1 )
         // || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
         // || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
         || (item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1 )
-        || (item.Site_ID && item.Site_ID === 'string' && item.Site_ID.toLowerCase().indexOf(serVal.toLowerCase()) > -1)
+        || (item.Site_ID && item.Site_ID.toLowerCase().indexOf(serVal.toLowerCase()) > -1)
+        || (item.Site_Name && item.Site_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1)
         );
       })
     }else {
       this.onCancel(ev);
     }
-
-    
-
   }
 
   getList1(ev: any) {
@@ -339,9 +334,6 @@ export class AllJobPage{
     }else {
       this.onCancel(ev);
     }
-
-    
-
   }
 
   getList2(ev: any) {
@@ -351,7 +343,6 @@ export class AllJobPage{
 
     let serVal = ev.target.value;
     
-
     if (serVal && serVal.trim() != '') {
       this.job2 = this.job2.filter((item) => {
         return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1 
@@ -363,9 +354,6 @@ export class AllJobPage{
     }else {
       this.onCancel(ev);
     }
-
-    
-
   }
 
   getList3(ev: any) {
@@ -386,9 +374,6 @@ export class AllJobPage{
     }else {
       this.onCancel(ev);
     }
-
-    
-
   }
 
   getList4(ev: any) {
@@ -409,14 +394,12 @@ export class AllJobPage{
     }else {
       this.onCancel(ev);
     }
-
   }
 
   getList5(ev: any) {
     // this.loadData();
     console.log(ev.target.value);
     // this.gen();
-
     let serVal = ev.target.value;
   
     if (serVal && serVal.trim() != '') {
@@ -430,7 +413,6 @@ export class AllJobPage{
     }else {
       this.onCancel(ev);
     }
-
   }
 
 

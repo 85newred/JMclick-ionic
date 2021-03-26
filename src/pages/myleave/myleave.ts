@@ -258,7 +258,7 @@ export class MyleavePage {
       data.forEach((item, index) => {
         if (item == "Full Day") {
           days += 1;
-        } else if (item == 'Half Day Morning [9AM-1PM]' || item == 'Half Day Afternoon [1PM-6PM]') {
+        } else if (item == 'AM' || item == 'PM') {
           days += 0.5;
         } else if (item == '1 Hour') {
           days += 0.125;

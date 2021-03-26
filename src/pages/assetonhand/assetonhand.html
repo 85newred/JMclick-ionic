@@ -39,8 +39,12 @@
   </div>
 
   <br>
+  <div *ngIf="Type == 'Car' && Transfer_To == Holder">
+    <button full ion-button type="button" (click)="Acknowledge()" >Acknowledge</button>
+  </div>
+
   <button full ion-button type="button" [navPush]="assethistory" [navParams]="asset">History</button>
-  <button *ngIf="Type == 'Car'" full ion-button type="button" [navPush]="assettransfer" [navParams]="transferstaff">Transfer</button>
+  <button *ngIf="Type == 'Car' && Transfer_To != Holder" full ion-button type="button" [navPush]="assettransfer" [navParams]="transferstaff">Transfer</button>
   <button full ion-button type="button" (click)="report()">Report</button>
 </ion-content>
   

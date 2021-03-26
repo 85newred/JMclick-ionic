@@ -7,6 +7,8 @@ import { NavParams } from 'ionic-angular';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { File } from '@ionic-native/file';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
+import { Toast } from '@ionic-native/toast';
+
 import { FileTransfer,  FileTransferObject } from '@ionic-native/file-transfer';
 import { FileOpener } from '@ionic-native/file-opener';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -58,7 +60,8 @@ export class AssetonhandPage {
   private TrackingId: any='';
   private asset: any='';
   private transferstaff: any='';
-
+  Holder:any=''
+  Acknowledge_Date_Time:any=''
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -71,6 +74,7 @@ export class AssetonhandPage {
     private document: DocumentViewer,
     private file: File,
     private transfer: FileTransfer,
+    private toast: Toast,
     private platform: Platform,
     private alertCtrl: AlertController,
     private fileOpener: FileOpener
@@ -91,11 +95,14 @@ export class AssetonhandPage {
     this.Remarks= this.navParams.get('Remarks')
     this.AssetId = this.navParams.get('AssetId')
     this.TrackingId = this.navParams.get('TrackingId')
+    this.Holder = this.navParams.get('Holder')
+    this.Acknowledge_Date_Time = this.navParams.get('Acknowledge_Date_Time')
+    console.log('holder',this.Holder)
     this.asset = {AssetId:this.AssetId}
     this.transferstaff = {AssetId:this.AssetId,Id:this.Id,TrackingId:this.TrackingId}
     console.log(this.Id)
     console.log(this.AssetId)
-    console.log(this.TrackingId)
+    console.log('track',this.TrackingId)
   }
 
   loadData(){
@@ -125,6 +132,62 @@ export class AssetonhandPage {
       TrackingId:this.TrackingId
     });
     console.log(this.AssetId,'asse')
+  }
+
+  Acknowledge(){
+    this.storage.get("token").then((val) => {
+      const confirm = this.alertCtrl.create({
+        title: "Acknowledge",
+        message: "Click for Acknowledge",
+        buttons: [
+         
+          {
+            text: "Acknowledge",
+            handler: () => {
+              this.http
+                .post(
+                  "https://jmclicks.com/api/assetacknowledge?token=" + val.token,
+                  {
+                    TrackingId : this.TrackingId
+                  },
+                  httpOptions
+                )
+                .subscribe((res) => {
+                  if (res == 1) {
+                    // this.loadData();
+
+                    this.navCtrl.pop();
+                    this.toast
+                      .show(`Acknowledged`, "3000", "center")
+                      .subscribe((toast) => {
+                        // console.log(toast);
+                      });
+                  } else {
+                    this.displayErrorAlert("Acknowledge operation failed!");
+                  }
+                });
+            },
+          },
+          {
+            text: "Cancel",
+            handler: () => {
+              // console.log("no clicked");
+            },
+          },
+        ],
+      });
+      confirm.present();
+    });
+  }
+
+  displayErrorAlert(err) {
+    console.log(err);
+    let alert = this.alertCtrl.create({
+      title: "Error",
+      subTitle: err,
+      buttons: ["OK"],
+    });
+    alert.present();
   }
 
 }

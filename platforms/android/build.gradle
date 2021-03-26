@@ -92,12 +92,12 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "com-sarriaroman-photoviewer/jmclicks2-photoviewer.gradle"
-apply from: "cordova-android-support-gradle-release/jmclicks2-cordova-android-support-gradle-release.gradle"
-apply from: "cordova-plugin-badge/jmclicks2-badge.gradle"
-apply from: "cordova-plugin-telerik-imagepicker/jmclicks2-ignorelinterrors.gradle"
-apply from: "cordova-plugin-telerik-imagepicker/jmclicks2-androidtarget.gradle"
-apply from: "onesignal-cordova-plugin/jmclicks2-build-extras-onesignal.gradle"
+apply from: "com-sarriaroman-photoviewer/jmclicks-photoviewer.gradle"
+apply from: "cordova-android-support-gradle-release/jmclicks-cordova-android-support-gradle-release.gradle"
+apply from: "cordova-plugin-badge/jmclicks-badge.gradle"
+apply from: "cordova-plugin-telerik-imagepicker/jmclicks-ignorelinterrors.gradle"
+apply from: "cordova-plugin-telerik-imagepicker/jmclicks-androidtarget.gradle"
+apply from: "onesignal-cordova-plugin/jmclicks-build-extras-onesignal.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()
@@ -186,7 +186,7 @@ android {
       abortOnError false;
     }
 
-    compileSdkVersion cdvCompileSdkVersion
+    compileSdkVersion 29
     buildToolsVersion cdvBuildToolsVersion
 
     if (Boolean.valueOf(cdvBuildMultipleApks)) {
@@ -228,8 +228,8 @@ android {
     */
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_6
-        targetCompatibility JavaVersion.VERSION_1_6
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     if (cdvReleaseSigningPropertiesFile) {

@@ -17,6 +17,96 @@
           ]
         }
       },
+      "AndroidManifest.xml": {
+        "parents": {
+          "/manifest/application": [
+            {
+              "xml": "<amazon:enable-feature android:name=\"com.amazon.device.messaging\" android:required=\"false\" xmlns:amazon=\"http://schemas.amazon.com/apk/res/android\" />",
+              "count": 1
+            },
+            {
+              "xml": "<service android:exported=\"false\" android:name=\"com.onesignal.ADMMessageHandler\" />",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:name=\"com.onesignal.ADMMessageHandler$Receiver\" android:permission=\"com.amazon.device.messaging.permission.SEND\"><intent-filter><action android:name=\"com.amazon.device.messaging.intent.REGISTRATION\" /><action android:name=\"com.amazon.device.messaging.intent.RECEIVE\" /><category android:name=\"com.softoya.jmclicks\" /></intent-filter></receiver>",
+              "count": 1
+            },
+            {
+              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
+              "count": 6,
+              "mode": "merge",
+              "id": "config.xml",
+              "oldAttrib": {
+                "android:hardwareAccelerated": "true",
+                "android:icon": "@mipmap/icon",
+                "android:label": "@string/app_name",
+                "android:requestLegacyExternalStorage": "true",
+                "android:supportsRtl": "true",
+                "android:usesCleartextTraffic": "true"
+              }
+            }
+          ],
+          "/*": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\" />",
+              "count": 7
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+              "count": 9
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 10
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
+              "count": 1
+            }
+          ],
+          "application": [
+            {
+              "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"org.apache.cordova.camera.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/camera_provider_paths\" /></provider>",
+              "count": 8
+            }
+          ],
+          "/manifest": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 2
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 2
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+              "count": 2
+            },
+            {
+              "xml": "<uses-permission android:name=\"com.amazon.device.messaging.permission.RECEIVE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<permission android:name=\"com.softoya.jmclicks.permission.RECEIVE_ADM_MESSAGE\" android:protectionLevel=\"signature\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"com.softoya.jmclicks.permission.RECEIVE_ADM_MESSAGE\" />",
+              "count": 1
+            }
+          ]
+        }
+      },
       "res/xml/config.xml": {
         "parents": {
           "/*": [
@@ -121,102 +211,6 @@
           ]
         }
       },
-      "AndroidManifest.xml": {
-        "parents": {
-          "/manifest/application": [
-            {
-              "xml": "<activity android:name=\"com.sarriaroman.PhotoViewer.PhotoActivity\" android:theme=\"@android:style/Theme.Holo.NoActionBar.Fullscreen\" />",
-              "count": 1
-            },
-            {
-              "xml": "<activity android:name=\"me.apla.cordova.AppPreferencesActivity\" />",
-              "count": 1
-            },
-            {
-              "xml": "<provider android:authorities=\"com.softoya.jmclicks2.DocumentViewerPlugin.fileprovider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.sitewaerts.cordova.documentviewer.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/documentviewer_file_paths\" /></provider>",
-              "count": 1
-            },
-            {
-              "xml": "<provider android:authorities=\"${applicationId}.opener.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"io.github.pwlin.cordova.plugins.fileopener2.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/opener_paths\" /></provider>",
-              "count": 1
-            },
-            {
-              "xml": "<activity android:label=\"@string/multi_app_name\" android:name=\"com.synconset.MultiImageChooserActivity\" android:theme=\"@style/Theme.AppCompat.Light\"></activity>",
-              "count": 1
-            },
-            {
-              "xml": "<amazon:enable-feature android:name=\"com.amazon.device.messaging\" android:required=\"false\" xmlns:amazon=\"http://schemas.amazon.com/apk/res/android\" />",
-              "count": 1
-            },
-            {
-              "xml": "<service android:exported=\"false\" android:name=\"com.onesignal.ADMMessageHandler\" />",
-              "count": 1
-            },
-            {
-              "xml": "<receiver android:name=\"com.onesignal.ADMMessageHandler$Receiver\" android:permission=\"com.amazon.device.messaging.permission.SEND\"><intent-filter><action android:name=\"com.amazon.device.messaging.intent.REGISTRATION\" /><action android:name=\"com.amazon.device.messaging.intent.RECEIVE\" /><category android:name=\"com.softoya.jmclicks2\" /></intent-filter></receiver>",
-              "count": 1
-            }
-          ],
-          "/manifest": [
-            {
-              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 2
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 2
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
-              "count": 2
-            },
-            {
-              "xml": "<uses-permission android:name=\"com.amazon.device.messaging.permission.RECEIVE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<permission android:name=\"com.softoya.jmclicks2.permission.RECEIVE_ADM_MESSAGE\" android:protectionLevel=\"signature\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"com.softoya.jmclicks2.permission.RECEIVE_ADM_MESSAGE\" />",
-              "count": 1
-            }
-          ],
-          "/*": [
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 18
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
-              "count": 17
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\" />",
-              "count": 15
-            }
-          ],
-          "application": [
-            {
-              "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"org.apache.cordova.camera.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/camera_provider_paths\" /></provider>",
-              "count": 16
-            }
-          ]
-        }
-      },
       "config.xml": {
         "parents": {
           "/*": [
@@ -255,87 +249,87 @@
   },
   "installed_plugins": {
     "com-badrit-base64": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "com-sarriaroman-photoviewer": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "com.telerik.plugins.nativepagetransitions": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-android-support-gradle-release": {
       "ANDROID_SUPPORT_VERSION": "27.+",
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-advanced-http": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-android-permissions": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-app-preferences": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-app-version": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-badge": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-document-viewer": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-file-opener2": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-filechooser": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-filepath": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-ionic-webview": {
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-request-location-accuracy": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-telerik-imagepicker": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "cordova-plugin-x-toast": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     },
     "onesignal-cordova-plugin": {
-      "PACKAGE_NAME": "com.softoya.jmclicks2"
+      "PACKAGE_NAME": "com.softoya.jmclicks"
     }
   },
   "dependent_plugins": {},

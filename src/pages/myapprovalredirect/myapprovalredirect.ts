@@ -96,7 +96,7 @@ export class MyApprovalRedirectPage {
 
       // Approver
       this.storage.get('token').then((val) => {
-          data = this.http.get('https://jmclicks.com/api/getapprover?token=' + val.token);
+          data = this.http.get('https://jmclicks.com/api/getapprover3?token=' + val.token);
           data.subscribe(result => {
             console.log(result);
             this.apps = result;

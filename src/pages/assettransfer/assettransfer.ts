@@ -148,7 +148,7 @@ console.log('asset',this.AssetId)
   
   transferstaff() {
 
-    let a : any;
+    let a : any='';
     a = this.Staff_Name;
     let data:Observable<any>;
 
@@ -156,7 +156,8 @@ console.log('asset',this.AssetId)
       data = this.http.get('https://jmclicks.com/api/getstaff2?token=' + val.token +'&name='+this.Staff_Name);
       data.subscribe(result => {
         console.log(result);
-        this.StaffAll = result[0].Id;
+        this.StaffAll = result;
+        console.log('sa',this.StaffAll.Id)
       })
     });
 
@@ -177,13 +178,25 @@ console.log('asset',this.AssetId)
           text: 'Yes',
           handler: () => {
             console.log('Yes clicked');
+            let a : any='';
+            a = this.Staff_Name;
+            let data:Observable<any>;
+
+            this.storage.get('token').then((val) => {
+              data = this.http.get('https://jmclicks.com/api/getstaff2?token=' + val.token +'&name='+this.Staff_Name);
+              data.subscribe(result => {
+                console.log(result);
+                this.StaffAll = result;
+                console.log('sa',this.StaffAll.Id)
+              })
+            });
 
             this.storage.get('token').then((val) => {
                this.http.post('https://jmclicks.com/api/assettransfer?token=' + val.token, {
                   Name: this.Staff_Name,
                   TrackingId: this.TrackingId,
                   AssetId: this.AssetId,
-                  Transfer_To: this.StaffAll,
+                  Transfer_To: this.StaffAll.Id,
               },
                 httpOptions)
               .subscribe(
