@@ -9,5 +9,6 @@
     "QuartzCore.framework": 3,
     "MessageUI.framework": 1,
     "Accelerate.framework": 1,
-    "Photos.framework": 1
+    "Photos.framework": 1,
+    "WebKit.framework": 1
 }

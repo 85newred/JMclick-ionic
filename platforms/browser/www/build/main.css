@@ -25961,6 +25961,15 @@ image-viewer.ion-page img {
   white-space: pre-line;
 }
 
+.input-cover {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
 page-adminapproveadvance .ion-content {
   background: #f1f2f6;
 }
@@ -26052,6 +26061,19 @@ page-adminapprovedetail .doc-button {
 page-adminapprovedetail .text-input::-webkit-input-placeholder {
   text-indent: 0;
   color: #999696;
+}
+
+page-adminapprovedetail ion-label {
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
 }
 
 page-adminpendingadvance .ion-content {
@@ -26156,6 +26178,19 @@ page-adminpendingdetail .text-input::-webkit-input-placeholder {
   color: #999696;
 }
 
+page-adminpendingdetail ion-label {
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
 page-adminrejectadvance .ion-content {
   background: #f1f2f6;
 }
@@ -26249,6 +26284,19 @@ page-adminrejectdetail .text-input::-webkit-input-placeholder {
   color: #999696;
 }
 
+page-adminrejectdetail ion-label {
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
 page-advance .ion-content {
   background: #f1f2f6;
 }
@@ -26303,6 +26351,49 @@ page-advance .button6 {
   background-image: linear-gradient(to top, #0a3580, #29539b 50%, #779ee2);
   -webkit-box-shadow: 0 0 5px #3498db;
   box-shadow: 0 0 5px #3498db;
+}
+
+page-alljob ion-segment {
+  display: block;
+  white-space: nowrap;
+  font-size: 0;
+  overflow: auto;
+}
+
+page-alljob ion-segment::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+page-alljob ion-segment ion-segment-button.segment-button {
+  display: inline-block;
+  min-width: 90px;
+  width: auto;
+}
+
+page-alljob ion-toolbar {
+  padding: 0px 4px !important;
+  min-height: 43px !important;
+}
+
+page-alljob .toolbar-ios ion-title {
+  padding: 0 0px 1px;
+}
+
+page-alljob ion-slide .slide-zoom {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+page-assetreport .error {
+  color: #df3e3e;
+  font-size: 11px;
+}
+
+page-assetreport .error1 {
+  color: #4b4b4b;
+  border-bottom: 1px solid #ff0000;
 }
 
 page-assettransfer .required {
@@ -26739,6 +26830,19 @@ page-home .ver {
   font-size: 10px;
   position: fixed;
   top: 0px;
+}
+
+page-jobdetails ion-label {
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
 }
 
 page-leave .ion-content {
@@ -27375,6 +27479,40 @@ page-myapprovedetail .text-input::-webkit-input-placeholder {
   color: #999696;
 }
 
+page-myapprovedetail ion-label {
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
+page-myjobdate .button6 {
+  border-radius: 50px;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#0a3580), color-stop(50%, #29539b), to(#779ee2));
+  background-image: linear-gradient(to top, #0a3580, #29539b 50%, #779ee2);
+  -webkit-box-shadow: 0 0 5px #3498db;
+  box-shadow: 0 0 5px #3498db;
+}
+
+page-myjobdate .round-button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  margin-right: 20px;
+}
+
 page-myleave .alert-radio-label {
   overflow: hidden;
   -webkit-flex: 1;
@@ -27543,6 +27681,19 @@ page-mypendingdetail .text-input::-webkit-input-placeholder {
   color: #999696;
 }
 
+page-mypendingdetail ion-label {
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
 page-myrejectadvance .ion-content {
   background: #f1f2f6;
 }
@@ -27634,6 +27785,19 @@ page-myrejectdetail .doc-button {
 page-myrejectdetail .text-input::-webkit-input-placeholder {
   text-indent: 0;
   color: #999696;
+}
+
+page-myrejectdetail ion-label {
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
 }
 
 .ion-avatar {
@@ -28267,7 +28431,42 @@ page-siteadvance .asterisk {
   color: red;
 }
 
-.button6 {
+page-siteadvance ion-label {
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: normal !important;
+}
+
+page-siteadvance .myInput {
+  width: calc(100% - 10px);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+page-siteadvance input-cover {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+page-siteadvance .content-form {
+  background: transparent;
+  margin-top: 10px;
+  color: white;
+}
+
+page-task .button6 {
   border-radius: 50px;
   background-image: -webkit-gradient(linear, left bottom, left top, from(#0a3580), color-stop(50%, #29539b), to(#779ee2));
   background-image: linear-gradient(to top, #0a3580, #29539b 50%, #779ee2);
@@ -28275,7 +28474,7 @@ page-siteadvance .asterisk {
   box-shadow: 0 0 5px #3498db;
 }
 
-.round-button {
+page-task .round-button {
   border: none;
   background-color: transparent;
   color: white;
@@ -28320,6 +28519,27 @@ page-taskassign .required {
 
 page-taskassign .error {
   color: red;
+}
+
+page-taskdate .button6 {
+  border-radius: 50px;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#0a3580), color-stop(50%, #29539b), to(#779ee2));
+  background-image: linear-gradient(to top, #0a3580, #29539b 50%, #779ee2);
+  -webkit-box-shadow: 0 0 5px #3498db;
+  box-shadow: 0 0 5px #3498db;
+}
+
+page-taskdate .round-button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  margin-right: 20px;
 }
 
 .text-input[disabled] {

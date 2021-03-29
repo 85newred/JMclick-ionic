@@ -111,6 +111,22 @@
             {
               "xml": "<feature name=\"OneSignalPush\"><param name=\"ios-package\" value=\"OneSignalPush\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<allow-navigation href=\"ionic://*\" />",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"deployment-target\" value=\"11.0\" />",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"IonicWebView\"><param name=\"ios-package\" value=\"CDVWKWebViewEngine\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"CordovaWebViewEngine\" value=\"CDVWKWebViewEngine\" />",
+              "count": 1
             }
           ]
         }
@@ -132,39 +148,39 @@
           "NSPhotoLibraryAddUsageDescription": [
             {
               "xml": "<string>Allows to add images to library.</string>",
-              "count": 8
+              "count": 12
             }
           ],
           "NSLocationWhenInUseUsageDescription": [
             {
               "xml": "<string>To locate you.</string>",
-              "count": 8
+              "count": 12
             }
           ],
           "NSLocationAlwaysUsageDescription": [
             {
               "xml": "<string>To locate you.</string>",
-              "count": 8
+              "count": 12
             }
           ],
           "NSBluetoothAlwaysUsageDescription": [
             {
               "xml": "<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>",
-              "count": 8
+              "count": 12
             }
           ],
           "NSCameraUsageDescription": [
             {
               "xml": "<string>Used to take pictures</string>",
-              "count": 8
+              "count": 12
             },
             {
               "xml": "<string>Allows this app to access camera</string>",
-              "count": 8
+              "count": 12
             },
             {
               "xml": "<string>You can upload your offer/article picture using your camera</string>",
-              "count": 8
+              "count": 12
             }
           ]
         }
@@ -269,6 +285,9 @@
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
     "cordova-android-support-gradle-release": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-ionic-webview": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
@@ -709,6 +728,22 @@
       "clobbers": [
         "OneSignal"
       ]
+    },
+    {
+      "id": "cordova-plugin-ionic-webview.IonicWebView",
+      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
+      "pluginId": "cordova-plugin-ionic-webview",
+      "clobbers": [
+        "Ionic.WebView"
+      ]
+    },
+    {
+      "id": "cordova-plugin-ionic-webview.ios-wkwebview-exec",
+      "file": "plugins/cordova-plugin-ionic-webview/src/www/ios/ios-wkwebview-exec.js",
+      "pluginId": "cordova-plugin-ionic-webview",
+      "clobbers": [
+        "cordova.exec"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -737,6 +772,7 @@
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-x-toast": "2.7.0",
     "onesignal-cordova-plugin": "2.4.3",
-    "cordova-android-support-gradle-release": "3.0.1"
+    "cordova-android-support-gradle-release": "3.0.1",
+    "cordova-plugin-ionic-webview": "4.1.0"
   }
 }

@@ -55,7 +55,7 @@
         <button  class="round-button-menu button1" (click)='onGoToNotice()'>
             <ion-icon ios="ios-megaphone" md="md-megaphone" style="zoom:2.0;"></ion-icon>
             <div class="test" *ngIf="user_type == 'Staff'">
-              <ion-badge color="danger" *ngIf="noticeBadgeCount > 0" float-right>{{ noticeBadgeCount +  allProjectBadgeCount}}</ion-badge>
+              <ion-badge color="danger" *ngIf="noticeBadgeCount > 0 || allProjectBadgeCount > 0" float-right>{{ noticeBadgeCount +  allProjectBadgeCount}}</ion-badge>
             </div>
             <div class="test" *ngIf="user_type == 'Contractor'">
               <ion-badge color="danger" *ngIf="allContractorBadgeCount > 0" float-right>{{ allContractorBadgeCount}}</ion-badge>

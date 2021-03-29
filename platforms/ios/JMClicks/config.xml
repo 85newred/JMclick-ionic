@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android_versionCode="100" id="com.softoya.jmclicks" version="1.0.22" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android_versionCode="100" id="com.softoya.jmclicks2" version="1.0.28" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
@@ -81,6 +81,10 @@
     </feature>
     <feature name="OneSignalPush">
         <param name="ios-package" value="OneSignalPush" />
+    </feature>
+    <allow-navigation href="ionic://*" />
+    <feature name="IonicWebView">
+        <param name="ios-package" value="CDVWKWebViewEngine" />
     </feature>
     <name>JMClicks</name>
     <description>An awesome Ionic/Cordova app.</description>
@@ -181,6 +185,8 @@
     <preference name="CameraUsesGeolocation" value="false" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="deployment-target" value="11.0" />
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="SplashMaintainAspectRatio" value="true" />

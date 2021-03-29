@@ -8,8 +8,8 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_base64__ = __webpack_require__(102);
@@ -109,6 +109,7 @@ var TaskDetailPage = /** @class */ (function () {
         this.Id = this.navParams.get('Id');
         this.completed = this.navParams.get('Completed_Date');
         this.tempStatus = this.navParams.get('Status');
+        this.loadData();
         if (this.tempStatus == "Close")
             this.loadData();
         this.data();
@@ -386,7 +387,7 @@ var TaskDetailPage = /** @class */ (function () {
     ;
     TaskDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-taskdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdetail/taskdetail.html"*/'\n\n<ion-header>\n\n\n\n    <ion-navbar color="secondary">\n\n      <ion-title >{{tempStatus == "Open" ? "Update Task":"View Task"}}</ion-title>\n\n    </ion-navbar>\n\n\n\n  </ion-header>\n\n\n\n\n\n  <ion-content padding *ngIf="tempStatus == \'Open\'">\n\n\n\n    <h1 text-center>{{Start_Date}}</h1>\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Project Name</ion-label>\n\n      <ion-input    value="{{project}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Site Name</ion-label>\n\n      <ion-input  value="{{site}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Due Date</ion-label>\n\n      <ion-input  value="{{due}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n\n\n    <form novalidate (ngSubmit)="updateTask()" [formGroup]="signupform">\n\n\n\n          <ion-item>\n\n            <ion-label stacked color="primary">Status</ion-label>\n\n            <ion-select  [(ngModel)]="Status_Val" formControlName="Status_Val">\n\n              <ion-option value="Open">Open</ion-option>\n\n              <ion-option value="Close">Close</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n\n\n        <ion-item>\n\n          <ion-label stacked color="primary">Completed Date</ion-label>\n\n          <ion-datetime\n\n            pickerFormat="DD MMM YYYY" [(ngModel)]="Completed_Date"\n\n            displayFormat="DD MM YYYY" placeholder="Choose Completed date" max="2200" formControlName="Completed_Date" [class.error1]="!signupform.controls.Completed_Date.valid && signupform.controls.Completed_Date.dirty">\n\n            </ion-datetime>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n        <ion-label stacked color="primary">Remarks</ion-label>\n\n          <ion-textarea [(ngModel)]="Remarks" formControlName="Remarks" value="{{Remarks}}"></ion-textarea>\n\n        </ion-item>\n\n        <ion-item *ngIf="imagesN.length > 0">\n\n          <ion-label stacked color="primary">Image</ion-label>\n\n        </ion-item>\n\n\n\n        <ion-item *ngFor="let img of imagesN;">\n\n          <ion-thumbnail slot="start">\n\n              <img [src]="img.path" width="30px" height="30px">\n\n          </ion-thumbnail>\n\n          <ion-icon slot="icon-only"  name="trash" (click)="deleteImage(img.id)"></ion-icon>\n\n        </ion-item>\n\n\n\n\n\n        <button ion-button icon-right type="button" full (click)="selectImage()">\n\n        <ion-icon name="camera"></ion-icon>Picture</button>\n\n        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Update</button>\n\n      </form>\n\n\n\n\n\n  </ion-content>\n\n  <ion-content *ngIf="tempStatus == \'Close\'">\n\n    <ion-item>\n\n      <p style="color:blueviolet" ALIGN=RIGHT ><b></b></p>\n\n      <h3>Project Name : {{project}}</h3>\n\n      <p>Site Name: {{site}}</p>\n\n      <p>Due Date: {{due}}</p>\n\n      <p>Completed Date: {{completed}}</p>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-slides class="image-slider" >\n\n        <ion-slide *ngFor="let img of taskImage">\n\n          <img [src]="\'https://jmclicks.com\' + img.Web_Path" imageviewer width="100" height="200">\n\n        </ion-slide>\n\n      </ion-slides>\n\n    </ion-item>\n\n  </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdetail/taskdetail.html"*/,
+            selector: 'page-taskdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdetail/taskdetail.html"*/'\n\n<ion-header>\n\n\n\n    <ion-navbar color="secondary">\n\n      <ion-title >{{tempStatus == "Open" ? "Update Task":"View Task"}}</ion-title>\n\n    </ion-navbar>\n\n\n\n  </ion-header>\n\n\n\n\n\n  <ion-content padding *ngIf="tempStatus == \'Open\'">\n\n\n\n    <h1 text-center>{{Start_Date}}</h1>\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Project Name</ion-label>\n\n      <ion-input    value="{{project}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Site Name</ion-label>\n\n      <ion-input  value="{{site}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Due Date</ion-label>\n\n      <ion-input  value="{{due}}" disabled="true" ></ion-input>\n\n    </ion-item>\n\n\n\n    <form novalidate (ngSubmit)="updateTask()" [formGroup]="signupform">\n\n\n\n          <ion-item>\n\n            <ion-label stacked color="primary">Status</ion-label>\n\n            <ion-select  [(ngModel)]="Status_Val" formControlName="Status_Val">\n\n              <ion-option value="Open">Open</ion-option>\n\n              <ion-option value="Close">Close</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n\n\n        <ion-item>\n\n          <ion-label stacked color="primary">Completed Date</ion-label>\n\n          <ion-datetime\n\n            pickerFormat="DD MMM YYYY" [(ngModel)]="Completed_Date"\n\n            displayFormat="DD MM YYYY" placeholder="Choose Completed date" max="2200" formControlName="Completed_Date" [class.error1]="!signupform.controls.Completed_Date.valid && signupform.controls.Completed_Date.dirty">\n\n            </ion-datetime>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n        <ion-label stacked color="primary">Remarks</ion-label>\n\n          <ion-textarea [(ngModel)]="Remarks" formControlName="Remarks" value="{{Remarks}}"></ion-textarea>\n\n        </ion-item>\n\n        <ion-item *ngIf="imagesN.length > 0">\n\n          <ion-label stacked color="primary">Image</ion-label>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-slides class="image-slider" >\n\n            <ion-slide *ngFor="let img of taskImage">\n\n              <img [src]="\'https://jmclicks.com\' + img.Web_Path" imageviewer width="100" height="200">\n\n            </ion-slide>\n\n          </ion-slides>\n\n        </ion-item>\n\n\n\n        <ion-item *ngFor="let img of imagesN;">\n\n          <ion-thumbnail slot="start">\n\n              <img [src]="img.path" width="30px" height="30px">\n\n          </ion-thumbnail>\n\n          <ion-icon slot="icon-only"  name="trash" (click)="deleteImage(img.id)"></ion-icon>\n\n        </ion-item>\n\n\n\n\n\n\n\n\n\n        <button ion-button icon-right type="button" full (click)="selectImage()">\n\n          <ion-icon name="camera"></ion-icon>Picture\n\n        </button>\n\n\n\n        <button ion-button icon-right type="button" full (click)="getImage()">\n\n          <ion-icon name="camera"></ion-icon>Get from Gallery\n\n        </button>\n\n\n\n        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Update</button>\n\n      </form>\n\n\n\n\n\n  </ion-content>\n\n  <ion-content *ngIf="tempStatus == \'Close\'">\n\n    <ion-item>\n\n      <p style="color:blueviolet" ALIGN=RIGHT ><b></b></p>\n\n      <h3>Project Name : {{project}}</h3>\n\n      <p>Site Name: {{site}}</p>\n\n      <p>Due Date: {{due}}</p>\n\n      <p>Completed Date: {{completed}}</p>\n\n      <p>Remarks: {{Remarks}}</p>\n\n\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-slides class="image-slider" >\n\n        <ion-slide *ngFor="let img of taskImage">\n\n          <img [src]="\'https://jmclicks.com\' + img.Web_Path" imageviewer width="100" height="200">\n\n        </ion-slide>\n\n      </ion-slides>\n\n    </ion-item>\n\n  </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdetail/taskdetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["v" /* NavParams */],
@@ -418,9 +419,9 @@ var TaskDetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_app_preferences__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_badge__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_app_preferences__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_badge__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_device__ = __webpack_require__(504);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__login_login__ = __webpack_require__(179);
@@ -431,9 +432,9 @@ var TaskDetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__advance_advance__ = __webpack_require__(526);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__noticeall_noticeall__ = __webpack_require__(543);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__task_task__ = __webpack_require__(550);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__myjob_myjob__ = __webpack_require__(556);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__schedules_schedules__ = __webpack_require__(564);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__asset_asset__ = __webpack_require__(566);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__myjob_myjob__ = __webpack_require__(557);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__schedules_schedules__ = __webpack_require__(566);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__asset_asset__ = __webpack_require__(568);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -537,7 +538,13 @@ var HomePage = /** @class */ (function () {
         this.allBadgeCount = 0;
         this.jobBadgeCount = 0;
         this.allTaskBadge = 0;
-        this.loadData();
+        this.allScheduleBadge = 0;
+        this.noticeBadgeCount = 0;
+        this.noticeBadgeCount2 = 0;
+        this.allProjectBadgeCount = 0;
+        this.allContractorBadgeCount = 0;
+        console.log('projectluar');
+        // this.loadData();
         // this.device.uuid = this.deviceUUID;
         // this.device.model = this.deviceModel;
         this.deviceUUID = device.uuid;
@@ -585,9 +592,15 @@ var HomePage = /** @class */ (function () {
         var _this = this;
         setTimeout(function () { return _this.splash = false; }, 4000);
     };
-    HomePage.prototype.ionViewDidEnter = function () {
+    HomePage.prototype.ionViewWillEnter = function () {
         this.loadData();
+        this.loaddata2();
     };
+    // ngOnInit(){
+    //   this.loadData();
+    //   this.loaddata2();
+    //   console.log('projectdalam')
+    // }
     HomePage.prototype.loadData = function () {
         var _this = this;
         this.storage.get('user').then(function (val) {
@@ -596,6 +609,7 @@ var HomePage = /** @class */ (function () {
             _this.Position = val.Position;
             _this.user_type = val.User_Type;
             console.log(val);
+            console.log('usertype', _this.user_type);
         });
         console.log('type: ' + this.user_type);
         console.log(this.VersionNumber);
@@ -607,11 +621,13 @@ var HomePage = /** @class */ (function () {
         this.allBadgeCount = 0;
         this.storage.get('token').then(function (val) {
             _this.http.get('https://jmclicks.com/api/notifications/advanceall?token=' + val.token).subscribe(function (result) {
+                console.log('dalam');
                 _this.allAdvanceBadgeCount = result.badge_count;
                 _this.allBadgeCount = _this.allBadgeCount + _this.allAdvanceBadgeCount;
                 _this.setBadges(_this.allBadgeCount);
             });
         });
+        console.log('luar');
         this.storage.get('token').then(function (val) {
             _this.http.get('https://jmclicks.com/api/notifications/allleave?token=' + val.token).subscribe(function (result) {
                 _this.allLeaveBadgeCount = result.badge_count;
@@ -628,7 +644,48 @@ var HomePage = /** @class */ (function () {
                 _this.allBadgeCount += result.badge_count;
                 _this.setBadges(_this.allBadgeCount);
             });
+            _this.http.get('https://jmclicks.com/api/notifications/getScheduleBadge?token=' + val.token).subscribe(function (result) {
+                _this.allBadgeCount += result.badge_count;
+                _this.allScheduleBadge = result.badge_count;
+                _this.setBadges(_this.allBadgeCount);
+            });
+            _this.http.get('https://jmclicks.com/api/notifications/getcontractornoticebadge?token=' + val.token).subscribe(function (result) {
+                _this.allContractorBadgeCount = result.badge_count;
+                _this.allBadgeCount = _this.allBadgeCount + _this.allContractorBadgeCount;
+                _this.setBadges(_this.allBadgeCount);
+            });
         });
+    };
+    HomePage.prototype.loaddata2 = function () {
+        var _this = this;
+        this.storage.get('token').then(function (val) {
+            _this.http.get('https://jmclicks.com/api/notifications/getprojectnoticebadge?token=' + val.token).subscribe(function (result) {
+                _this.allProjectBadgeCount = result.badge_count;
+                console.log('res', result.badge_count, _this.allProjectBadgeCount);
+                _this.allBadgeCount = _this.allBadgeCount + _this.allProjectBadgeCount;
+                _this.setBadges(_this.allBadgeCount);
+            });
+        });
+        console.log('projectA', this.allProjectBadgeCount);
+        this.storage.get('token').then(function (val) {
+            _this.http.get('https://jmclicks.com/api/notifications/getnoticebadge?token=' + val.token).subscribe(function (result) {
+                _this.noticeBadgeCount = result.badge_count;
+                _this.allBadgeCount = _this.allBadgeCount + _this.noticeBadgeCount;
+                _this.setBadges(_this.allBadgeCount);
+            });
+        });
+        console.log('noticeA', this.noticeBadgeCount);
+        console.log('usertype', this.user_type);
+        console.log('notice', this.noticeBadgeCount);
+        console.log('project', this.allProjectBadgeCount);
+        console.log('contract', this.allContractorBadgeCount);
+        if (this.user_type == 'Staff') {
+            this.noticeBadgeCount2 = (this.noticeBadgeCount + this.allProjectBadgeCount);
+        }
+        else {
+            this.noticeBadgeCount2 = this.allContractorBadgeCount;
+        }
+        console.log('noticebadge2', this.noticeBadgeCount2);
     };
     HomePage.prototype.logout = function () {
         var _this = this;
@@ -664,7 +721,7 @@ var HomePage = /** @class */ (function () {
                                     console.log(JSON.parse(err));
                                 });
                             }).then(function () {
-                                _this.storage.clear();
+                                _this.storage.remove('token');
                             });
                         });
                     }
@@ -697,7 +754,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/home/home.html"*/'\n\n\n\n<div id="custom-overlay" [style.display]="splash ? \'flex\': \'none\'">\n\n  <div class="flb">\n\n    <img src="" class="img-slide">\n\n  </div>\n\n</div>\n\n\n\n\n\n<ion-content  class="ion-content">\n\n\n\n<ion-slides class="ion-slides header" autoplay="3000" loop="false" speed="900" pager="true">\n\n  <ion-slide  class="slider1">\n\n    <img class="s1" src="assets/img/logo-round.png">\n\n      <p>Jalur Millenium Sdn Bhd</p>\n\n\n\n  </ion-slide>\n\n\n\n  <ion-slide>\n\n    <div class="profile">\n\n      <ion-item class="item-profile" no-lines>\n\n        <ion-avatar>\n\n          <img class="s1" [src]="\'https://jmclicks.com\' + userImage" onError="src = \'assets/imgs/default.png\'">\n\n        </ion-avatar>\n\n      </ion-item>\n\n    </div>\n\n\n\n    <div class="text-profile">\n\n      <p>{{Name}}</p>\n\n      <p>{{Position}}</p>\n\n    </div>\n\n  </ion-slide>\n\n\n\n  <!-- <ion-slide>\n\n    <div>\n\n      <ion-img width="120" height="120" [src]="\'http://localhost:8200/jmclicks/public\' + userImage" class="round-button button-profile"></ion-img>\n\n    </div>\n\n    <div class="text-profile">\n\n      <p>{{Name}}</p>\n\n      <p>{{Position}}</p>\n\n    </div>\n\n\n\n  </ion-slide>\n\n -->\n\n\n\n\n\n </ion-slides>\n\n\n\n  <!---------------------------------------------------------------------------->\n\n<!--home.html-->\n\n  <div padding class="padding-left">\n\n\n\n    <div class = "row">\n\n      <div class = "col a">\n\n        <button  class="round-button-menu button1" (click)=\'onGoToNotice()\'>\n\n            <ion-icon ios="ios-megaphone" md="md-megaphone" style="zoom:2.0;"></ion-icon>\n\n          </button>\n\n        <div>Notice</div>\n\n      </div>\n\n      <div class = "col a" *ngIf="user_type != \'Staff\'">\n\n        <button  class="round-button-menu button8" (click)=\'onGoToMyJob()\'>\n\n            <ion-icon ios="ios-hammer" md="md-hammer" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <ion-badge color="danger" *ngIf="jobBadgeCount > 0" float-right>{{ jobBadgeCount }}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>My Job</div>\n\n      </div>\n\n      <div class = "col a" *ngIf="user_type != \'Contractor\'">\n\n        <button class="round-button-menu button4" (click)=\'advance()\'>\n\n            <ion-icon ios="logo-usd" md="logo-usd" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <ion-badge color="danger" *ngIf="allAdvanceBadgeCount > 0" float-right>{{ allAdvanceBadgeCount }}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>Advance</div>\n\n     </div>\n\n\n\n     <div class = "col a" *ngIf="user_type != \'Staff\'">\n\n      <button  class="round-button-menu button8" (click)=\'onGoToTask()\'>\n\n          <ion-icon ios="ios-construct" md="md-construct" style="zoom:2.0;"></ion-icon>\n\n          <div class="test">\n\n            <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge>\n\n          </div>\n\n        </button>\n\n      <div>Task</div>\n\n    </div>\n\n\n\n     <div class = "col a" *ngIf="user_type != \'Contractor\'">\n\n      <button class="round-button-menu button3" (click)=\'onGoToAttendance()\'>\n\n          <ion-icon ios="ios-done-all" md="md-done-all" style="zoom:2.0;"></ion-icon>\n\n          </button>\n\n      <div>Attendance</div>\n\n    </div>\n\n    </div>\n\n\n\n      <div class = "row" >\n\n        <div class = "col a" *ngIf="user_type != \'Contractor\'">\n\n        <button  class="round-button-menu button6" (click)=\'onGoToTimesheet()\'>\n\n            <ion-icon ios="ios-list-box" md="md-list-box" style="zoom:2.0;"></ion-icon>\n\n          </button>\n\n        <div>Timesheet</div>\n\n      </div>\n\n\n\n      <div class = "col a " *ngIf="user_type != \'Contractor\'">\n\n        <button class="round-button-menu button5"  (click)=\'onGoToLeaves()\'>\n\n            <ion-icon ios="ios-calendar" md="md-calendar" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <ion-badge color="danger" *ngIf=" allLeaveBadgeCount > 0" float-right>{{ allLeaveBadgeCount }}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>Leave</div>\n\n      </div>\n\n\n\n        <div class = "col a">\n\n          <button class="round-button-menu button7" (click)=\'onGoToHoliday()\'>\n\n              <ion-icon ios="ios-plane" md="md-plane" style="zoom:2.0;"></ion-icon>\n\n            </button>\n\n          <div>Holiday</div>\n\n      </div>\n\n\n\n\n\n    </div>\n\n    <div class="row">\n\n      <div class = "col a" *ngIf="user_type == \'Staff\'">\n\n        <button  class="round-button-menu button9" (click)=\'onGoToSchedule()\'>\n\n          <img src="assets/img/schedules2.png" height="30px" width="30px">\n\n            \n\n            <div class="test">\n\n              <!-- <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge> -->\n\n            </div>\n\n          </button>\n\n        <div>Schedules</div>\n\n      </div>\n\n      \n\n      <div class = "col a" *ngIf="user_type == \'Staff\'">\n\n        <button  class="round-button-menu button8" (click)=\'onGoToTask()\'>\n\n            <ion-icon ios="ios-construct" md="md-construct" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>Task</div>\n\n      </div>\n\n\n\n      <div class = "col a" *ngIf="user_type == \'Staff\'">\n\n        <button  class="round-button-menu button10" (click)=\'onGoToAsset()\'>\n\n            <ion-icon ios="ios-construct" md="md-construct" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <!-- <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge> -->\n\n            </div>\n\n          </button>\n\n        <div>Assets</div>\n\n      </div>\n\n\n\n      \n\n    </div>\n\n\n\n    \n\n  <br>\n\n</div>\n\n\n\n\n\n</ion-content>\n\n<!-- <ion-footer>\n\n\n\n    <button ion-button full icon-start class="button-logout" (click)="logout()">\n\n      <ion-icon name="log-out"></ion-icon>Log out\n\n    </button>\n\n</ion-footer> -->\n\n<ion-footer>\n\n  <div class="text-footer">\n\n    &#169; Copyright 2016 Softoya International Sdn. Bhd. All rights reserved. <a style="color:white" href="https://jmclicks.com/policy.php"> Privacy Policy </a> <br>\n\n    <b>Ver. : {{VersionNumber}}</b>\n\n    <!-- <p> {{deviceUUID}}</p>\n\n    <p>{{deviceModel}} </p> -->\n\n  </div>\n\n  <button ion-button full icon-start class="button-logout" (click)="logout()">\n\n    <ion-icon name="log-out"></ion-icon>Log out\n\n  </button>\n\n</ion-footer>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/home/home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/home/home.html"*/'\n\n\n\n<div id="custom-overlay" [style.display]="splash ? \'flex\': \'none\'">\n\n  <div class="flb">\n\n    <img src="" class="img-slide">\n\n  </div>\n\n</div>\n\n\n\n\n\n<ion-content  class="ion-content">\n\n\n\n<ion-slides class="ion-slides header" autoplay="3000" loop="false" speed="900" pager="true">\n\n  <ion-slide  class="slider1">\n\n    <img class="s1" src="assets/img/logo-round.png">\n\n      <p>Jalur Millenium Sdn Bhd</p>\n\n\n\n  </ion-slide>\n\n\n\n  <ion-slide>\n\n    <div class="profile">\n\n      <ion-item class="item-profile" no-lines>\n\n        <ion-avatar>\n\n          <img class="s1" [src]="\'https://jmclicks.com\' + userImage" onError="src = \'assets/imgs/default.png\'">\n\n        </ion-avatar>\n\n      </ion-item>\n\n    </div>\n\n\n\n    <div class="text-profile">\n\n      <p>{{Name}}</p>\n\n      <p>{{Position}}</p>\n\n    </div>\n\n  </ion-slide>\n\n\n\n  <!-- <ion-slide>\n\n    <div>\n\n      <ion-img width="120" height="120" [src]="\'http://localhost:8200/jmclicks/public\' + userImage" class="round-button button-profile"></ion-img>\n\n    </div>\n\n    <div class="text-profile">\n\n      <p>{{Name}}</p>\n\n      <p>{{Position}}</p>\n\n    </div>\n\n\n\n  </ion-slide>\n\n -->\n\n\n\n\n\n </ion-slides>\n\n\n\n  <!---------------------------------------------------------------------------->\n\n<!--home.html-->\n\n  <div padding class="padding-left">\n\n\n\n    <div class = "row">\n\n      <div class = "col a">\n\n        <button  class="round-button-menu button1" (click)=\'onGoToNotice()\'>\n\n            <ion-icon ios="ios-megaphone" md="md-megaphone" style="zoom:2.0;"></ion-icon>\n\n            <div class="test" *ngIf="user_type == \'Staff\'">\n\n              <ion-badge color="danger" *ngIf="noticeBadgeCount > 0" float-right>{{ noticeBadgeCount +  allProjectBadgeCount}}</ion-badge>\n\n            </div>\n\n            <div class="test" *ngIf="user_type == \'Contractor\'">\n\n              <ion-badge color="danger" *ngIf="allContractorBadgeCount > 0" float-right>{{ allContractorBadgeCount}}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>Notice</div>\n\n      </div>\n\n      <div class = "col a" *ngIf="user_type != \'Staff\'">\n\n        <button  class="round-button-menu button8" (click)=\'onGoToMyJob()\'>\n\n            <ion-icon ios="ios-hammer" md="md-hammer" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <ion-badge color="danger" *ngIf="jobBadgeCount > 0" float-right>{{ jobBadgeCount }}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>My Job</div>\n\n      </div>\n\n      <div class = "col a" *ngIf="user_type != \'Contractor\'">\n\n        <button class="round-button-menu button4" (click)=\'advance()\'>\n\n            <ion-icon ios="logo-usd" md="logo-usd" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <ion-badge color="danger" *ngIf="allAdvanceBadgeCount > 0" float-right>{{ allAdvanceBadgeCount }}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>Advance</div>\n\n     </div>\n\n\n\n     <div class = "col a" *ngIf="user_type != \'Staff\'">\n\n      <button  class="round-button-menu button8" (click)=\'onGoToTask()\'>\n\n          <ion-icon ios="ios-construct" md="md-construct" style="zoom:2.0;"></ion-icon>\n\n          <div class="test">\n\n            <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge>\n\n          </div>\n\n        </button>\n\n      <div>Task</div>\n\n    </div>\n\n\n\n     <div class = "col a" *ngIf="user_type != \'Contractor\'">\n\n      <button class="round-button-menu button3" (click)=\'onGoToAttendance()\'>\n\n          <ion-icon ios="ios-done-all" md="md-done-all" style="zoom:2.0;"></ion-icon>\n\n          </button>\n\n      <div>Attendance</div>\n\n    </div>\n\n    </div>\n\n\n\n      <div class = "row" >\n\n        <div class = "col a" *ngIf="user_type != \'Contractor\'">\n\n        <button  class="round-button-menu button6" (click)=\'onGoToTimesheet()\'>\n\n            <ion-icon ios="ios-list-box" md="md-list-box" style="zoom:2.0;"></ion-icon>\n\n          </button>\n\n        <div>Timesheet</div>\n\n      </div>\n\n\n\n      <div class = "col a " *ngIf="user_type != \'Contractor\'">\n\n        <button class="round-button-menu button5"  (click)=\'onGoToLeaves()\'>\n\n            <ion-icon ios="ios-calendar" md="md-calendar" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <ion-badge color="danger" *ngIf=" allLeaveBadgeCount > 0" float-right>{{ allLeaveBadgeCount }}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>Leave</div>\n\n      </div>\n\n\n\n        <div class = "col a">\n\n          <button class="round-button-menu button7" (click)=\'onGoToHoliday()\'>\n\n              <ion-icon ios="ios-plane" md="md-plane" style="zoom:2.0;"></ion-icon>\n\n            </button>\n\n          <div>Holiday</div>\n\n      </div>\n\n\n\n\n\n    </div>\n\n    <div class="row">\n\n      <div class = "col a" *ngIf="user_type == \'Staff\'">\n\n        <button  class="round-button-menu button9" (click)=\'onGoToSchedule()\'>\n\n          <img src="assets/img/schedules2.png" height="30px" width="30px">\n\n            \n\n            <div class="test">\n\n              <ion-badge color="danger" *ngIf="allScheduleBadge > 0" float-right>{{ allScheduleBadge }}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>Schedules</div>\n\n      </div>\n\n      \n\n      <div class = "col a" *ngIf="user_type == \'Staff\'">\n\n        <button  class="round-button-menu button8" (click)=\'onGoToTask()\'>\n\n            <ion-icon ios="ios-construct" md="md-construct" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge>\n\n            </div>\n\n          </button>\n\n        <div>Task</div>\n\n      </div>\n\n\n\n      <div class = "col a" *ngIf="user_type == \'Staff\'">\n\n        <button  class="round-button-menu button10" (click)=\'onGoToAsset()\'>\n\n            <ion-icon ios="ios-construct" md="md-construct" style="zoom:2.0;"></ion-icon>\n\n            <div class="test">\n\n              <!-- <ion-badge color="danger" *ngIf="allTaskBadge > 0" float-right>{{ allTaskBadge }}</ion-badge> -->\n\n            </div>\n\n          </button>\n\n        <div>Assets</div>\n\n      </div>\n\n\n\n      \n\n    </div>\n\n\n\n    \n\n  <br>\n\n</div>\n\n\n\n\n\n</ion-content>\n\n<!-- <ion-footer>\n\n\n\n    <button ion-button full icon-start class="button-logout" (click)="logout()">\n\n      <ion-icon name="log-out"></ion-icon>Log out\n\n    </button>\n\n</ion-footer> -->\n\n<ion-footer>\n\n  <div class="text-footer">\n\n    &#169; Copyright 2016 Softoya International Sdn. Bhd. All rights reserved. <a style="color:white" href="https://jmclicks.com/policy.php"> Privacy Policy </a> <br>\n\n    <b>Ver. : {{VersionNumber}}</b>\n\n    <!-- <p> {{deviceUUID}}</p>\n\n    <p>{{deviceModel}} </p> -->\n\n  </div>\n\n  <button ion-button full icon-start class="button-logout" (click)="logout()">\n\n    <ion-icon name="log-out"></ion-icon>Log out\n\n  </button>\n\n</ion-footer>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/home/home.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -731,8 +788,8 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_preferences__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_preferences__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -940,7 +997,7 @@ webpackEmptyAsyncContext.id = 233;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environment__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environment__ = __webpack_require__(636);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators__ = __webpack_require__(54);
@@ -1130,14 +1187,14 @@ var LeavePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_base64__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_image_picker__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__leave_modal_leave_modal__ = __webpack_require__(507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1233,7 +1290,7 @@ var MyleavePage = /** @class */ (function () {
         var options = {
             quality: 70,
             destinationType: this.camera.DestinationType.FILE_URI,
-            saveToPhotoAlbum: true,
+            // saveToPhotoAlbum: true,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE
         };
@@ -1326,7 +1383,7 @@ var MyleavePage = /** @class */ (function () {
                     _this.totalDays = result.calculated_days;
                     if (_this.Leave_Type == 'Maternity Leave' || _this.Leave_Type == 'Hospitalization Leave') {
                         _this.leaveDaysList.forEach(function (l, index) {
-                            _this.Leave_Period[index] = "Full";
+                            _this.Leave_Period[index] = "Full Day";
                         });
                     }
                     else {
@@ -1336,7 +1393,7 @@ var MyleavePage = /** @class */ (function () {
                                     _this.Leave_Period[index] = l.Period;
                                 }
                                 else {
-                                    _this.Leave_Period[index] = "Full";
+                                    _this.Leave_Period[index] = "Full Day";
                                 }
                             });
                         }
@@ -1370,7 +1427,7 @@ var MyleavePage = /** @class */ (function () {
             _this.Leave_Period = data;
             var days = 0;
             data.forEach(function (item, index) {
-                if (item == "Full") {
+                if (item == "Full Day") {
                     days += 1;
                 }
                 else if (item == 'AM' || item == 'PM') {
@@ -1457,7 +1514,7 @@ var MyleavePage = /** @class */ (function () {
         });
         // Approver
         this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/getapprover?token=' + val.token);
+            data = _this.http.get('https://jmclicks.com/api/getapprover2?token=' + val.token);
             data.subscribe(function (result) {
                 console.log(result);
                 // let apps = new Array();
@@ -1469,6 +1526,9 @@ var MyleavePage = /** @class */ (function () {
                 _this.apps = result;
             });
         });
+    };
+    MyleavePage.prototype.test = function () {
+        console.log('testleaveterm', this.Leave_Period[0]);
     };
     MyleavePage.prototype.submitClaim = function () {
         var _this = this;
@@ -1509,11 +1569,11 @@ var MyleavePage = /** @class */ (function () {
                 Promise.all(defs).then(function (res) {
                     console.log(_this.Leave_Term);
                     _this.formData.append('Leave_Type', _this.Leave_Type);
-                    console.log(JSON.stringify(_this.Leave_Period));
+                    console.log('leaveterm', JSON.stringify(_this.Leave_Period));
                     _this.Leave_Period.forEach(function (item, index) {
                         _this.formData.append('Leave_Period[' + index + ']', item);
                     });
-                    // this.formData.append('Leave_Term', this.Leave_Term);
+                    _this.formData.append('Leave_Term', _this.Leave_Period[0]);
                     _this.formData.append('Start_Date', _this.myFunction(_this.Start_Date));
                     _this.formData.append('End_Date', _this.myFunction(_this.End_Date));
                     _this.formData.append('Reason', _this.Reason);
@@ -1534,10 +1594,10 @@ var MyleavePage = /** @class */ (function () {
                 })
                     .subscribe(function (res) {
                     if (res == 1) {
+                        _this.navCtrl.pop();
                         console.log(JSON.stringify(res));
                         _this.toast.show("Leave application submitted", '5000', 'center').subscribe(function (toast) {
                             console.log(toast);
-                            _this.navCtrl.pop();
                         });
                     }
                     else {
@@ -1554,6 +1614,7 @@ var MyleavePage = /** @class */ (function () {
                     }
                 });
             });
+            // ************** old ************
             // return this.http.post('https://jmclicks.com/api/newleave?token=' + val.token, {
             //   Leave_Type: this.Leave_Type,
             //   Leave_Term: this.Leave_Term,
@@ -1600,7 +1661,7 @@ var MyleavePage = /** @class */ (function () {
     ], MyleavePage.prototype, "myInput", void 0);
     MyleavePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-myleave',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myleave/myleave.html"*/'<ion-header>\n\n\n\n    <ion-navbar color="secondary">\n\n      <ion-title>Leave Submission</ion-title>\n\n    </ion-navbar>\n\n\n\n  </ion-header>\n\n\n\n\n\n  <ion-content  class="ion-content">\n\n    <ion-list>\n\n      <form novalidate (ngSubmit)="submitClaim()" [formGroup]="signupform">\n\n\n\n      <ion-item>\n\n        <ion-label stacked color="primary" class="required">Leave Type</ion-label>\n\n        <ion-select placeholder="please select" [(ngModel)]="Leave_Type" (ngModelChange)="fetchCalculatedLeaveDays($event)" formControlName="Leave_Type" [class.error1]="!signupform.controls.Leave_Type.valid && signupform.controls.Leave_Type.dirty">\n\n          <ion-option *ngFor="let type of types" value="{{type.Option}}">{{type.Option}}</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item no-lines *ngIf="( signupform.get(\'Leave_Type\').hasError(\'required\') ) && signupform.get(\'Leave_Type\').touched">\n\n        <div class="error" *ngIf="signupform.get(\'Leave_Type\').hasError(\'required\') && signupform.get(\'Leave_Type\').touched">\n\n          Please select your leave type\n\n        </div>\n\n      </ion-item>\n\n\n\n     <!-- <ion-item>\n\n        <ion-label stacked color="primary" class="required">Leave Term</ion-label>\n\n        <ion-select placeholder="please select" [(ngModel)]="Leave_Term" formControlName="Leave_Term" [class.error1]="!signupform.controls.Leave_Term.valid && signupform.controls.Leave_Term.dirty">\n\n          <ion-option value="Full Day">Full Day</ion-option>\n\n          <ion-option value="Afternoon">Half Day Afternoon[1pm-6pm]</ion-option>\n\n          <ion-option value="Morning">Half Day Morning</ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n      <ion-item>\n\n        <!-- <div alert-radio-label> -->\n\n        <ion-label stacked color="primary" class="required">Department</ion-label>\n\n        <ion-select  text-wrap placeholder="please select" [(ngModel)]="Department" (ngModelChange)="setApproverOptions($event)" formControlName="Department" [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">\n\n          <ion-option text-wrap alert-radio-label *ngFor="let depart of departs" value="{{depart.Id}}">{{depart.Project_Name}}</ion-option>\n\n        </ion-select>\n\n        <!-- </div> -->\n\n      </ion-item>\n\n      <ion-item no-lines *ngIf="( signupform.get(\'Department\').hasError(\'required\') ) && signupform.get(\'Department\').touched">\n\n        <div class="error" *ngIf="signupform.get(\'Department\').hasError(\'required\') && signupform.get(\'Department\').touched">\n\n          Please select your department\n\n        </div>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked color="primary" class="required">Approver</ion-label>\n\n        <ion-select placeholder="please select" [(ngModel)]="Approver" formControlName="Approver" [class.error1]="!signupform.controls.Approver.valid && signupform.controls.Approver.dirty">\n\n          <ion-option *ngFor="let app of approverOptions" value="{{app.Id}}">{{app.Name}}</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item no-lines *ngIf="( signupform.get(\'Approver\').hasError(\'required\') ) && signupform.get(\'Approver\').touched">\n\n        <div class="error" *ngIf="signupform.get(\'Approver\').hasError(\'required\') && signupform.get(\'Approver\').touched">\n\n          Please select your approver\n\n        </div>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked color="primary" class="required">Start Date</ion-label>\n\n          <ion-datetime\n\n          pickerFormat="DD MMM YYYY" [(ngModel)]="Start_Date"\n\n          displayFormat="DD MM YYYY" placeholder="Choose start date" max="2200" (ngModelChange)="fetchCalculatedLeaveDays($event)" formControlName="Start_Date" [class.error1]="!signupform.controls.Start_Date.valid && signupform.controls.Start_Date.dirty">\n\n          </ion-datetime>\n\n        </ion-item>\n\n        <ion-item no-lines *ngIf="( signupform.get(\'Start_Date\').hasError(\'required\') ) && signupform.get(\'Start_Date\').touched">\n\n          <div class="error" *ngIf="signupform.get(\'Start_Date\').hasError(\'required\') && signupform.get(\'Start_Date\').touched">\n\n            Please select your start date\n\n          </div>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label stacked color="primary" class="required">End Date</ion-label>\n\n          <ion-datetime\n\n            pickerFormat="DD MMM YYYY" [(ngModel)]="End_Date"\n\n            displayFormat="DD MM YYYY" placeholder="Choose end date" max="2200" (ngModelChange)="fetchCalculatedLeaveDays($event)" formControlName="End_Date" [class.error1]="!signupform.controls.End_Date.valid && signupform.controls.End_Date.dirty">\n\n          </ion-datetime>\n\n        </ion-item>\n\n        <ion-item no-lines *ngIf="( signupform.get(\'End_Date\').hasError(\'required\') ) && signupform.get(\'End_Date\').touched">\n\n            <div class="error" *ngIf="signupform.get(\'End_Date\').hasError(\'required\') && signupform.get(\'End_Date\').touched">\n\n              Please select your end date\n\n            </div>\n\n          </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-icon item-end name="ios-settings" (click)="presentLeaveModal()"></ion-icon>\n\n          <ion-label stacked color="primary">Total Leave Days </ion-label>\n\n          <ion-label>{{ getLeaveDays() }}</ion-label>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label stacked color="primary" class="required">Reason</ion-label>\n\n          <ion-textarea type="text" [(ngModel)]="Reason" placeholder="State your reason here" formControlName="Reason" [class.error1]="!signupform.controls.Reason.valid && signupform.controls.Reason.dirty"></ion-textarea>\n\n        </ion-item>\n\n        <ion-item no-lines *ngIf="( signupform.get(\'Reason\').hasError(\'required\') ) && signupform.get(\'Reason\').touched">\n\n          <div class="error" *ngIf="signupform.get(\'Reason\').hasError(\'required\') && signupform.get(\'Reason\').touched">\n\n            Please select your reason\n\n          </div>\n\n        </ion-item>\n\n\n\n        <div class="thumbnail-container">\n\n          <ul class="thumbnail-list">\n\n            <li *ngFor="let imageN of imagesN"><span><img class="thumbnail-image" [src]="imageN"></span></li>\n\n          </ul>\n\n        </div>\n\n\n\n        <button ion-button icon-right type="button" full (click)="onTakePicture()">\n\n          Take Picture <ion-icon name="camera"></ion-icon>\n\n        </button>\n\n\n\n\n\n        <button class="center" full ion-button type="button" (click)="getImage()" color="primary">\n\n          Get from Gallery <ion-icon name="aperture"></ion-icon>\n\n        </button>\n\n\n\n        <button ion-button icon-right full type="button" class="center" (click)="clearImage()">\n\n          Clear\n\n        </button>\n\n\n\n        <br><br>\n\n\n\n        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Submit</button>\n\n\n\n      </form>\n\n\n\n      <style>\n\n        .required:after { content:" *"; color:red; }\n\n      </style>\n\n    </ion-list>\n\n  </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myleave/myleave.html"*/,
+            selector: 'page-myleave',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myleave/myleave.html"*/'<ion-header>\n\n\n\n    <ion-navbar color="secondary">\n\n      <ion-title>Leave Submission</ion-title>\n\n    </ion-navbar>\n\n\n\n  </ion-header>\n\n\n\n\n\n  <ion-content  class="ion-content">\n\n    <ion-list>\n\n      <form novalidate (ngSubmit)="submitClaim()" [formGroup]="signupform">\n\n\n\n      <ion-item>\n\n        <ion-label stacked color="primary" class="required">Leave Type</ion-label>\n\n        <ion-select placeholder="please select" [(ngModel)]="Leave_Type" (ngModelChange)="fetchCalculatedLeaveDays($event)" formControlName="Leave_Type" [class.error1]="!signupform.controls.Leave_Type.valid && signupform.controls.Leave_Type.dirty">\n\n          <ion-option *ngFor="let type of types" value="{{type.Option}}">{{type.Option}}</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item no-lines *ngIf="( signupform.get(\'Leave_Type\').hasError(\'required\') ) && signupform.get(\'Leave_Type\').touched">\n\n        <div class="error" *ngIf="signupform.get(\'Leave_Type\').hasError(\'required\') && signupform.get(\'Leave_Type\').touched">\n\n          Please select your leave type\n\n        </div>\n\n      </ion-item>\n\n\n\n     <!-- <ion-item>\n\n        <ion-label stacked color="primary" class="required">Leave Term</ion-label>\n\n        <ion-select placeholder="please select" [(ngModel)]="Leave_Term" formControlName="Leave_Term" [class.error1]="!signupform.controls.Leave_Term.valid && signupform.controls.Leave_Term.dirty">\n\n          <ion-option value="Full Day">Full Day</ion-option>\n\n          <ion-option value="Afternoon">Half Day Afternoon[1pm-6pm]</ion-option>\n\n          <ion-option value="Morning">Half Day Morning</ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n      <ion-item>\n\n        <!-- <div alert-radio-label> -->\n\n        <ion-label stacked color="primary" class="required">Department</ion-label>\n\n        <ion-select  text-wrap placeholder="please select" [(ngModel)]="Department" (ngModelChange)="setApproverOptions($event)" formControlName="Department" [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">\n\n          <ion-option text-wrap alert-radio-label *ngFor="let depart of departs" value="{{depart.Id}}">{{depart.Project_Name}}</ion-option>\n\n        </ion-select>\n\n        <!-- </div> -->\n\n      </ion-item>\n\n      <ion-item no-lines *ngIf="( signupform.get(\'Department\').hasError(\'required\') ) && signupform.get(\'Department\').touched">\n\n        <div class="error" *ngIf="signupform.get(\'Department\').hasError(\'required\') && signupform.get(\'Department\').touched">\n\n          Please select your department\n\n        </div>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked color="primary" class="required">Approver</ion-label>\n\n        <ion-select disabled  placeholder="please select" [(ngModel)]="Approver" formControlName="Approver" [class.error1]="!signupform.controls.Approver.valid && signupform.controls.Approver.dirty">\n\n          <ion-option *ngFor="let app of approverOptions" value="{{app.Id}}">{{app.Name}}</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item no-lines *ngIf="( signupform.get(\'Approver\').hasError(\'required\') ) && signupform.get(\'Approver\').touched">\n\n        <div class="error" *ngIf="signupform.get(\'Approver\').hasError(\'required\') && signupform.get(\'Approver\').touched">\n\n          Please select your approver\n\n        </div>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked color="primary" class="required">Start Date</ion-label>\n\n          <ion-datetime\n\n          pickerFormat="DD MMM YYYY" [(ngModel)]="Start_Date"\n\n          displayFormat="DD MM YYYY" placeholder="Choose start date" max="2200" (ngModelChange)="fetchCalculatedLeaveDays($event)" formControlName="Start_Date" [class.error1]="!signupform.controls.Start_Date.valid && signupform.controls.Start_Date.dirty">\n\n          </ion-datetime>\n\n        </ion-item>\n\n        <ion-item no-lines *ngIf="( signupform.get(\'Start_Date\').hasError(\'required\') ) && signupform.get(\'Start_Date\').touched">\n\n          <div class="error" *ngIf="signupform.get(\'Start_Date\').hasError(\'required\') && signupform.get(\'Start_Date\').touched">\n\n            Please select your start date\n\n          </div>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label stacked color="primary" class="required">End Date</ion-label>\n\n          <ion-datetime\n\n            pickerFormat="DD MMM YYYY" [(ngModel)]="End_Date"\n\n            displayFormat="DD MM YYYY" placeholder="Choose end date" max="2200" (ngModelChange)="fetchCalculatedLeaveDays($event)" formControlName="End_Date" [class.error1]="!signupform.controls.End_Date.valid && signupform.controls.End_Date.dirty">\n\n          </ion-datetime>\n\n        </ion-item>\n\n        <ion-item no-lines *ngIf="( signupform.get(\'End_Date\').hasError(\'required\') ) && signupform.get(\'End_Date\').touched">\n\n            <div class="error" *ngIf="signupform.get(\'End_Date\').hasError(\'required\') && signupform.get(\'End_Date\').touched">\n\n              Please select your end date\n\n            </div>\n\n          </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-icon item-end name="ios-settings" (click)="presentLeaveModal()"></ion-icon>\n\n          <ion-label stacked color="primary">Total Leave Days </ion-label>\n\n          <ion-label>{{ getLeaveDays() }}</ion-label>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label stacked color="primary" class="required">Reason</ion-label>\n\n          <ion-textarea type="text" [(ngModel)]="Reason" placeholder="State your reason here" formControlName="Reason" [class.error1]="!signupform.controls.Reason.valid && signupform.controls.Reason.dirty"></ion-textarea>\n\n        </ion-item>\n\n        <ion-item no-lines *ngIf="( signupform.get(\'Reason\').hasError(\'required\') ) && signupform.get(\'Reason\').touched">\n\n          <div class="error" *ngIf="signupform.get(\'Reason\').hasError(\'required\') && signupform.get(\'Reason\').touched">\n\n            Please select your reason\n\n          </div>\n\n        </ion-item>\n\n\n\n        <div class="thumbnail-container">\n\n          <ul class="thumbnail-list">\n\n            <li *ngFor="let imageN of imagesN"><span><img class="thumbnail-image" [src]="imageN"></span></li>\n\n          </ul>\n\n        </div>\n\n\n\n        <button ion-button icon-right type="button" full (click)="onTakePicture()">\n\n          Take Picture <ion-icon name="camera"></ion-icon>\n\n        </button>\n\n\n\n\n\n        <button class="center" full ion-button type="button" (click)="getImage()" color="primary">\n\n          Get from Gallery <ion-icon name="aperture"></ion-icon>\n\n        </button>\n\n\n\n        <button ion-button icon-right full type="button" class="center" (click)="clearImage()">\n\n          Clear\n\n        </button>\n\n        \n\n        <!-- <br><br>\n\n        <button ion-buttpn block type="button" (click)="test()">TEST</button> -->\n\n<br><br>\n\n        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Submit</button>\n\n\n\n      </form>\n\n\n\n      <style>\n\n        .required:after { content:" *"; color:red; }\n\n      </style>\n\n    </ion-list>\n\n  </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myleave/myleave.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["v" /* NavParams */],
@@ -1660,7 +1721,7 @@ var LeaveModalPage = /** @class */ (function () {
         if (this.Leave_Period.length == 0) {
             if (this.Leave_Type == 'Maternity Leave' || this.Leave_Type == 'Hospitalization Leave') {
                 this.leavelist.forEach(function (l, index) {
-                    _this.Leave_Period[index] = "Full";
+                    _this.Leave_Period[index] = "Full Day";
                 });
             }
             else {
@@ -1670,7 +1731,7 @@ var LeaveModalPage = /** @class */ (function () {
                             _this.Leave_Period[index] = l.Period;
                         }
                         else {
-                            _this.Leave_Period[index] = "Full";
+                            _this.Leave_Period[index] = "Full Day";
                         }
                     });
                 }
@@ -1698,9 +1759,9 @@ var LeaveModalPage = /** @class */ (function () {
     };
     LeaveModalPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-leave-modal',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leave-modal/leave-modal.html"*/'<!--\n  Generated template for the LeaveModalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-toolbar>\n      <ion-title>\n        Leave Period\n      </ion-title>\n      <ion-buttons start>\n        <button ion-button (click)="dismiss()">\n          <span ion-text color="primary">Done</span>          \n        </button>\n      </ion-buttons>\n    </ion-toolbar>\n  </ion-header>\n  \n  \n  <ion-content padding>\n      <div *ngIf="(Leave_Type == \'Maternity Leave\' || Leave_Type == \'Hospitalization Leave\'); then thenBlock else elseBlock"></div>\n      <ng-template #thenBlock>\n          <ion-item>\n            <ion-label>From: {{ leavelist[0].Date }}</ion-label>\n            <ion-label>To: {{ leavelist[leavelist.length-1].Date }}</ion-label>\n            <ion-label>Period: Full</ion-label>\n          </ion-item>                                                    \n      </ng-template>\n      <ng-template #elseBlock>\n          <div *ngIf="(Leave_Type != \'1 Hour Time Off\' && Leave_Type != \'2 Hours Time Off\'); then thenBlockTwo else elseBlockTwo"></div>\n          <ng-template #thenBlockTwo>                                  \n            <ion-list>\n              <ion-item *ngFor="let l of leavelist; index as i;">\n                <ion-label>{{ l.Date }}</ion-label>                              \n                <ion-input type="text" readonly value="{{ l.Day_Type_Description }}"></ion-input>\n              \n                <ion-label *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)" item-end>{{ l.Period }}</ion-label>\n              \n                <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ l.Period }}" *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)"></ion-input>\n              \n                <ion-select [(ngModel)]="Leave_Period[i]" *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)">\n                    <ion-option value="Full">Full</ion-option>\n                    <ion-option value="AM">AM</ion-option>\n                    <ion-option value="PM">PM</ion-option>\n                </ion-select>\n              </ion-item>\n            </ion-list>                      \n          </ng-template>\n          <ng-template #elseBlockTwo>\n              <ion-list>\n                  <ion-item *ngFor="let l of leavelist; index as i;">\n                    <ion-label>{{ l.Date }}</ion-label>                              \n                    <ion-input type="text" readonly value="{{ l.Day_Type_Description }}"></ion-input>\n                  \n                    <ion-label *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)" item-end>{{ l.Period }}</ion-label>\n                  \n                    <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ l.Period }}" *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)"></ion-input>\n                    \n                    <ion-label *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)" item-end>{{ Leave_Type == \'1 Hour Time Off\' ? \'1 Hour\' : \'2 Hours\' }}</ion-label>\n                  \n                    <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ Leave_Type == \'1 Hour Time Off\' ? \'1 Hour\' : \'2 Hours\' }}" *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)"></ion-input>\n                    \n                  </ion-item>\n                </ion-list>              \n          </ng-template>\n      \n      </ng-template>      \n  </ion-content>'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leave-modal/leave-modal.html"*/,
+            selector: 'page-leave-modal',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leave-modal/leave-modal.html"*/'<!--\n  Generated template for the LeaveModalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-toolbar>\n      <ion-title>\n        Leave Period\n      </ion-title>\n      <ion-buttons start>\n        <button ion-button (click)="dismiss()">\n          <span ion-text color="primary">Done</span>          \n        </button>\n      </ion-buttons>\n    </ion-toolbar>\n  </ion-header>\n  \n  \n  <ion-content padding>\n      <div *ngIf="(Leave_Type == \'Maternity Leave\' || Leave_Type == \'Hospitalization Leave\'); then thenBlock else elseBlock"></div>\n      <ng-template #thenBlock>\n          <ion-item>\n            <ion-label>From: {{ leavelist[0].Date }}</ion-label>\n            <ion-label>To: {{ leavelist[leavelist.length-1].Date }}</ion-label>\n            <ion-label>Period: Full Day</ion-label>\n          </ion-item>                                                    \n      </ng-template>\n      <ng-template #elseBlock>\n          <div *ngIf="(Leave_Type != \'1 Hour Time Off\' && Leave_Type != \'2 Hours Time Off\'); then thenBlockTwo else elseBlockTwo"></div>\n          <ng-template #thenBlockTwo>                                  \n            <ion-list>\n              <ion-item *ngFor="let l of leavelist; index as i;">\n                <ion-label>{{ l.Date }}</ion-label>                              \n                <ion-input type="text" readonly value="{{ l.Day_Type_Description }}"></ion-input>\n              \n                <ion-label *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)" item-end>{{ l.Period }}</ion-label>\n              \n                <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ l.Period }}" *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)"></ion-input>\n              \n                <ion-select [(ngModel)]="Leave_Period[i]" *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)">\n                    <ion-option value="Full Day"> Full Day\n                  </ion-option>\n                    <ion-option value="AM">Half Day Morning [9AM-1PM]</ion-option>\n                    <ion-option value="PM"> Half Day Afternoon [1PM-6PM]\n                  </ion-option>\n                </ion-select>\n              </ion-item>\n            </ion-list>                      \n          </ng-template>\n          <ng-template #elseBlockTwo>\n              <ion-list>\n                  <ion-item *ngFor="let l of leavelist; index as i;">\n                    <ion-label>{{ l.Date }}</ion-label>                              \n                    <ion-input type="text" readonly value="{{ l.Day_Type_Description }}"></ion-input>\n                  \n                    <ion-label *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)" item-end>{{ l.Period }}</ion-label>\n                  \n                    <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ l.Period }}" *ngIf="(l.Day_Type == 0 || l.Day_Type == 2 || l.Day_Type == -1)"></ion-input>\n                    \n                    <ion-label *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)" item-end>{{ Leave_Type == \'1 Hour Time Off\' ? \'1 Hour\' : \'2 Hours\' }}</ion-label>\n                  \n                    <ion-input type="text" hidden [(ngModel)]="Leave_Period[i]" value="{{ Leave_Type == \'1 Hour Time Off\' ? \'1 Hour\' : \'2 Hours\' }}" *ngIf="(l.Day_Type != 0 && l.Day_Type != 2 && l.Day_Type != -1)"></ion-input>\n                    \n                  </ion-item>\n                </ion-list>              \n          </ng-template>\n      \n      </ng-template>      \n  </ion-content>'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leave-modal/leave-modal.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["A" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["B" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
     ], LeaveModalPage);
     return LeaveModalPage;
 }());
@@ -1798,7 +1859,7 @@ var MyapprovalPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__myapprovalredirect_myapprovalredirect__ = __webpack_require__(510);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1851,7 +1912,7 @@ var MyapprovaldetailPage = /** @class */ (function () {
         this.Name = this.navParams.get('Name');
         this.Approver = this.navParams.get('Approver');
         this.LeaveId = this.navParams.get('LeaveId');
-        this.leave = { LeaveId: this.LeaveId, Project_Name: this.Project_Name };
+        this.leave = { LeaveId: this.LeaveId, Project_Name: this.Project_Name, Id: this.Id };
         this.Web_Path = this.navParams.get('Web_Path');
     }
     MyapprovaldetailPage.prototype.loadData = function () {
@@ -1968,8 +2029,8 @@ var MyapprovaldetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2006,11 +2067,13 @@ var MyApprovalRedirectPage = /** @class */ (function () {
         //this.loadData();
         this.Project_Name = this.navParams.get('Project_Name');
         this.Approver = this.navParams.get('Approver');
-        this.StatusIds = this.navParams.get('StatusIds');
+        // this.StatusIds = this.navParams.get('StatusIds');
         this.LeaveId = this.navParams.get('LeaveId');
         this.Name = this.navParams.get('Name');
-        // this.StatusIds = this.navParams.get('StatusIds');
+        this.StatusIds = this.navParams.get('Id');
         console.log(this.LeaveId);
+        console.log('statid', this.StatusIds);
+        console.log('ID', this.StatusIds);
     }
     MyApprovalRedirectPage.prototype.ngOnInit = function () {
         this.signupform = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* FormGroup */]({
@@ -2041,20 +2104,19 @@ var MyApprovalRedirectPage = /** @class */ (function () {
         });
         // Approver
         this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/getapprover?token=' + val.token);
+            data = _this.http.get('https://jmclicks.com/api/getapprover3?token=' + val.token);
             data.subscribe(function (result) {
                 console.log(result);
                 _this.apps = result;
                 //filter array
-                var arrApps = [];
-                for (var _i = 0, _a = _this.apps; _i < _a.length; _i++) {
-                    var app = _a[_i];
-                    if (app.Project_Name == _this.Project_Name) {
-                        arrApps.push(app);
-                    }
-                }
-                console.log(arrApps);
-                _this.apps = arrApps;
+                // let arrApps = [];
+                // for (let app of this.apps) {
+                //   if(app.Project_Name == this.Project_Name) {
+                //       arrApps.push(app);
+                //   }
+                // }
+                // console.log(arrApps);
+                // this.apps=arrApps;
             });
         });
     };
@@ -2295,7 +2357,7 @@ var LeavependingPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__leavependingredirect_leavependingredirect__ = __webpack_require__(514);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2336,6 +2398,7 @@ var LeavependingdetailPage = /** @class */ (function () {
         this.events = events;
         this.leavependingredirect = __WEBPACK_IMPORTED_MODULE_5__leavependingredirect_leavependingredirect__["a" /* LeavePendingRedirectPage */];
         this.token = '';
+        this.ls = [];
         this.Id = this.navParams.get('Id');
         this.Start_Date = this.navParams.get('Start_Date');
         this.Status = this.navParams.get('Status');
@@ -2365,6 +2428,12 @@ var LeavependingdetailPage = /** @class */ (function () {
             data = _this.http.get('https://jmclicks.com/api/getleaves?token=' + val.token);
             data.subscribe(function (result) {
                 _this.items = result;
+            });
+        });
+        this.storage.get('token').then(function (val) {
+            data = _this.http.get('https://jmclicks.com/api/getls/' + _this.Id + '?token=' + val.token);
+            data.subscribe(function (result) {
+                _this.ls = result[1];
             });
         });
     };
@@ -2406,7 +2475,7 @@ var LeavependingdetailPage = /** @class */ (function () {
     };
     LeavependingdetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-leavependingdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leavependingdetail/leavependingdetail.html"*/'<!--\n\nGenerated template for the LeavedetailPage page.\n\n\n\nSee http://ionicframework.com/docs/components/#navigation for more info on\n\nIonic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="secondary">\n\n    <ion-title >Leave Detail</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <h1 text-center>{{Start_Date}}</h1>\n\n\n\n  <br>\n\n  <div class="detail">\n\n    <p>Status: {{Status}} </p>\n\n    <p>Leave Type: {{Leave_Type}} </p>\n\n    <p>Leave Term: {{Leave_Term}} </p>\n\n    <p>End Date: {{End_Date}} </p>\n\n    <p>No. of Days: {{No_of_Days}} </p>\n\n    <p>Reason: {{Reason}} </p>\n\n    <p>Project Name: {{Project_Name}} </p>\n\n    <p>Approver: {{Approver}} </p>\n\n  </div>\n\n\n\n  <div *ngIf="Web_Path" class="thumbnail-container">\n\n    <ul class="thumbnail-list">\n\n      <img class="thumbnail-image" [src]="\'https://jmclicks.com\' + Web_Path" imageViewer>\n\n    </ul>\n\n  </div>\n\n\n\n  <div class="row">\n\n    <div class="col" hidden>\n\n      <button ion-button full color="primary" class="button-redirect" [navPush]="leavependingredirect" [navParams]="leave">\n\n        Redirect\n\n      </button>\n\n    </div>\n\n    <div class="col">\n\n      <button ion-button full color="danger" type="submit" (click)="cancelLeave()">\n\n        Cancel Leave\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leavependingdetail/leavependingdetail.html"*/,
+            selector: 'page-leavependingdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leavependingdetail/leavependingdetail.html"*/'<!--\n\nGenerated template for the LeavedetailPage page.\n\n\n\nSee http://ionicframework.com/docs/components/#navigation for more info on\n\nIonic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="secondary">\n\n    <ion-title >Leave Detail</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <h1 text-center>{{Start_Date}}</h1>\n\n\n\n  <br>\n\n  <div class="detail">\n\n    <p>Status: {{Status}} </p>\n\n    <p>Leave Type: {{Leave_Type}} </p>\n\n    <p>Leave Term: {{Leave_Term}} </p>\n\n    <p>End Date: {{End_Date}} </p>\n\n    <p>No. of Days: {{No_of_Days}} </p>\n\n    <p>Reason: {{Reason}} </p>\n\n    <p>Project Name: {{Project_Name}} </p>\n\n    <p>Approver: {{Approver}} </p>\n\n  </div>\n\n\n\n  <div *ngIf="Web_Path" class="thumbnail-container">\n\n    <ul class="thumbnail-list">\n\n      <img class="thumbnail-image" [src]="\'https://jmclicks.com\' + Web_Path" imageViewer>\n\n    </ul>\n\n  </div>\n\n\n\n  <div class="row">\n\n    <div class="col" hidden>\n\n      <button ion-button full color="primary" class="button-redirect" [navPush]="leavependingredirect" [navParams]="leave">\n\n        Redirect\n\n      </button>\n\n    </div>\n\n    <div class="col" *ngIf="ls.Leave_Status != \'1st Approved\'">\n\n      <button ion-button full color="danger" type="submit" (click)="cancelLeave()">\n\n        Cancel Leave\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/leavependingdetail/leavependingdetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__["a" /* Toast */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
@@ -2433,8 +2502,8 @@ var LeavependingdetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3196,8 +3265,8 @@ var LeavebalancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_location_accuracy__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3244,6 +3313,7 @@ var AttendancePage = /** @class */ (function () {
         this.platform = platform;
         this.toast = toast;
         this.toastCtrl = toastCtrl;
+        this.Department = '';
         this.Name = '';
         this.token = '';
         this.Site_Name_Display = '';
@@ -3274,6 +3344,9 @@ var AttendancePage = /** @class */ (function () {
             Check_In_Type: new __WEBPACK_IMPORTED_MODULE_7__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_7__angular_forms__["h" /* Validators */].required]),
             Department: new __WEBPACK_IMPORTED_MODULE_7__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_7__angular_forms__["h" /* Validators */].required]),
             Site_Name: new __WEBPACK_IMPORTED_MODULE_7__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_7__angular_forms__["h" /* Validators */].required]),
+            Work_Description: new __WEBPACK_IMPORTED_MODULE_7__angular_forms__["b" /* FormControl */]('', [])
+            // Latitude_In: new FormControl('', [Validators.required]),
+            // Longitude_In: new FormControl('', [Validators.required]),
         });
         this.Check_In_Type = 'On Duty';
     };
@@ -3425,6 +3498,7 @@ var AttendancePage = /** @class */ (function () {
     };
     AttendancePage.prototype.submitTimeIn = function () {
         var _this = this;
+        console.log('department', this.Department);
         if (this.Longitude_In == "" || this.Longitude_In == '' || this.Longitude_In == null) {
             this.toast.show("Please turn on your location and make sure Latitude & Longitude got value", '50000', 'center').subscribe(function (toast) {
                 console.log(toast);
@@ -3440,16 +3514,16 @@ var AttendancePage = /** @class */ (function () {
                     Date: _this.myFunction(_this.Date),
                     Time: _this.startTime(),
                     Check_In_Type: _this.Check_In_Type,
-                    Department: _this.Department,
+                    Department: _this.Department.Id,
                     Site_Name: _this.Site_Name,
                     Leader_Member: '',
                     Next_Person: '',
-                    ProjectId: _this.Department,
+                    ProjectId: _this.Department.Id,
                     State: '',
                     Work: '',
                     Reason: '',
                     Remarks: '',
-                    Work_Description: ''
+                    Work_Description: _this.Work_Description
                 }, httpOptions)
                     .subscribe(function (res) {
                     // this.navCtrl.pop();
@@ -3538,7 +3612,7 @@ var AttendancePage = /** @class */ (function () {
     ], AttendancePage.prototype, "myInput", void 0);
     AttendancePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-attendance',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/attendance/attendance.html"*/'<!--\n\nGenerated template for the AttendancePage page.\n\n\n\nSee http://ionicframework.com/docs/components/#navigation for more info on\n\nIonic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="secondary">\n\n    <ion-title>Attendance</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="ion-content">\n\n  <div class="content-detail">\n\n\n\n    <!-- Name: {{Name}}\n\n    <ion-label>\n\n    {{formattedDate}}\n\n    </ion-label> -->\n\n\n\n    <div class="ion-item-body">\n\n      <ion-item class="ion-item-item">\n\n        <h2 class="title">{{Name}}</h2>\n\n        <h4>{{formattedDate}} </h4>\n\n\n\n      </ion-item>\n\n    </div>\n\n\n\n    <br><br>\n\n\n\n    <div [hidden]="!hideUI">\n\n      <div>\n\n        <h2 class="title">Site Name: {{Site_Name_Display}}</h2>\n\n      </div>\n\n    </div>\n\n\n\n    <div class="box">\n\n      <!-- <ion-refresher (ionRefresh)="doRefresh($event)">\n\n      <ion-refresher-content>\n\n      pullingIcon="arrow-dropdown"\n\n      pullingText="Pull to refresh"\n\n      refreshingSpinner="circles"\n\n      refreshingText="Refreshing..."\n\n      </ion-refresher-content>\n\n      </ion-refresher> -->\n\n\n\n\n\n      <ion-item text-center color="primary" class="top-border">\n\n        Latitude: {{ Latitude_In }}<br>\n\n        Longitude: {{ Longitude_In }}\n\n      </ion-item>\n\n\n\n      <br>\n\n\n\n      <button ion-button class="button-color" type="button" (click)="doRefresh()">Refresh</button>\n\n\n\n      <br>\n\n      <form novalidate (ngSubmit)="submitTimeIn()" [formGroup]="signupform">\n\n\n\n      <!-- Check Type Dropdown -->\n\n      <div class="box-content">\n\n        <ion-item class="ion-item" [hidden]="hideUI">\n\n          <ion-label stacked color="primary"  class="required">Check In Type\n\n            <p class="error" *ngIf="signupform.get(\'Check_In_Type\').hasError(\'required\') && signupform.get(\'Check_In_Type\').touched">\n\n            Please select your check in type\n\n            </p>\n\n          </ion-label>\n\n          <ion-select [(ngModel)]="Check_In_Type" formControlName="Check_In_Type" [class.error1]="!signupform.controls.Check_In_Type.valid && signupform.controls.Check_In_Type.dirty">\n\n\n\n            <ion-option *ngFor="let type of types" value="{{type.Option}}">{{type.Option}}\n\n            </ion-option>\n\n          </ion-select>\n\n        </ion-item>\n\n      </div>\n\n\n\n      <!-- Project Dropdown -->\n\n      <div class="box-content">\n\n        <ion-item class="ion-item" [hidden]="hideUI">\n\n          <ion-label stacked color="primary"  class="required">Project\n\n            <p class="error" *ngIf="signupform.get(\'Department\').hasError(\'required\') && signupform.get(\'Department\').touched">\n\n            Please select your project\n\n            </p>\n\n          </ion-label>\n\n          <ion-select text-wrap [(ngModel)]="Department" formControlName="Department" [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">\n\n            <ion-option *ngFor="let depart of departs" value="{{depart.Id}}">{{depart.Project_Name}}</ion-option>\n\n          </ion-select>\n\n        </ion-item>\n\n      </div>\n\n\n\n\n\n      <!-- Sitename textarea -->\n\n      <div class="box-content">\n\n        <ion-item class=ion-item  [hidden]="hideUI">\n\n          <ion-label stacked color="primary" class="required">Site Name</ion-label>\n\n          <ion-input type="text" [(ngModel)]="Site_Name" placeholder="State if not in the list" formControlName="Site_Name" [class.error1]="!signupform.controls.Site_Name.valid && signupform.controls.Site_Name.dirty"></ion-input>\n\n          <div class="error" *ngIf="signupform.get(\'Site_Name\').hasError(\'required\') && signupform.get(\'Site_Name\').touched">\n\n            Please insert your site name\n\n          </div>\n\n        </ion-item>\n\n      </div>\n\n\n\n      <!-- Time In Button -->\n\n      <button ion-button full  class="bottom-border" type="submit" [hidden]="hideUI" [disabled]="signupform.invalid || disabled">Time In</button>\n\n    </form>\n\n\n\n      <br>\n\n\n\n      <button ion-button full  class="bottom-border" type="submit" (click)="submitTimeOut()" [disabled]=\'disabledOut\'\n\n      [hidden]="!hideUI">Time out</button>\n\n\n\n    </div>\n\n  </div>\n\n  <style>\n\n    .required:after { content:" *"; color:red; }\n\n  </style>\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/attendance/attendance.html"*/,
+            selector: 'page-attendance',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/attendance/attendance.html"*/'<!--\n\nGenerated template for the AttendancePage page.\n\n\n\nSee http://ionicframework.com/docs/components/#navigation for more info on\n\nIonic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="secondary">\n\n    <ion-title>Attendance</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="ion-content">\n\n  <div class="content-detail">\n\n\n\n    <!-- Name: {{Name}}\n\n    <ion-label>\n\n    {{formattedDate}}\n\n    </ion-label> -->\n\n\n\n    <div class="ion-item-body">\n\n      <ion-item class="ion-item-item">\n\n        <h2 class="title">{{Name}}</h2>\n\n        <h4>{{formattedDate}} </h4>\n\n\n\n      </ion-item>\n\n    </div>\n\n\n\n    <br><br>\n\n\n\n    <div [hidden]="!hideUI">\n\n      <div>\n\n        <h2 class="title">Site Name: {{Site_Name_Display}}</h2>\n\n      </div>\n\n    </div>\n\n\n\n    <div class="box">\n\n      <!-- <ion-refresher (ionRefresh)="doRefresh($event)">\n\n      <ion-refresher-content>\n\n      pullingIcon="arrow-dropdown"\n\n      pullingText="Pull to refresh"\n\n      refreshingSpinner="circles"\n\n      refreshingText="Refreshing..."\n\n      </ion-refresher-content>\n\n      </ion-refresher> -->\n\n\n\n\n\n      <ion-item text-center color="primary" class="top-border">\n\n        Latitude: {{ Latitude_In }}<br>\n\n        Longitude: {{ Longitude_In }}\n\n      </ion-item>\n\n\n\n      <br>\n\n\n\n      <button ion-button class="button-color" type="button" (click)="doRefresh()">Refresh</button>\n\n\n\n      <br>\n\n      <form novalidate (ngSubmit)="submitTimeIn()" [formGroup]="signupform">\n\n\n\n      <!-- Check Type Dropdown -->\n\n      <div class="box-content">\n\n        <ion-item class="ion-item" [hidden]="hideUI">\n\n          <ion-label stacked color="primary"  class="required">Check In Type\n\n            <p class="error" *ngIf="signupform.get(\'Check_In_Type\').hasError(\'required\') && signupform.get(\'Check_In_Type\').touched">\n\n            Please select your check in type\n\n            </p>\n\n          </ion-label>\n\n          <ion-select [(ngModel)]="Check_In_Type" formControlName="Check_In_Type" [class.error1]="!signupform.controls.Check_In_Type.valid && signupform.controls.Check_In_Type.dirty">\n\n\n\n            <ion-option *ngFor="let type of types" value="{{type.Option}}">{{type.Option}}\n\n            </ion-option>\n\n          </ion-select>\n\n        </ion-item>\n\n      </div>\n\n\n\n      <!-- Project Dropdown -->\n\n      <div class="box-content">\n\n        <ion-item class="ion-item" [hidden]="hideUI">\n\n          <ion-label stacked color="primary"  class="required">Project\n\n            <p class="error" *ngIf="signupform.get(\'Department\').hasError(\'required\') && signupform.get(\'Department\').touched">\n\n            Please select your project\n\n            </p>\n\n          </ion-label>\n\n          <!-- <ion-select text-wrap [(ngModel)]="Department" formControlName="Department" [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">\n\n            <ion-option *ngFor="let depart of departs" value="{{depart.Id}}">{{depart.Project_Name}}</ion-option>\n\n          </ion-select> -->\n\n          <ionic-selectable item-content [(ngModel)]="Department" formControlName="Department" itemValueField="Id" [items]="departs" [canSearch]="true" [canClear]="false" itemTextField="Project_Name"  [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">{{Project_Name}}\n\n          </ionic-selectable>\n\n        </ion-item>\n\n      </div>\n\n\n\n\n\n      <!-- Sitename textarea -->\n\n      <div class="box-content">\n\n        <ion-item class=ion-item  [hidden]="hideUI">\n\n          <ion-label stacked color="primary" class="required">Site Name</ion-label>\n\n          <ion-input type="text" [(ngModel)]="Site_Name" placeholder="State if not in the list" formControlName="Site_Name" [class.error1]="!signupform.controls.Site_Name.valid && signupform.controls.Site_Name.dirty"></ion-input>\n\n          <div class="error" *ngIf="signupform.get(\'Site_Name\').hasError(\'required\') && signupform.get(\'Site_Name\').touched">\n\n            Please insert your site name\n\n          </div>\n\n        </ion-item>\n\n      </div>\n\n\n\n      <!-- Work Description textarea -->\n\n      <div class="box-content">\n\n        <ion-item class=ion-item  [hidden]="hideUI">\n\n          <ion-label stacked color="primary">Work Description</ion-label>\n\n          <ion-input type="text" [(ngModel)]="Work_Description" placeholder="State Work Description" formControlName="Work_Description" [class.error1]="!signupform.controls.Work_Description.valid && signupform.controls.Work_Description.dirty"></ion-input>\n\n          <div class="error" *ngIf="signupform.get(\'Work_Description\').hasError(\'required\') && signupform.get(\'Work_Description\').touched">\n\n            Please insert your Work Description\n\n          </div>\n\n        </ion-item>\n\n      </div>\n\n\n\n      <!-- Time In Button -->\n\n      <button ion-button full  class="bottom-border" type="submit" [hidden]="hideUI" [disabled]="signupform.invalid || disabled">Time In</button>\n\n    </form>\n\n\n\n      <br>\n\n\n\n      <button ion-button full  class="bottom-border" type="submit" (click)="submitTimeOut()" [disabled]=\'disabledOut\'\n\n      [hidden]="!hideUI">Time out</button>\n\n\n\n    </div>\n\n  </div>\n\n  <style>\n\n    .required:after { content:" *"; color:red; }\n\n  </style>\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/attendance/attendance.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */],
@@ -3551,7 +3625,7 @@ var AttendancePage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_5__ionic_native_location_accuracy__["a" /* LocationAccuracy */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["x" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__["a" /* Toast */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["y" /* ToastController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["z" /* ToastController */]])
     ], AttendancePage);
     return AttendancePage;
 }());
@@ -3571,7 +3645,7 @@ var AttendancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tsdetail_tsdetail__ = __webpack_require__(524);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng_fullcalendar__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_toast__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3958,7 +4032,7 @@ var TsdetailPage = /** @class */ (function () {
     };
     TsdetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-tsdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/tsdetail/tsdetail.html"*/'<!--\n  Generated template for the TsdetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-title>Timesheet Details</ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding class="ion-content">\n    <ion-card *ngFor="let item of items;">\n      <ion-card-header color="primary">\n          {{item.Date}} ({{ myFunction(item.Date) }})\n      </ion-card-header>\n      <ion-card-content color="primary">\n        Time In: {{item.Time_In}}  <br>        \n        Time Out: {{item.Time_Out}} <br>\n        Status  : {{item.Status}}<br>\n        Check In Type: {{item.Check_In_Type}}<br>\n        Site  : {{item.Site_Name}}<br>\n        Project Name: {{item.Project_Name}}<br>\n        Approver: {{item.Approver}}<br>\n      </ion-card-content>\n    </ion-card>\n  \n  </ion-content>\n  \n\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/tsdetail/tsdetail.html"*/,
+            selector: 'page-tsdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/tsdetail/tsdetail.html"*/'<!--\n  Generated template for the TsdetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n      <ion-title>Timesheet Details</ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding class="ion-content">\n    <ion-card *ngFor="let item of items;">\n      <ion-card-header color="primary">\n          {{item.Date}} ({{ myFunction(item.Date) }})\n      </ion-card-header>\n      <ion-card-content color="primary">\n        Time In: {{item.Time_In}}  <br>        \n        Time Out: {{item.Time_Out}} <br>\n        Status  : {{item.Status}}<br>\n        Check In Type: {{item.Check_In_Type}}<br>\n        Site  : {{item.Site_Name}}<br>\n        Project Name: {{item.Project_Name}}<br>\n        <!-- Approver: {{item.Approver}}<br> -->\n        Remarks: {{item.Remarks}}<br>\n        Work Description: {{item.Work_Description}}\n      </ion-card-content>\n    </ion-card>\n  \n  </ion-content>\n  \n\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/tsdetail/tsdetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
@@ -4304,9 +4378,9 @@ var AdvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4564,7 +4638,7 @@ var SiteadvancePage = /** @class */ (function () {
     };
     SiteadvancePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-siteadvance',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/siteadvance/siteadvance.html"*/'<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-title>Advance Form</ion-title>\n  </ion-navbar>\n\n</ion-header>\n  \n  \n<ion-content  class="ion-content">\n  \n  <h3>Staff Details</h3>\n  <ion-list>\n\n    <form novalidate (ngSubmit)="submitClaim()" [formGroup]="signupform">\n\n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{Name}}</ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Bank Account</ion-label>\n        <ion-select placeholder="please select" [(ngModel)]="Bank_Name" formControlName="Bank_Name" [class.error1]="!signupform.controls.Bank_Name.valid && signupform.controls.Bank_Name.dirty">\n          <ion-option *ngFor="let bank of banks" value="{{bank.Bank_Name}} - {{bank.Bank_Account_No}} ">{{bank.Bank_Name}} - {{bank.Bank_Account_No}} </ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Bank_Name\').hasError(\'required\') ) && signupform.get(\'Bank_Name\').touched">\n        <div class="error" *ngIf="signupform.get(\'Bank_Name\').hasError(\'required\') && signupform.get(\'Bank_Name\').touched">\n          Please select your bank account\n        </div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Department</ion-label>\n        <ion-select placeholder="please select" [(ngModel)]="Department" formControlName="Department" [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">\n          <ion-option *ngFor="let depart of departs" value="{{depart.Id}}">{{depart.Project_Name}}</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Department\').hasError(\'required\') ) && signupform.get(\'Department\').touched">\n        <div class="error" *ngIf="signupform.get(\'Department\').hasError(\'required\') && signupform.get(\'Department\').touched">\n          Please select your department\n        </div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary">Position</ion-label>\n        <ion-label>{{Position? Position: \'-\'}}</ion-label>\n      </ion-item>\n\n      <h3>Travelling Details</h3>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Destination</ion-label>\n        <ion-input type="text" [(ngModel)]="Destination" formControlName="Destination" [class.error1]="!signupform.controls.Destination.valid && signupform.controls.Destination.dirty"> </ion-input>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Destination\').hasError(\'required\') ) && signupform.get(\'Destination\').touched">\n        <div class="error" *ngIf="signupform.get(\'Destination\').hasError(\'required\') && signupform.get(\'Destination\').touched">\n          Please input your Destination\n        </div>\n      </ion-item>\n \n      <ion-item>\n        <ion-label stacked color="primary" class="required">Start Date</ion-label>\n        <ion-datetime [max]="maxDateString"\n          pickerFormat="DD MMM YYYY"  [(ngModel)]="Start_Date"  max="2200"\n          displayFormat="DD MM YYYY" placeholder="Choose start date" formControlName="Start_Date" [class.error1]="!signupform.controls.Start_Date.valid && signupform.controls.Start_Date.dirty">\n        </ion-datetime>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Start_Date\').hasError(\'required\') ) && signupform.get(\'Start_Date\').touched">\n        <div class="error" *ngIf="signupform.get(\'Start_Date\').hasError(\'required\') && signupform.get(\'Start_Date\').touched">\n          Please pick your start date\n        </div>\n      </ion-item>\n  \n      <ion-item>\n        <ion-label stacked color="primary" class="required">End Date</ion-label>\n        <ion-datetime [max]="maxDateString"\n          pickerFormat="DD MMM YYYY"  [(ngModel)]="End_Date"  max="2200"\n          displayFormat="DD MM YYYY" placeholder="Choose end date" formControlName="End_Date" [class.error1]="!signupform.controls.End_Date.valid && signupform.controls.End_Date.dirty">\n        </ion-datetime>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'End_Date\').hasError(\'required\') ) && signupform.get(\'End_Date\').touched">\n        <div class="error" *ngIf="signupform.get(\'End_Date\').hasError(\'required\') && signupform.get(\'End_Date\').touched">\n          Please pick your end date\n        </div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Mode Of Transport</ion-label>\n        <ion-select placeholder="please select" [(ngModel)]="Mode_Of_Transport"  formControlName="Mode_Of_Transport" [class.error1]="!signupform.controls.Mode_Of_Transport.valid && signupform.controls.Mode_Of_Transport.dirty">\n          <ion-option *ngFor="let mode of modes" value="{{mode.Option}}">{{mode.Option}}</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Mode_Of_Transport\').hasError(\'required\') ) && signupform.get(\'Mode_Of_Transport\').touched">\n        <div class="error" *ngIf="signupform.get(\'Mode_Of_Transport\').hasError(\'required\') && signupform.get(\'Mode_Of_Transport\').touched">\n          Please select your mode of transport\n        </div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Car Plate No:</ion-label>\n        <ion-input type="text" [(ngModel)]="Car_No"  formControlName="Car_No" [class.error1]="!signupform.controls.Car_No.valid && signupform.controls.Car_No.dirty"> </ion-input>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Car_No\').hasError(\'required\') ) && signupform.get(\'Car_No\').touched">\n        <div class="error" *ngIf="signupform.get(\'Car_No\').hasError(\'required\') && signupform.get(\'Car_No\').touched">\n          Please input your car plate number\n        </div>\n      </ion-item>\n    <!-- </form>\n  </ion-list> -->\n      \n      <h3>Advance Required</h3>\n\n      <ion-grid>\n\n        <ion-row>\n          <ion-col type col-6></ion-col>\n          <ion-col days col-2>No of Days</ion-col>\n          <ion-col allowance-title col-2>Allowance per Day</ion-col>\n          <ion-col total col-2>Total (MYR)</ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Meal Allowance\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed  && signupform.get(\'day_meal\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_meal\').touched">Please input your meal day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf=" signupform.errors?.identityRevealed && signupform.get(\'all_meal\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed  && signupform.get(\'all_meal\').touched">Please input your meal allowance per day\n              </textarea>\n            </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_meal" value=" " formControlName="day_meal" [class.error1]="!signupform.controls.day_meal.valid && signupform.controls.day_meal.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_meal" value=" "  formControlName="all_meal" [class.error1]="!signupform.controls.all_meal.valid && signupform.controls.all_meal.dirty"></ion-input>\n          \n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_meal" value="0"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_meal" value="0.00"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalMeal() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Accodommation/Hotel\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed  && signupform.get(\'day_acco\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed  && signupform.get(\'day_acco\').touched">Please input your accodommation/hotel day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_acco\').hasError(\'required\') ) && signupform.get(\'all_acco\').touched">\n              <div class="error" *ngIf="signupform.get(\'all_acco\').hasError(\'required\') && signupform.get(\'all_acco\').touched">Please input your accodommation/hotel allowance per day\n              </div>\n            </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_acco" value=" " formControlName="day_acco" [class.error1]="!signupform.controls.day_acco.valid && signupform.controls.day_acco.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_acco" value=" " formControlName="all_acco" [class.error1]="!signupform.controls.all_acco.valid && signupform.controls.all_acco.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_acco" value="0"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_acco" value="0"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalAcco() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Mileage/Petrol\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_mile\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_meal\').touched">Please input your mile day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_mile\').hasError(\'required\') ) && signupform.get(\'all_mile\').touched">\n                <textarea readonly class="error" *ngIf="signupform.get(\'all_mile\').hasError(\'required\') && signupform.get(\'all_mile\').touched">Please input your mile allowance per day\n                </textarea>\n              </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_mile" value=" " formControlName="day_mile" [class.error1]="!signupform.controls.day_mile.valid && signupform.controls.day_mile.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_mile" value=" " formControlName="all_mile" [class.error1]="!signupform.controls.all_mile.valid && signupform.controls.all_mile.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_mile"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_mile"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalMile() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Parking/Tolls\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_parking\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_parking\').touched">Please input your parking day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_parking\').hasError(\'required\') ) && signupform.get(\'all_parking\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'all_parking\').hasError(\'required\') && signupform.get(\'all_parking\').touched">Please input your parking allowance per day\n              </textarea>\n            </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_parking" value=" " formControlName="day_parking" [class.error1]="!signupform.controls.day_parking.valid && signupform.controls.day_parking.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_parking" value=" " formControlName="all_parking" [class.error1]="!signupform.controls.all_parking.valid && signupform.controls.all_parking.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_parking"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_parking"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalParking() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Fare/Ticket\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_fare\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_fare\').touched">Please input your fare day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_fare\').hasError(\'required\') ) && signupform.get(\'all_fare\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'all_fare\').hasError(\'required\') && signupform.get(\'all_fare\').touched">Please input your fare allowance per day\n              </textarea>\n            </ion-item>\n\n          </ion-col> \n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_fare" value=" " formControlName="day_fare" [class.error1]="!signupform.controls.day_fare.valid && signupform.controls.day_fare.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_fare" value=" " formControlName="all_fare" [class.error1]="!signupform.controls.all_fare.valid && signupform.controls.all_fare.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_fare"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_fare"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalFare() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Other Purpose\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_other\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_other\').touched">Please input your other purpose day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_other\').hasError(\'required\') ) && signupform.get(\'all_other\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'all_other\').hasError(\'required\') && signupform.get(\'all_other\').touched">Please input your other purpose allowance per day\n              </textarea>\n            </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_other"  formControlName="day_other" [class.error1]="!signupform.controls.day_other.valid && signupform.controls.day_other.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_other" value=" " formControlName="all_other" [class.error1]="!signupform.controls.all_other.valid && signupform.controls.all_other.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_other"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_other"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalOther() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col allowance col-10>\n            <ion-input type="text" placeholder="State your other purpose..." [(ngModel)]="Purpose"  formControlName="Purpose" [class.error1]="!signupform.controls.Purpose.valid && signupform.controls.Purpose.dirty">\n            </ion-input>\n            <!-- <ion-input type="text" placeholder="Other Purpose..." [(ngModel)]="Purpose">\n            </ion-input> -->\n            <ion-item no-lines *ngIf="( signupform.get(\'Purpose\').hasError(\'required\') ) && signupform.get(\'Purpose\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'Purpose\').hasError(\'required\') && signupform.get(\'Purpose\').touched">Please state your purpose\n              </textarea>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col allowance col-10>\n            <ion-input text-wrap type="text" placeholder="Purchase" [(ngModel)]="purchase" formControlName="purchase" [class.error1]="!signupform.controls.purchase.valid && signupform.controls.purchase.dirty">\n            </ion-input>\n            <!-- <ion-input type="text" placeholder="Purchase" [(ngModel)]="purchase">\n            </ion-input> -->\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'purchase\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'purchase\').touched">Please state your purchase\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_purchase\').hasError(\'required\') ) && signupform.get(\'all_purchase\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'all_purchase\').hasError(\'required\') && signupform.get(\'all_purchase\').touched">Please insert your purchase amount\n              </textarea>\n            </ion-item>\n            \n          </ion-col>\n          <ion-col total col-2>\n            <ion-input type="number" placeholder="0"  [(ngModel)]="all_purchase" formControlName="all_purchase" [class.error1]="!signupform.controls.all_purchase.valid && signupform.controls.all_purchase.dirty"></ion-input>\n            <!-- <ion-input type="number" placeholder="    0" [(ngModel)]="all_purchase"></ion-input> -->\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col total-advance col-10>Total Advanced Request</ion-col>\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00"> {{ totalAdvance() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n      </ion-grid>\n      \n      <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">\n        Submit \n      </button>\n    </form>\n  </ion-list>\n\n\n  <style>\n    .required:after { content:" *"; color:red; }\n  </style>\n\n</ion-content>\n\n<!-- <ion-footer>\n  <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Submit</button>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/siteadvance/siteadvance.html"*/,
+            selector: 'page-siteadvance',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/siteadvance/siteadvance.html"*/'<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-title>Advance Form</ion-title>\n  </ion-navbar>\n\n</ion-header>\n  \n  \n<ion-content  class="ion-content">\n  \n  <h3>Staff Details</h3>\n  <ion-list>\n\n    <form novalidate (ngSubmit)="submitClaim()" [formGroup]="signupform">\n\n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{Name}}</ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Bank Account</ion-label>\n        <ion-select placeholder="please select" [(ngModel)]="Bank_Name" formControlName="Bank_Name" [class.error1]="!signupform.controls.Bank_Name.valid && signupform.controls.Bank_Name.dirty">\n          <ion-option *ngFor="let bank of banks" value="{{bank.Bank_Name}} - {{bank.Bank_Account_No}} ">{{bank.Bank_Name}} - {{bank.Bank_Account_No}} </ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Bank_Name\').hasError(\'required\') ) && signupform.get(\'Bank_Name\').touched">\n        <div class="error" *ngIf="signupform.get(\'Bank_Name\').hasError(\'required\') && signupform.get(\'Bank_Name\').touched">\n          Please select your bank account\n        </div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Department</ion-label>\n        <ion-select placeholder="please select" [(ngModel)]="Department" formControlName="Department" [class.error1]="!signupform.controls.Department.valid && signupform.controls.Department.dirty">\n          <ion-option *ngFor="let depart of departs" value="{{depart.Id}}">{{depart.Project_Name}}</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Department\').hasError(\'required\') ) && signupform.get(\'Department\').touched">\n        <div class="error" *ngIf="signupform.get(\'Department\').hasError(\'required\') && signupform.get(\'Department\').touched">\n          Please select your department\n        </div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary">Position</ion-label>\n        <ion-label>{{Position? Position: \'-\'}}</ion-label>\n      </ion-item>\n\n      <h3>Travelling Details</h3>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Destination</ion-label>\n        <ion-input type="text" [(ngModel)]="Destination" formControlName="Destination" [class.error1]="!signupform.controls.Destination.valid && signupform.controls.Destination.dirty"> </ion-input>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Destination\').hasError(\'required\') ) && signupform.get(\'Destination\').touched">\n        <div class="error" *ngIf="signupform.get(\'Destination\').hasError(\'required\') && signupform.get(\'Destination\').touched">\n          Please input your Destination\n        </div>\n      </ion-item>\n \n      <ion-item>\n        <ion-label stacked color="primary" class="required">Start Date</ion-label>\n        <ion-datetime [max]="maxDateString"\n          pickerFormat="DD MMM YYYY"  [(ngModel)]="Start_Date"  max="2200"\n          displayFormat="DD MM YYYY" placeholder="Choose start date" formControlName="Start_Date" [class.error1]="!signupform.controls.Start_Date.valid && signupform.controls.Start_Date.dirty">\n        </ion-datetime>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Start_Date\').hasError(\'required\') ) && signupform.get(\'Start_Date\').touched">\n        <div class="error" *ngIf="signupform.get(\'Start_Date\').hasError(\'required\') && signupform.get(\'Start_Date\').touched">\n          Please pick your start date\n        </div>\n      </ion-item>\n  \n      <ion-item>\n        <ion-label stacked color="primary" class="required">End Date</ion-label>\n        <ion-datetime [max]="maxDateString"\n          pickerFormat="DD MMM YYYY"  [(ngModel)]="End_Date"  max="2200"\n          displayFormat="DD MM YYYY" placeholder="Choose end date" formControlName="End_Date" [class.error1]="!signupform.controls.End_Date.valid && signupform.controls.End_Date.dirty">\n        </ion-datetime>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'End_Date\').hasError(\'required\') ) && signupform.get(\'End_Date\').touched">\n        <div class="error" *ngIf="signupform.get(\'End_Date\').hasError(\'required\') && signupform.get(\'End_Date\').touched">\n          Please pick your end date\n        </div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Mode Of Transport</ion-label>\n        <ion-select placeholder="please select" [(ngModel)]="Mode_Of_Transport"  formControlName="Mode_Of_Transport" [class.error1]="!signupform.controls.Mode_Of_Transport.valid && signupform.controls.Mode_Of_Transport.dirty">\n          <ion-option *ngFor="let mode of modes" value="{{mode.Option}}">{{mode.Option}}</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Mode_Of_Transport\').hasError(\'required\') ) && signupform.get(\'Mode_Of_Transport\').touched">\n        <div class="error" *ngIf="signupform.get(\'Mode_Of_Transport\').hasError(\'required\') && signupform.get(\'Mode_Of_Transport\').touched">\n          Please select your mode of transport\n        </div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Car Plate No:</ion-label>\n        <ion-input type="text" [(ngModel)]="Car_No"  formControlName="Car_No" [class.error1]="!signupform.controls.Car_No.valid && signupform.controls.Car_No.dirty"> </ion-input>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Car_No\').hasError(\'required\') ) && signupform.get(\'Car_No\').touched">\n        <div class="error" *ngIf="signupform.get(\'Car_No\').hasError(\'required\') && signupform.get(\'Car_No\').touched">\n          Please input your car plate number\n        </div>\n      </ion-item>\n    <!-- </form>\n  </ion-list> -->\n      \n      <h3>Advance Required</h3>\n\n      <ion-grid>\n\n        <ion-row>\n          <ion-col type col-6></ion-col>\n          <ion-col days col-2>No of Days</ion-col>\n          <ion-col allowance-title col-2>Allowance per Day</ion-col>\n          <ion-col total col-2>Total (MYR)</ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Meal Allowance\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed  && signupform.get(\'day_meal\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_meal\').touched">Please input your meal day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_meal\').hasError(\'required\') ) && signupform.get(\'all_meal\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'all_meal\').hasError(\'required\') && signupform.get(\'all_meal\').touched">Please input your meal allowance per day\n              </textarea>\n            </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_meal" value=" " formControlName="day_meal" [class.error1]="!signupform.controls.day_meal.valid && signupform.controls.day_meal.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_meal" value=" "  formControlName="all_meal" [class.error1]="!signupform.controls.all_meal.valid && signupform.controls.all_meal.dirty"></ion-input>\n          \n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_meal" value="0"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_meal" value="0.00"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalMeal() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Accodommation/Hotel\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed  && signupform.get(\'day_acco\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed  && signupform.get(\'day_acco\').touched">Please input your accodommation/hotel day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_acco\').hasError(\'required\') ) && signupform.get(\'all_acco\').touched">\n              <div class="error" *ngIf="signupform.get(\'all_acco\').hasError(\'required\') && signupform.get(\'all_acco\').touched">Please input your accodommation/hotel allowance per day\n              </div>\n            </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_acco" value=" " formControlName="day_acco" [class.error1]="!signupform.controls.day_acco.valid && signupform.controls.day_acco.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_acco" value=" " formControlName="all_acco" [class.error1]="!signupform.controls.all_acco.valid && signupform.controls.all_acco.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_acco" value="0"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_acco" value="0"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalAcco() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Mileage/Petrol\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_mile\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_meal\').touched">Please input your mile day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_mile\').hasError(\'required\') ) && signupform.get(\'all_mile\').touched">\n                <textarea readonly class="error" *ngIf="signupform.get(\'all_mile\').hasError(\'required\') && signupform.get(\'all_mile\').touched">Please input your mile allowance per day\n                </textarea>\n              </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_mile" value=" " formControlName="day_mile" [class.error1]="!signupform.controls.day_mile.valid && signupform.controls.day_mile.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_mile" value=" " formControlName="all_mile" [class.error1]="!signupform.controls.all_mile.valid && signupform.controls.all_mile.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_mile"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_mile"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalMile() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Parking/Tolls\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_parking\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_parking\').touched">Please input your parking day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_parking\').hasError(\'required\') ) && signupform.get(\'all_parking\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'all_parking\').hasError(\'required\') && signupform.get(\'all_parking\').touched">Please input your parking allowance per day\n              </textarea>\n            </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_parking" value=" " formControlName="day_parking" [class.error1]="!signupform.controls.day_parking.valid && signupform.controls.day_parking.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_parking" value=" " formControlName="all_parking" [class.error1]="!signupform.controls.all_parking.valid && signupform.controls.all_parking.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_parking"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_parking"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalParking() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Fare/Ticket\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_fare\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_fare\').touched">Please input your fare day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_fare\').hasError(\'required\') ) && signupform.get(\'all_fare\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'all_fare\').hasError(\'required\') && signupform.get(\'all_fare\').touched">Please input your fare allowance per day\n              </textarea>\n            </ion-item>\n\n          </ion-col> \n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_fare" value=" " formControlName="day_fare" [class.error1]="!signupform.controls.day_fare.valid && signupform.controls.day_fare.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_fare" value=" " formControlName="all_fare" [class.error1]="!signupform.controls.all_fare.valid && signupform.controls.all_fare.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_fare"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_fare"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalFare() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col type col-6>Other Purpose\n\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_other\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'day_other\').touched">Please input your other purpose day\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_other\').hasError(\'required\') ) && signupform.get(\'all_other\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'all_other\').hasError(\'required\') && signupform.get(\'all_other\').touched">Please input your other purpose allowance per day\n              </textarea>\n            </ion-item>\n\n          </ion-col>\n          <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_other"  formControlName="day_other" [class.error1]="!signupform.controls.day_other.valid && signupform.controls.day_other.dirty"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_other" value=" " formControlName="all_other" [class.error1]="!signupform.controls.all_other.valid && signupform.controls.all_other.dirty"></ion-input>\n          </ion-col>\n          <!-- <ion-col days col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="day_other"></ion-input>\n          </ion-col>\n          <ion-col allowance col-2>\n            <ion-input type="number" placeholder="0" [(ngModel)]="all_other"></ion-input>\n          </ion-col> -->\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00">{{ totalOther() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col allowance col-10>\n            <ion-item>\n\n              <ion-input type="text" placeholder="State your other purpose..." [(ngModel)]="Purpose"  formControlName="Purpose" [class.error1]="!signupform.controls.Purpose.valid && signupform.controls.Purpose.dirty">\n              </ion-input>\n            </ion-item>\n              <!-- <ion-input type="text" placeholder="Other Purpose..." [(ngModel)]="Purpose">\n            </ion-input> -->\n            <ion-item no-lines *ngIf="( signupform.get(\'Purpose\').hasError(\'required\') ) && signupform.get(\'Purpose\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'Purpose\').hasError(\'required\') && signupform.get(\'Purpose\').touched">Please state your purpose\n              </textarea>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col allowance col-10>\n            <ion-item>\n              <ion-input text-wrap type="text" placeholder="Purchase" [(ngModel)]="purchase" formControlName="purchase" [class.error1]="!signupform.controls.purchase.valid && signupform.controls.purchase.dirty">\n              </ion-input>\n            </ion-item>\n            <!-- <ion-input type="text" placeholder="Purchase" [(ngModel)]="purchase">\n            </ion-input> -->\n            <ion-item no-lines *ngIf="signupform.errors?.identityRevealed && signupform.get(\'purchase\').touched">\n              <textarea readonly class="error" *ngIf="signupform.errors?.identityRevealed && signupform.get(\'purchase\').touched">Please state your purchase\n              </textarea>\n            </ion-item>\n\n            <ion-item no-lines *ngIf="( signupform.get(\'all_purchase\').hasError(\'required\') ) && signupform.get(\'all_purchase\').touched">\n              <textarea readonly class="error" *ngIf="signupform.get(\'all_purchase\').hasError(\'required\') && signupform.get(\'all_purchase\').touched">Please insert your purchase amount\n              </textarea>\n            </ion-item>\n            \n          </ion-col>\n          <ion-col total col-2>\n            <ion-input type="number" placeholder="0"  [(ngModel)]="all_purchase" formControlName="all_purchase" [class.error1]="!signupform.controls.all_purchase.valid && signupform.controls.all_purchase.dirty"></ion-input>\n            <!-- <ion-input type="number" placeholder="    0" [(ngModel)]="all_purchase"></ion-input> -->\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col total-advance col-10>Total Advanced Request</ion-col>\n          <ion-col total col-2>\n            <ion-label text-wrap type="number" placeholder="0" value="0.00"> {{ totalAdvance() }}</ion-label>\n          </ion-col>\n        </ion-row>\n\n      </ion-grid>\n      \n      <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">\n        Submit \n      </button>\n    </form>\n  </ion-list>\n\n\n  <style>\n    .required:after { content:" *"; color:red; }\n  </style>\n\n</ion-content>\n\n<!-- <ion-footer>\n  <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Submit</button>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/siteadvance/siteadvance.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -4771,7 +4845,7 @@ var MyapproveadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4833,7 +4907,7 @@ var MyapprovedetailPage = /** @class */ (function () {
     MyapprovedetailPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad MyapprovedetailPage');
     };
-    MyapprovedetailPage.prototype.ionViewWillEnter = function () {
+    MyapprovedetailPage.prototype.ionViewDidEnter = function () {
         this.loadData();
     };
     MyapprovedetailPage.prototype.setApproverOptions = function (value) {
@@ -4874,7 +4948,7 @@ var MyapprovedetailPage = /** @class */ (function () {
     };
     MyapprovedetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-myapprovedetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myapprovedetail/myapprovedetail.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title> My Advance Details</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content  class="ion-content">\n  <h3>Staff Details</h3>\n  <ion-list>\n\n    <ion-item>\n      <ion-label stacked color="primary">Name</ion-label>\n      <ion-label>{{ user.Name ? user.Name : \' - \' }}</ion-label>\n    </ion-item>\n\n    <!-- <ion-item>\n      <ion-label stacked color="primary">Bank Name</ion-label>\n      <ion-input type="text" readonly value=""> </ion-input>\n    </ion-item> -->\n\n    <ion-item>\n      <ion-label stacked color="primary">Bank Account</ion-label>\n      <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n    </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Department</ion-label>\n    <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Position</ion-label>\n    <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Approver</ion-label>\n    <ion-label>{{ advance.Approver ? advance.Approver : \' - \' }}</ion-label>\n  </ion-item>\n\n<h3>Travelling Details</h3>\n<ion-item>\n    <ion-label stacked color="primary">Destination</ion-label>\n    <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n      <ion-label stacked color="primary">Start Date</ion-label>\n      <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n\n      </ion-item>\n  \n      <ion-item>\n        <ion-label stacked color="primary">End Date</ion-label>\n        <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n\n        </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Mode Of Transport</ion-label>\n    <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n\n  </ion-item>\n\n  <ion-item>\n      <ion-label stacked color="primary">Car Plate No:</ion-label>\n      <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n    </ion-item>\n\n  </ion-list>\n\n\n<h3>Advance Required</h3>\n<ion-grid>\n\n      <ion-row>\n        <ion-col total-advance col-9></ion-col>\n        <ion-col total col-3>Amount (MYR)</ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col total-advance col-9>Total</ion-col>\n        <ion-col col-3>\n          <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n        </ion-col>\n      </ion-row>\n\n\n       <ion-row>\n        <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n        <ion-col col-3>\n          <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n        <ion-col col-3>\n          <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n        </ion-col>\n      </ion-row>\n</ion-grid>\n\n</ion-content>\n<!-- <ion-footer>\n    <button ion-button block>Submit</button>\n\n</ion-footer> -->\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myapprovedetail/myapprovedetail.html"*/,
+            selector: 'page-myapprovedetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myapprovedetail/myapprovedetail.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title> My Advance Details</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content  class="ion-content">\n  <h3>Staff Details</h3>\n  <ion-list>\n\n    <ion-item>\n      <ion-label stacked color="primary">Name</ion-label>\n      <ion-label>{{ user.Name ? user.Name : \' - \' }}</ion-label>\n    </ion-item>\n\n    <!-- <ion-item>\n      <ion-label stacked color="primary">Bank Name</ion-label>\n      <ion-input type="text" readonly value=""> </ion-input>\n    </ion-item> -->\n\n    <ion-item>\n      <ion-label stacked color="primary">Bank Account</ion-label>\n      <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n    </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Department</ion-label>\n    <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Position</ion-label>\n    <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Approver</ion-label>\n    <ion-label>{{ advance.Approver ? advance.Approver : \' - \' }}</ion-label>\n  </ion-item>\n\n<h3>Travelling Details</h3>\n<ion-item>\n    <ion-label stacked color="primary">Destination</ion-label>\n    <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n      <ion-label stacked color="primary">Start Date</ion-label>\n      <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n\n      </ion-item>\n  \n      <ion-item>\n        <ion-label stacked color="primary">End Date</ion-label>\n        <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n\n        </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Mode Of Transport</ion-label>\n    <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n\n  </ion-item>\n\n  <ion-item>\n      <ion-label stacked color="primary">Car Plate No:</ion-label>\n      <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n    </ion-item>\n\n  </ion-list>\n\n\n<h3>Advance Required</h3>\n<ion-grid>\n\n  <ion-grid>\n\n    <ion-row>\n      <ion-col type col-6></ion-col>\n      <ion-col days col-2>No of Days</ion-col>\n      <ion-col allowance-title col-2>Allowance per Day</ion-col>\n      <ion-col total col-2>Total (MYR)</ion-col>\n    </ion-row>\n\n    <ion-row *ngFor="let adv of advancedetails">\n      <ion-col type col-6>\n\n        <ion-item>\n          <ion-label>{{adv.Type}}</ion-label>\n        </ion-item>\n\n      </ion-col>\n      <ion-col days col-2 >\n        <ion-label>{{adv.Days ? adv.Days:"0"}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Allowance}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Total}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Other Purpose</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purpose}}</ion-label>\n      </ion-col>\n    </ion-row>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Purchase</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purchase}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <br>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n      <ion-col col-3>\n        <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n      <ion-col col-3>\n        <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-grid>\n\n</ion-content>\n<!-- <ion-footer>\n    <button ion-button block>Submit</button>\n\n</ion-footer> -->\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myapprovedetail/myapprovedetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -4997,7 +5071,7 @@ var MyrejectadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5097,7 +5171,7 @@ var MyrejectdetailPage = /** @class */ (function () {
     };
     MyrejectdetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-myrejectdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myrejectdetail/myrejectdetail.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title> My Advance Details</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content  class="ion-content">\n    <h3>Staff Details</h3>\n    <ion-list>\n  \n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{ user.Name ? user.Name : \' - \' }}</ion-label>\n      </ion-item>\n  \n      <!-- <ion-item>\n        <ion-label stacked color="primary">Bank Name</ion-label>\n        <ion-input type="text" readonly value=""> </ion-input>\n      </ion-item> -->\n  \n      <ion-item>\n        <ion-label stacked color="primary">Bank Account</ion-label>\n        <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Department</ion-label>\n      <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Position</ion-label>\n      <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked color="primary">Approver</ion-label>\n      <ion-label>{{ advance.Approver ? advance.Approver : \' - \' }}</ion-label>\n    </ion-item>\n  \n  <h3>Travelling Details</h3>\n  <ion-item>\n      <ion-label stacked color="primary">Destination</ion-label>\n      <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Start Date</ion-label>\n        <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n  \n        </ion-item>\n    \n        <ion-item>\n          <ion-label stacked color="primary">End Date</ion-label>\n          <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n  \n          </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Mode Of Transport</ion-label>\n      <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n  \n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Car Plate No:</ion-label>\n        <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    </ion-list>\n  \n  \n  <h3>Advance Required</h3>\n  <ion-grid>\n  \n        <ion-row>\n          <ion-col total-advance col-9></ion-col>\n          <ion-col total col-3>Amount (MYR)</ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n  \n         <ion-row>\n          <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n          </ion-col>\n        </ion-row>\n  </ion-grid>\n  \n  </ion-content>\n  <!-- <ion-footer>\n      <button ion-button block>Submit</button>\n  \n  </ion-footer> -->\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myrejectdetail/myrejectdetail.html"*/,
+            selector: 'page-myrejectdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myrejectdetail/myrejectdetail.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title> My Advance Details</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content  class="ion-content">\n    <h3>Staff Details</h3>\n    <ion-list>\n  \n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{ user.Name ? user.Name : \' - \' }}</ion-label>\n      </ion-item>\n  \n      <!-- <ion-item>\n        <ion-label stacked color="primary">Bank Name</ion-label>\n        <ion-input type="text" readonly value=""> </ion-input>\n      </ion-item> -->\n  \n      <ion-item>\n        <ion-label stacked color="primary">Bank Account</ion-label>\n        <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Department</ion-label>\n      <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Position</ion-label>\n      <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked color="primary">Approver</ion-label>\n      <ion-label>{{ advance.Approver ? advance.Approver : \' - \' }}</ion-label>\n    </ion-item>\n  \n  <h3>Travelling Details</h3>\n  <ion-item>\n      <ion-label stacked color="primary">Destination</ion-label>\n      <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Start Date</ion-label>\n        <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n  \n        </ion-item>\n    \n        <ion-item>\n          <ion-label stacked color="primary">End Date</ion-label>\n          <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n  \n          </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Mode Of Transport</ion-label>\n      <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n  \n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Car Plate No:</ion-label>\n        <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    </ion-list>\n  \n  \n  <h3>Advance Required</h3>\n  <ion-grid>\n  \n    <ion-grid>\n\n      <ion-row>\n        <ion-col type col-6></ion-col>\n        <ion-col days col-2>No of Days</ion-col>\n        <ion-col allowance-title col-2>Allowance per Day</ion-col>\n        <ion-col total col-2>Total (MYR)</ion-col>\n      </ion-row>\n  \n      <ion-row *ngFor="let adv of advancedetails">\n        <ion-col type col-6>\n  \n          <ion-item>\n            <ion-label>{{adv.Type}}</ion-label>\n          </ion-item>\n  \n        </ion-col>\n        <ion-col days col-2 >\n          <ion-label>{{adv.Days ? adv.Days:"0"}}</ion-label>\n        </ion-col>\n        <ion-col allowance col-2>\n          <ion-label>{{adv.Allowance}}</ion-label>\n        </ion-col>\n        <ion-col allowance col-2>\n          <ion-label>{{adv.Total}}</ion-label>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  \n    <ion-grid>\n      <ion-row >\n        <ion-col type col-6>\n          <ion-item>\n            <ion-label>Other Purpose</ion-label>\n          </ion-item>\n        </ion-col>\n        <ion-col days >\n          <ion-label>{{advance.Purpose}}</ion-label>\n        </ion-col>\n      </ion-row>\n      <ion-row >\n        <ion-col type col-6>\n          <ion-item>\n            <ion-label>Purchase</ion-label>\n          </ion-item>\n        </ion-col>\n        <ion-col days >\n          <ion-label>{{advance.Purchase}}</ion-label>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  \n    <br>\n  \n    <ion-grid>\n      <ion-row>\n        <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n        <ion-col col-3>\n          <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n        </ion-col>\n      </ion-row>\n  \n      <ion-row>\n        <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n        <ion-col col-3>\n          <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-grid>\n  \n  </ion-content>\n  <!-- <ion-footer>\n      <button ion-button block>Submit</button>\n  \n  </ion-footer> -->\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myrejectdetail/myrejectdetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -5209,7 +5283,7 @@ var MypendingadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5309,7 +5383,7 @@ var MypendingdetailPage = /** @class */ (function () {
     };
     MypendingdetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-mypendingdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/mypendingdetail/mypendingdetail.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title> My Advance Details</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content  class="ion-content">\n  <h3>Staff Details</h3>\n  <ion-list>\n\n    <ion-item>\n      <ion-label stacked color="primary">Name</ion-label>\n      <ion-label>{{ user.Name ? user.Name : \' - \' }}</ion-label>\n    </ion-item>\n\n    <!-- <ion-item>\n      <ion-label stacked color="primary">Bank Name</ion-label>\n      <ion-input type="text" readonly value=""> </ion-input>\n    </ion-item> -->\n\n    <ion-item>\n      <ion-label stacked color="primary">Bank Account</ion-label>\n      <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n    </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Department</ion-label>\n    <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Position</ion-label>\n    <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Approver</ion-label>\n    <ion-label>{{ advance.Approver ? advance.Approver : \' - \' }}</ion-label>\n  </ion-item>\n\n<h3>Travelling Details</h3>\n<ion-item>\n    <ion-label stacked color="primary">Destination</ion-label>\n    <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n      <ion-label stacked color="primary">Start Date</ion-label>\n      <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n\n      </ion-item>\n  \n      <ion-item>\n        <ion-label stacked color="primary">End Date</ion-label>\n        <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n\n        </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Mode Of Transport</ion-label>\n    <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n\n  </ion-item>\n\n  <ion-item>\n      <ion-label stacked color="primary">Car Plate No:</ion-label>\n      <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n    </ion-item>\n\n  </ion-list>\n\n\n<h3>Advance Required</h3>\n<ion-grid>\n\n      <ion-row>\n        <ion-col total-advance col-9></ion-col>\n        <ion-col total col-3>Amount (MYR)</ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col total-advance col-9>Total</ion-col>\n        <ion-col col-3>\n          <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n        </ion-col>\n      </ion-row>\n\n\n       <ion-row>\n        <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n        <ion-col col-3>\n          <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n        <ion-col col-3>\n          <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n        </ion-col>\n      </ion-row>\n</ion-grid>\n\n</ion-content>\n<!-- <ion-footer>\n    <button ion-button block>Submit</button>\n\n</ion-footer> -->\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/mypendingdetail/mypendingdetail.html"*/,
+            selector: 'page-mypendingdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/mypendingdetail/mypendingdetail.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title> My Advance Details</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content  class="ion-content">\n  <h3>Staff Details</h3>\n  <ion-list>\n\n    <ion-item>\n      <ion-label stacked color="primary">Name</ion-label>\n      <ion-label>{{ user.Name ? user.Name : \' - \' }}</ion-label>\n    </ion-item>\n\n    <!-- <ion-item>\n      <ion-label stacked color="primary">Bank Name</ion-label>\n      <ion-input type="text" readonly value=""> </ion-input>\n    </ion-item> -->\n\n    <ion-item>\n      <ion-label stacked color="primary">Bank Account</ion-label>\n      <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n    </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Department</ion-label>\n    <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Position</ion-label>\n    <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Approver</ion-label>\n    <ion-label>{{ advance.Approver ? advance.Approver : \' - \' }}</ion-label>\n  </ion-item>\n\n<h3>Travelling Details</h3>\n<ion-item>\n    <ion-label stacked color="primary">Destination</ion-label>\n    <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n  </ion-item>\n\n  <ion-item>\n      <ion-label stacked color="primary">Start Date</ion-label>\n      <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n\n      </ion-item>\n  \n      <ion-item>\n        <ion-label stacked color="primary">End Date</ion-label>\n        <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n\n        </ion-item>\n\n  <ion-item>\n    <ion-label stacked color="primary">Mode Of Transport</ion-label>\n    <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n\n  </ion-item>\n\n  <ion-item>\n      <ion-label stacked color="primary">Car Plate No:</ion-label>\n      <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n    </ion-item>\n\n  </ion-list>\n\n\n<h3>Advance Required</h3>\n<ion-grid>\n\n  <ion-grid>\n\n    <ion-row>\n      <ion-col type col-6></ion-col>\n      <ion-col days col-2>No of Days</ion-col>\n      <ion-col allowance-title col-2>Allowance per Day</ion-col>\n      <ion-col total col-2>Total (MYR)</ion-col>\n    </ion-row>\n\n    <ion-row *ngFor="let adv of advancedetails">\n      <ion-col type col-6>\n\n        <ion-item>\n          <ion-label>{{adv.Type}}</ion-label>\n        </ion-item>\n\n      </ion-col>\n      <ion-col days col-2 >\n        <ion-label>{{adv.Days ? adv.Days:"0"}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Allowance}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Total}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Other Purpose</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purpose}}</ion-label>\n      </ion-col>\n    </ion-row>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Purchase</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purchase}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <br>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n      <ion-col col-3>\n        <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n      <ion-col col-3>\n        <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-grid>\n\n</ion-content>\n<!-- <ion-footer>\n    <button ion-button block>Submit</button>\n\n</ion-footer> -->\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/mypendingdetail/mypendingdetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -5418,7 +5492,7 @@ var AdminadvancestatusPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_badge__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_badge__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__adminpendingdetail_adminpendingdetail__ = __webpack_require__(537);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5524,11 +5598,11 @@ var AdminpendingadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__adminpendingadvanceredirect_adminpendingadvanceredirect__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5770,7 +5844,7 @@ var AdminpendingdetailPage = /** @class */ (function () {
     };
     AdminpendingdetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-adminpendingdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminpendingdetail/adminpendingdetail.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title> My Advance Details</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content  class="ion-content">\n    <form novalidate (ngSubmit)="approveAdvance()" [formGroup]="signupform">\n\n    <h3>Staff Details</h3>\n    <ion-list>\n  \n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{ advance.Name ? advance.Name : \' - \' }}</ion-label>\n      </ion-item>\n  \n      <!-- <ion-item>\n        <ion-label stacked color="primary">Bank Name</ion-label>\n        <ion-input type="text" readonly value=""> </ion-input>\n      </ion-item> -->\n  \n      <ion-item>\n        <ion-label stacked color="primary">Bank Account</ion-label>\n        <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Department</ion-label>\n      <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Position</ion-label>\n        <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n      </ion-item>\n  \n  <h3>Travelling Details</h3>\n  <ion-item>\n      <ion-label stacked color="primary">Destination</ion-label>\n      <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Start Date</ion-label>\n        <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n  \n        </ion-item>\n    \n        <ion-item>\n          <ion-label stacked color="primary">End Date</ion-label>\n          <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n  \n          </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Mode Of Transport</ion-label>\n      <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n  \n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Car Plate No:</ion-label>\n        <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    </ion-list>\n  \n  \n  <h3>Advance Required</h3>\n  <ion-grid>\n  \n        <ion-row>\n          <ion-col total-advance col-9></ion-col>\n          <ion-col total col-3>Amount (MYR)</ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n  \n         <ion-row>\n          <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n          <ion-col col-3>\n              <ion-input type="number" min="0" placeholder="0.00" [(ngModel)]="Total_Approved"  formControlName="Total_Approved" [class.error1]="!signupform.controls.Total_Approved.valid && signupform.controls.Total_Approved.dirty"></ion-input>\n          </ion-col>\n          <ion-item no-lines *ngIf="( signupform.get(\'Total_Approved\').hasError(\'required\') ) && signupform.get(\'Total_Approved\').touched">\n              <div class="error" *ngIf="signupform.get(\'Total_Approved\').hasError(\'required\') && signupform.get(\'Total_Approved\').touched">\n                  Please insert total approved\n              </div>\n          </ion-item>\n        </ion-row>\n  </ion-grid>\n  \n  <br>\n\n  <div class="row">\n      <div class="col">\n      <button ion-button full color="secondary" class="button-redirect" [navPush]="adminpendingadvanceredirect" [navParams]="advance">\n          Redirect\n      </button>\n      </div>\n      <div class="col">\n      <button ion-button full color="primary" type="submit" [disabled]="signupform.invalid">\n          Approve\n      </button>\n      </div>\n      <div class="col">\n          <button ion-button full color="danger" type="button" (click)="rejectAdvance()">\n          Reject Advance\n          </button>\n      </div>\n  </div>\n</form>\n\n</ion-content>\n<!-- <ion-footer>\n    <button ion-button block>Submit</button>\n\n</ion-footer> -->\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminpendingdetail/adminpendingdetail.html"*/,
+            selector: 'page-adminpendingdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminpendingdetail/adminpendingdetail.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title> My Advance Details</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content  class="ion-content">\n    <form novalidate (ngSubmit)="approveAdvance()" [formGroup]="signupform">\n\n    <h3>Staff Details</h3>\n    <ion-list>\n  \n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{ advance.Name ? advance.Name : \' - \' }}</ion-label>\n      </ion-item>\n  \n      <!-- <ion-item>\n        <ion-label stacked color="primary">Bank Name</ion-label>\n        <ion-input type="text" readonly value=""> </ion-input>\n      </ion-item> -->\n  \n      <ion-item>\n        <ion-label stacked color="primary">Bank Account</ion-label>\n        <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Department</ion-label>\n      <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Position</ion-label>\n        <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n      </ion-item>\n  \n  <h3>Travelling Details</h3>\n  <ion-item>\n      <ion-label stacked color="primary">Destination</ion-label>\n      <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Start Date</ion-label>\n        <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n  \n        </ion-item>\n    \n        <ion-item>\n          <ion-label stacked color="primary">End Date</ion-label>\n          <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n  \n          </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Mode Of Transport</ion-label>\n      <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n  \n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Car Plate No:</ion-label>\n        <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    </ion-list>\n\n  <h3>Item Details</h3>\n  <ion-grid>\n\n    <ion-row>\n      <ion-col type col-6></ion-col>\n      <ion-col days col-2>No of Days</ion-col>\n      <ion-col allowance-title col-2>Allowance per Day</ion-col>\n      <ion-col total col-2>Total (MYR)</ion-col>\n    </ion-row>\n\n    <ion-row *ngFor="let adv of advancedetails">\n      <ion-col type col-6>\n\n        <ion-item>\n          <ion-label>{{adv.Type}}</ion-label>\n        </ion-item>\n\n      </ion-col>\n      <ion-col days col-2 >\n        <ion-label>{{adv.Days? adv.Days:"0"}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Allowance}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Total}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Other Purpose</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purpose}}</ion-label>\n      </ion-col>\n    </ion-row>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Purchase</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purchase}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  \n  <h3>Advance Required</h3>\n  <ion-grid>\n  \n        <ion-row>\n          <ion-col total-advance col-9></ion-col>\n          <ion-col total col-3>Amount (MYR)</ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n  \n         <ion-row>\n          <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n          <ion-col col-3>\n              <ion-input type="number" min="0" placeholder="0.00" [(ngModel)]="Total_Approved"  formControlName="Total_Approved" [class.error1]="!signupform.controls.Total_Approved.valid && signupform.controls.Total_Approved.dirty"></ion-input>\n          </ion-col>\n          <ion-item no-lines *ngIf="( signupform.get(\'Total_Approved\').hasError(\'required\') ) && signupform.get(\'Total_Approved\').touched">\n              <div class="error" *ngIf="signupform.get(\'Total_Approved\').hasError(\'required\') && signupform.get(\'Total_Approved\').touched">\n                  Please insert total approved\n              </div>\n          </ion-item>\n        </ion-row>\n  </ion-grid>\n  \n  <br>\n\n  <div class="row">\n      <div class="col">\n      <button ion-button full color="secondary" class="button-redirect" [navPush]="adminpendingadvanceredirect" [navParams]="advance">\n          Redirect\n      </button>\n      </div>\n      <div class="col">\n      <button ion-button full color="primary" type="submit" [disabled]="signupform.invalid">\n          Approve\n      </button>\n      </div>\n      <div class="col">\n          <button ion-button full color="danger" type="button" (click)="rejectAdvance()">\n          Reject Advance\n          </button>\n      </div>\n  </div>\n</form>\n\n</ion-content>\n<!-- <ion-footer>\n    <button ion-button block>Submit</button>\n\n</ion-footer> -->\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminpendingdetail/adminpendingdetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -5800,8 +5874,8 @@ var AdminpendingdetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5874,20 +5948,19 @@ var AdminpendingadvanceredirectPage = /** @class */ (function () {
         });
         // Approver
         this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/getapprover?token=' + val.token);
+            data = _this.http.get('https://jmclicks.com/api/getapprover3?token=' + val.token);
             data.subscribe(function (result) {
                 console.log(result);
                 _this.apps = result;
                 //filter array
-                var arrApps = [];
-                for (var _i = 0, _a = _this.apps; _i < _a.length; _i++) {
-                    var app = _a[_i];
-                    if (app.Project_Name == _this.Project_Name) {
-                        arrApps.push(app);
-                    }
-                }
-                console.log(arrApps);
-                _this.apps = arrApps;
+                // let arrApps = [];
+                // for (let app of this.apps) {
+                //   if(app.Project_Name == this.Project_Name) {
+                //       arrApps.push(app);
+                //   }
+                // }
+                // console.log(arrApps);
+                // this.apps=arrApps;
             });
         });
     };
@@ -5947,7 +6020,7 @@ var AdminpendingadvanceredirectPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_badge__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_badge__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__adminapprovedetail_adminapprovedetail__ = __webpack_require__(540);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6045,7 +6118,7 @@ var AdminapproveadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6277,7 +6350,7 @@ var AdminapprovedetailPage = /** @class */ (function () {
     };
     AdminapprovedetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-adminapprovedetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminapprovedetail/adminapprovedetail.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title> My Advance Details</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content  class="ion-content">\n    <h3>Staff Details</h3>\n    <ion-list>\n  \n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{  advance.Name ? advance.Name : \' - \' }}</ion-label>\n      </ion-item>\n  \n      <!-- <ion-item>\n        <ion-label stacked color="primary">Bank Name</ion-label>\n        <ion-input type="text" readonly value=""> </ion-input>\n      </ion-item> -->\n  \n      <ion-item>\n        <ion-label stacked color="primary">Bank Account</ion-label>\n        <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Department</ion-label>\n      <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Position</ion-label>\n        <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n      </ion-item>\n  \n  <h3>Travelling Details</h3>\n  <ion-item>\n      <ion-label stacked color="primary">Destination</ion-label>\n      <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Start Date</ion-label>\n        <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n  \n        </ion-item>\n    \n        <ion-item>\n          <ion-label stacked color="primary">End Date</ion-label>\n          <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n  \n          </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Mode Of Transport</ion-label>\n      <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n  \n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Car Plate No:</ion-label>\n        <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    </ion-list>\n  \n  \n  <h3>Advance Required</h3>\n  <ion-grid>\n  \n        <ion-row>\n          <ion-col total-advance col-9></ion-col>\n          <ion-col total col-3>Amount (MYR)</ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n  \n         <ion-row>\n          <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n          </ion-col>\n        </ion-row>\n  </ion-grid>\n  \n  </ion-content>\n  <!-- <ion-footer>\n      <button ion-button block>Submit</button>\n  \n  </ion-footer> -->\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminapprovedetail/adminapprovedetail.html"*/,
+            selector: 'page-adminapprovedetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminapprovedetail/adminapprovedetail.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title> My Advance Details</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content  class="ion-content">\n    <h3>Staff Details</h3>\n    <ion-list>\n  \n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{  advance.Name ? advance.Name : \' - \' }}</ion-label>\n      </ion-item>\n  \n      <!-- <ion-item>\n        <ion-label stacked color="primary">Bank Name</ion-label>\n        <ion-input type="text" readonly value=""> </ion-input>\n      </ion-item> -->\n  \n      <ion-item>\n        <ion-label stacked color="primary">Bank Account</ion-label>\n        <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Department</ion-label>\n      <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Position</ion-label>\n        <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n      </ion-item>\n  \n  <h3>Travelling Details</h3>\n  <ion-item>\n      <ion-label stacked color="primary">Destination</ion-label>\n      <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Start Date</ion-label>\n        <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n  \n        </ion-item>\n    \n        <ion-item>\n          <ion-label stacked color="primary">End Date</ion-label>\n          <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n  \n          </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Mode Of Transport</ion-label>\n      <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n  \n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Car Plate No:</ion-label>\n        <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    </ion-list>\n\n    <h3>Item Details</h3>\n  <ion-grid>\n\n    <ion-row>\n      <ion-col type col-6></ion-col>\n      <ion-col days col-2>No of Days</ion-col>\n      <ion-col allowance-title col-2>Allowance per Day</ion-col>\n      <ion-col total col-2>Total (MYR)</ion-col>\n    </ion-row>\n\n    <ion-row *ngFor="let adv of advancedetails">\n      <ion-col type col-6>\n\n        <ion-item>\n          <ion-label>{{adv.Type}}</ion-label>\n        </ion-item>\n\n      </ion-col>\n      <ion-col days col-2 >\n        <ion-label>{{adv.Days? adv.Days:"0"}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Allowance}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Total}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Other Purpose</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purpose}}</ion-label>\n      </ion-col>\n    </ion-row>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Purchase</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purchase}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  \n  \n  <h3>Advance Required</h3>\n  <ion-grid>\n  \n        <ion-row>\n          <ion-col total-advance col-9></ion-col>\n          <ion-col total col-3>Amount (MYR)</ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n  \n         <ion-row>\n          <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n          </ion-col>\n        </ion-row>\n  </ion-grid>\n  \n  </ion-content>\n  <!-- <ion-footer>\n      <button ion-button block>Submit</button>\n  \n  </ion-footer> -->\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminapprovedetail/adminapprovedetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -6400,7 +6473,7 @@ var AdminrejectadvancePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6496,7 +6569,7 @@ var AdminrejectdetailPage = /** @class */ (function () {
     };
     AdminrejectdetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-adminrejectdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminrejectdetail/adminrejectdetail.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title> My Advance Details</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content  class="ion-content">\n    <h3>Staff Details</h3>\n    <ion-list>\n  \n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{  advance.Name ? advance.Name : \' - \' }}</ion-label>\n      </ion-item>\n  \n      <!-- <ion-item>\n        <ion-label stacked color="primary">Bank Name</ion-label>\n        <ion-input type="text" readonly value=""> </ion-input>\n      </ion-item> -->\n  \n      <ion-item>\n        <ion-label stacked color="primary">Bank Account</ion-label>\n        <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Department</ion-label>\n      <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Position</ion-label>\n        <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n      </ion-item>\n  \n  <h3>Travelling Details</h3>\n  <ion-item>\n      <ion-label stacked color="primary">Destination</ion-label>\n      <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Start Date</ion-label>\n        <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n  \n        </ion-item>\n    \n        <ion-item>\n          <ion-label stacked color="primary">End Date</ion-label>\n          <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n  \n          </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Mode Of Transport</ion-label>\n      <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n  \n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Car Plate No:</ion-label>\n        <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    </ion-list>\n  \n  \n  <h3>Advance Required</h3>\n  <ion-grid>\n  \n        <ion-row>\n          <ion-col total-advance col-9></ion-col>\n          <ion-col total col-3>Amount (MYR)</ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n  \n         <ion-row>\n          <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n          </ion-col>\n        </ion-row>\n  </ion-grid>\n  \n  </ion-content>\n  <!-- <ion-footer>\n      <button ion-button block>Submit</button>\n  \n  </ion-footer> -->\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminrejectdetail/adminrejectdetail.html"*/,
+            selector: 'page-adminrejectdetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminrejectdetail/adminrejectdetail.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title> My Advance Details</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content  class="ion-content">\n    <h3>Staff Details</h3>\n    <ion-list>\n  \n      <ion-item>\n        <ion-label stacked color="primary">Name</ion-label>\n        <ion-label>{{  advance.Name ? advance.Name : \' - \' }}</ion-label>\n      </ion-item>\n  \n      <!-- <ion-item>\n        <ion-label stacked color="primary">Bank Name</ion-label>\n        <ion-input type="text" readonly value=""> </ion-input>\n      </ion-item> -->\n  \n      <ion-item>\n        <ion-label stacked color="primary">Bank Account</ion-label>\n        <ion-label>{{ advance.Bank_Account_No ? advance.Bank_Account_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Department</ion-label>\n      <ion-label>{{ advance.Project_Name ? advance.Project_Name : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Position</ion-label>\n        <ion-label>{{ advance.Position ? advance.Position : \' - \' }}</ion-label>\n      </ion-item>\n  \n  <h3>Travelling Details</h3>\n  <ion-item>\n      <ion-label stacked color="primary">Destination</ion-label>\n      <ion-label>{{ advance.Destination ? advance.Destination : \' - \' }}</ion-label>\n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Start Date</ion-label>\n        <ion-label>{{ advance.Start_Date ? advance.Start_Date : \' - \' }}</ion-label>\n  \n        </ion-item>\n    \n        <ion-item>\n          <ion-label stacked color="primary">End Date</ion-label>\n          <ion-label>{{ advance.End_Date ? advance.End_Date : \' - \' }}</ion-label>\n  \n          </ion-item>\n  \n    <ion-item>\n      <ion-label stacked color="primary">Mode Of Transport</ion-label>\n      <ion-label>{{ advance.Mode_Of_Transport ? advance.Mode_Of_Transport : \' - \' }}</ion-label>\n  \n    </ion-item>\n  \n    <ion-item>\n        <ion-label stacked color="primary">Car Plate No:</ion-label>\n        <ion-label>{{ advance.Car_No ? advance.Car_No : \' - \' }}</ion-label>\n      </ion-item>\n  \n    </ion-list>\n\n    <h3>Item Details</h3>\n  <ion-grid>\n\n    <ion-row>\n      <ion-col type col-6></ion-col>\n      <ion-col days col-2>No of Days</ion-col>\n      <ion-col allowance-title col-2>Allowance per Day</ion-col>\n      <ion-col total col-2>Total (MYR)</ion-col>\n    </ion-row>\n\n    <ion-row *ngFor="let adv of advancedetails">\n      <ion-col type col-6>\n\n        <ion-item>\n          <ion-label>{{adv.Type}}</ion-label>\n        </ion-item>\n\n      </ion-col>\n      <ion-col days col-2 >\n        <ion-label>{{adv.Days? adv.Days:"0"}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Allowance}}</ion-label>\n      </ion-col>\n      <ion-col allowance col-2>\n        <ion-label>{{adv.Total}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Other Purpose</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purpose}}</ion-label>\n      </ion-col>\n    </ion-row>\n    <ion-row >\n      <ion-col type col-6>\n        <ion-item>\n          <ion-label>Purchase</ion-label>\n        </ion-item>\n      </ion-col>\n      <ion-col days >\n        <ion-label>{{advance.Purchase}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  \n  \n  <h3>Advance Required</h3>\n  <ion-grid>\n  \n        <ion-row>\n          <ion-col total-advance col-9></ion-col>\n          <ion-col total col-3>Amount (MYR)</ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n  \n         <ion-row>\n          <ion-col total-advance col-9>Total Advanced Requested</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Requested }}</ion-label>\n          </ion-col>\n        </ion-row>\n  \n        <ion-row>\n          <ion-col total-advance col-9>Total Advanced Approved</ion-col>\n          <ion-col col-3>\n            <ion-label type="number" value="" readonly>{{ advance.Total_Approved }}</ion-label>\n          </ion-col>\n        </ion-row>\n  </ion-grid>\n  \n  </ion-content>\n  <!-- <ion-footer>\n      <button ion-button block>Submit</button>\n  \n  </ion-footer> -->\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/adminrejectdetail/adminrejectdetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -6525,9 +6598,9 @@ var AdminrejectdetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_app_preferences__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_badge__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_app_preferences__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_badge__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__notice_notice__ = __webpack_require__(544);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__noticecontractor_noticecontractor__ = __webpack_require__(546);
@@ -6667,14 +6740,14 @@ var NoticeallPage = /** @class */ (function () {
             });
         });
         this.storage.get('token').then(function (val) {
-            _this.http.get('https://jmclicks.com/api/getcontractornoticebadge?token=' + val.token).subscribe(function (result) {
+            _this.http.get('https://jmclicks.com/api/notifications/getcontractornoticebadge?token=' + val.token).subscribe(function (result) {
                 // this.allStaffBadgeCount = result.badge_count;
                 _this.allContractorBadgeCount = result.badge_count;
                 // this.allProjectBadgeCount = result.badge_count;
             });
         });
         this.storage.get('token').then(function (val) {
-            _this.http.get('https://jmclicks.com/api/getprojectnoticebadge?token=' + val.token).subscribe(function (result) {
+            _this.http.get('https://jmclicks.com/api/notifications/getprojectnoticebadge?token=' + val.token).subscribe(function (result) {
                 // this.allStaffBadgeCount = result.badge_count;
                 // this.allContractorBadgeCount = result.badge_count;
                 _this.allProjectBadgeCount = result.badge_count;
@@ -6895,9 +6968,29 @@ var NoticePage = /** @class */ (function () {
             });
         });
     };
+    NoticePage.prototype.onCancel = function (ev) {
+        // Reset the field
+        console.log('reset');
+        ev.target.value = '';
+        this.loadData();
+    };
+    NoticePage.prototype.getList = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.items = this.items.filter(function (item) {
+                return (item.Title.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
     NoticePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-notice',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/notice/notice.html"*/'<!--\n  Generated template for the NoticePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-title>General Notice</ion-title>\n  </ion-navbar>\n\n</ion-header>  \n  \n<ion-content class="ion-content background">\n  <ion-list >\n    <ion-col *ngFor="let item of items;">\n      <ion-grid [navPush]="noticedetailpage" [navParams]="item">\n        <ion-item>\n          <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[item.Id] ? \'New \': \'\'}}</b></p>\n          <ion-avatar item-start class="ion-avatar">\n            <ion-icon ios="ios-megaphone" md="md-megaphone" style="zoom:2.0;"></ion-icon>\n          </ion-avatar>\n          <div class="date">\n            <!-- <p>{{item.End_Date}}</p> -->\n          </div>\n          <div text-wrap>\n            <h2>{{item.Title}}</h2>\n          </div>\n        </ion-item>\n      </ion-grid>\n    </ion-col>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/notice/notice.html"*/,
+            selector: 'page-notice',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/notice/notice.html"*/'<!--\n  Generated template for the NoticePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-title>General Notice</ion-title>\n    <!-- <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList($event)" ></ion-searchbar> -->\n\n  </ion-navbar>\n\n</ion-header>  \n  \n<ion-content class="ion-content background">\n  <ion-list >\n    <ion-col *ngFor="let item of items;">\n      <ion-grid [navPush]="noticedetailpage" [navParams]="item">\n        <ion-item>\n          <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[item.Id] ? \'New \': \'\'}}</b></p>\n          <ion-avatar item-start class="ion-avatar">\n            <ion-icon ios="ios-megaphone" md="md-megaphone" style="zoom:2.0;"></ion-icon>\n          </ion-avatar>\n          <div class="date">\n            <!-- <p>{{item.End_Date}}</p> -->\n          </div>\n          <div text-wrap>\n            <h2>{{item.Title}}</h2>\n          </div>\n        </ion-item>\n      </ion-grid>\n    </ion-col>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/notice/notice.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -7254,7 +7347,7 @@ var NoticecontractorPage = /** @class */ (function () {
         var data;
         // Or to get a key/value pair
         this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/getcontractornotice?token=' + val.token);
+            data = _this.http.get('https://jmclicks.com/api/notifications/getcontractornotice?token=' + val.token);
             data.subscribe(function (result) {
                 _this.items = result;
             });
@@ -7452,7 +7545,7 @@ var NoticecontractordetailPage = /** @class */ (function () {
     };
     NoticecontractordetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-noticecontractordetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/noticecontractordetail/noticecontractordetail.html"*/'\n\n<ion-header>\n\n  <ion-navbar color="secondary">\n\n    <ion-title>Contractor Notice Detail</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n  \n\n<ion-content padding class="ion-content">\n\n  <div class="notice-body">\n\n    <div class="date">\n\n      <p>{{Start_Date}}</p>\n\n      <p>{{created_at}}</p>\n\n      <p>submitted by: {{Created_By}}</p>\n\n    </div>\n\n\n\n    <div class="title-notice">\n\n      <br>\n\n      <h1>{{Title}}</h1>\n\n    </div>\n\n\n\n    <div class="notice-content">\n\n      \n\n      <pre text-justify>{{Content}}</pre>\n\n\n\n      <div *ngIf="Attachment !== null">\n\n        <div  *ngFor="let file of Attachment.split(\'|\'); let i = index">\n\n          <img *ngIf="file.substr(file.lastIndexOf(\'.\') + 1).toUpperCase() == \'PNG\' || file.substr(file.lastIndexOf(\'.\') + 1).toUpperCase() == \'JPG\' || file.substr(file.lastIndexOf(\'.\') + 1).toUpperCase() == \'JPEG\'; else elseBlock" [src]="\'http://localhost:8200/jmclicks/public/\' + file" imageViewer>\n\n            \n\n              \n\n          <!-- <ng-template #elseBlock><button ion-button block (click)="download(file, FileName.split(\'|\')[i])">{{FileName.split(\'|\')[i]}} [Download]</button><br>\n\n          </ng-template> -->\n\n        </div>\n\n      </div>\n\n    </div>\n\n\n\n  </div>\n\n</ion-content>\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/noticecontractordetail/noticecontractordetail.html"*/,
+            selector: 'page-noticecontractordetail',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/noticecontractordetail/noticecontractordetail.html"*/'\n\n<ion-header>\n\n  <ion-navbar color="secondary">\n\n    <ion-title>Contractor Notice Detail</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n  \n\n<ion-content padding class="ion-content">\n\n  <div class="notice-body">\n\n    <div class="date">\n\n      <p>{{Start_Date}}</p>\n\n      <p>{{created_at}}</p>\n\n      <p>submitted by: {{Created_By}}</p>\n\n    </div>\n\n\n\n    <div class="title-notice">\n\n      <br>\n\n      <h1>{{Title}}</h1>\n\n    </div>\n\n\n\n    <div class="notice-content">\n\n      \n\n      <pre text-justify>{{Content}}</pre>\n\n\n\n      <div *ngIf="Attachment !== null">\n\n        <div  *ngFor="let file of Attachment.split(\'|\'); let i = index">\n\n          <img ng-reflect-src *ngIf="file.substr(file.lastIndexOf(\'.\') + 1).toUpperCase() == \'PNG\' || file.substr(file.lastIndexOf(\'.\') + 1).toUpperCase() == \'JPG\' || file.substr(file.lastIndexOf(\'.\') + 1).toUpperCase() == \'JPEG\'; else elseBlock" [src]="\'https://jmclicks.com/\' + file" onError="src = \'assets/imgs/blank.png\'" imageViewer>\n\n            \n\n          <!-- <ng-template #elseBlock><button ion-button block (click)="download(file, FileName.split(\'|\')[i])">{{FileName.split(\'|\')[i]}} [Download]</button><br>\n\n          </ng-template> -->\n\n        </div>\n\n      </div>\n\n    </div>\n\n\n\n  </div>\n\n</ion-content>\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/noticecontractordetail/noticecontractordetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -7861,9 +7954,9 @@ var NoticeprojectdetailPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_nav_params__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__taskassign_taskassign__ = __webpack_require__(551);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mytask_mytask__ = __webpack_require__(552);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__taskall_taskall__ = __webpack_require__(555);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__taskall_taskall__ = __webpack_require__(552);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__taskdate_taskdate__ = __webpack_require__(553);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7899,6 +7992,10 @@ var TaskPage = /** @class */ (function () {
         this.storage = storage;
         this.http = http;
         this.token = '';
+        this.Name = '';
+        this.Position = '';
+        this.user_type = '';
+        this.template = '';
         this.jobBadge = 0;
     }
     ;
@@ -7906,10 +8003,10 @@ var TaskPage = /** @class */ (function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__taskassign_taskassign__["a" /* TaskAssignPage */]);
     };
     TaskPage.prototype.myTask = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__mytask_mytask__["a" /* MyTaskPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__taskdate_taskdate__["a" /* TaskdatePage */]);
     };
     TaskPage.prototype.allTask = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__taskall_taskall__["a" /* TaskallPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__taskall_taskall__["a" /* TaskallPage */]);
     };
     TaskPage.prototype.loadData = function () {
         var _this = this;
@@ -7918,17 +8015,26 @@ var TaskPage = /** @class */ (function () {
                 _this.jobBadge = result.badge_count;
             });
         });
+        this.storage.get('user').then(function (val) {
+            // this.userImage = val.Web_Path;
+            _this.Name = val.Name;
+            _this.Position = val.Position;
+            _this.user_type = val.User_Type;
+            _this.template = val.AccessControlTemplateId;
+            console.log(val);
+            console.log(_this.template);
+        });
     };
     TaskPage.prototype.ionViewDidEnter = function () {
         this.loadData();
     };
     TaskPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-task',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/task/task.html"*/'<ion-header>\n  <ion-navbar color="secondary">\n    <ion-title>Task</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="ion-content">\n  <section class="home-container">\n    <ion-list>\n\n      <ion-item (click)=\'assign()\'>\n        <button class="round-button button6" >\n          <img src="assets/img/admin (1).png" height="30px" width="30px">\n        </button>\n        Assign Task\n      </ion-item>\n\n      <ion-item (click)=\'myTask()\'>\n        <button class="round-button button6" >\n          <img src="assets/img/myapproval (2).png" height="30px" width="30px">\n        </button>\n        <ion-badge color="danger" *ngIf="jobBadge > 0" item-end>{{ jobBadge }}</ion-badge>\n        My Task\n      </ion-item>\n\n      <ion-item (click)=\'allTask()\'>\n        <button class="round-button button6" >\n          <img src="assets/img/alltask2.png" height="30px" width="30px">\n        </button>\n        <!-- <ion-badge color="danger" *ngIf="jobBadge > 0" item-end>{{ jobBadge }}</ion-badge> -->\n        All Task Assign\n      </ion-item>\n\n    </ion-list>\n  </section>\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/task/task.html"*/,
+            selector: 'page-task',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/task/task.html"*/'<ion-header>\n  <ion-navbar color="secondary">\n    <ion-title>Task</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="ion-content">\n  <section class="home-container">\n    <ion-list>\n\n      <ion-item (click)=\'assign()\' *ngIf="user_type == \'Staff\' && template == 64 || template == 63">\n        <button class="round-button button6" >\n          <img src="assets/img/admin (1).png" height="30px" width="30px">\n        </button>\n        Assign Task\n      </ion-item>\n\n      <ion-item (click)=\'myTask()\'>\n        <button class="round-button button6" >\n          <img src="assets/img/myapproval (2).png" height="30px" width="30px">\n        </button>\n        <ion-badge color="danger" *ngIf="jobBadge > 0" item-end>{{ jobBadge }}</ion-badge>\n        My Task\n      </ion-item>\n\n      <ion-item (click)=\'allTask()\' *ngIf="user_type != \'Contractor\'">\n        <button class="round-button button6" >\n          <img src="assets/img/alltask2.png" height="30px" width="30px">\n        </button>\n        All Task Assign\n      </ion-item>\n\n    </ion-list>\n  </section>\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/task/task.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_nav_params__["a" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], TaskPage);
     return TaskPage;
@@ -7947,8 +8053,8 @@ var TaskPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8095,249 +8201,6 @@ var TaskAssignPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyTaskPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__taskopen_taskopen__ = __webpack_require__(553);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__taskclose_taskclose__ = __webpack_require__(554);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var MyTaskPage = /** @class */ (function () {
-    function MyTaskPage(http, storage) {
-        this.http = http;
-        this.storage = storage;
-        this.task = '';
-        this.tab1 = __WEBPACK_IMPORTED_MODULE_3__taskopen_taskopen__["a" /* TaskOpenPage */];
-        this.tab2 = __WEBPACK_IMPORTED_MODULE_4__taskclose_taskclose__["a" /* TaskClosePage */];
-        this.open = 0;
-        this.close = 0;
-        this.loadData();
-    }
-    MyTaskPage.prototype.loadData = function () {
-        var _this = this;
-        this.storage.get('token').then(function (val) {
-            _this.http.get('https://jmclicks.com/api/notifications/getTask?token=' + val.token, { params: { type: "Open" } }).subscribe(function (result) {
-                _this.open = result.badge_count > 0 ? result.badge_count : null;
-            });
-            _this.http.get('https://jmclicks.com/api/notifications/getTask?token=' + val.token, { params: { type: "Close" } }).subscribe(function (result) {
-                _this.close = result.badge_count > 0 ? result.badge_count : null;
-            });
-        });
-    };
-    MyTaskPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-mytask',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/mytask/mytask.html"*/'<ion-header>\n\n    <ion-navbar color="secondary">\n      <ion-title>My Task</ion-title>\n    </ion-navbar>\n\n  </ion-header>\n\n  <ion-content>\n    <ion-tabs tabsPlacement= \'top\'>\n      <ion-tab [root]="tab1"  [tabBadge]="open" tabTitle="Open" tabsHideOnSubPages="true"></ion-tab>\n      <ion-tab [root]="tab2"  [tabBadge]="close" tabTitle="Close" tabsHideOnSubPages="true" ></ion-tab>\n    </ion-tabs>\n  </ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/mytask/mytask.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */]])
-    ], MyTaskPage);
-    return MyTaskPage;
-}());
-
-//# sourceMappingURL=mytask.js.map
-
-/***/ }),
-
-/***/ 553:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskOpenPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__taskdetail_taskdetail__ = __webpack_require__(104);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var TaskOpenPage = /** @class */ (function () {
-    function TaskOpenPage(storage, http, app) {
-        this.storage = storage;
-        this.http = http;
-        this.app = app;
-        this.task = '';
-        this.notifications = [];
-    }
-    TaskOpenPage.prototype.loadData = function () {
-        var _this = this;
-        var data;
-        this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/gettask?token=' + val.token);
-            data.subscribe(function (result) {
-                _this.task = result;
-            });
-            _this.http.get('https://jmclicks.com/api/notifications/getTask?token=' + val.token, { params: { type: "Open" } }).subscribe(function (result) {
-                var t = _this;
-                result.notifications.map(function (value) {
-                    t.notifications[value.TargetId] = value;
-                });
-            });
-        });
-    };
-    TaskOpenPage.prototype.gotoPage = function (item) {
-        var nav = this.app.getRootNav();
-        nav.push(__WEBPACK_IMPORTED_MODULE_4__taskdetail_taskdetail__["a" /* TaskDetailPage */], item);
-    };
-    TaskOpenPage.prototype.ionViewWillEnter = function () {
-        this.loadData();
-    };
-    TaskOpenPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-taskopen',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskopen/taskopen.html"*/'\n\n  <ion-content>\n    <div *ngIf="task && task.length < 1">\n      <p class="none">No record found</p>\n    </div>\n    <ion-item  *ngFor="let t of task" (click)="gotoPage(t)">\n      <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n        <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n      </ion-avatar>\n      <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[t.Id] ? \'New \': \'\'}}</b></p>\n      <h3>Project Name : {{t.Project_Name}}</h3>\n      <p>Site Name: {{t.Site_Name}}</p>\n      <p>Due Date: {{t.Due_Date}}</p>\n      <p>Assigned By: {{t.Created_By}}</p>\n      <p>Assigned Date: {{t.created_at}}</p>\n    </ion-item>\n\n  </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskopen/taskopen.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* App */]])
-    ], TaskOpenPage);
-    return TaskOpenPage;
-}());
-
-//# sourceMappingURL=taskopen.js.map
-
-/***/ }),
-
-/***/ 554:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskClosePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__taskdetail_taskdetail__ = __webpack_require__(104);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-var TaskClosePage = /** @class */ (function () {
-    function TaskClosePage(storage, http, app) {
-        this.storage = storage;
-        this.http = http;
-        this.app = app;
-        this.notifications = [];
-    }
-    TaskClosePage.prototype.loadData = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var data;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.storage.get('token').then(function (val) {
-                            data = _this.http.get('https://jmclicks.com/api/gettaskclose?token=' + val.token);
-                            data.subscribe(function (result) {
-                                _this.task = result;
-                            });
-                            _this.http.get('https://jmclicks.com/api/notifications/getTask?token=' + val.token, { params: { type: "Close" } }).subscribe(function (result) {
-                                var t = _this;
-                                result.notifications.map(function (value) {
-                                    t.notifications[value.TargetId] = value;
-                                });
-                            });
-                        })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    TaskClosePage.prototype.gotoPage = function (item) {
-        var nav = this.app.getRootNav();
-        nav.push(__WEBPACK_IMPORTED_MODULE_4__taskdetail_taskdetail__["a" /* TaskDetailPage */], item);
-    };
-    TaskClosePage.prototype.ionViewWillEnter = function () {
-        this.loadData();
-    };
-    TaskClosePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-taskclose',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskclose/taskclose.html"*/'\n\n  <ion-content>\n      <div *ngIf="task && task.length < 1">\n        <p class="none">No record found</p>\n      </div>\n      <ion-item  *ngFor="let t of task" (click)="gotoPage(t)">\n        <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n          <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n        </ion-avatar>\n        <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[t.Id] ? \'New \': \'\'}}</b></p>\n        <h3>Project Name : {{t.Project_Name}}</h3>\n        <p>Site Name: {{t.Site_Name}}</p>\n        <p>Due Date: {{t.Due_Date}}</p>\n        <p>Assigned By: {{t.Created_By}}</p>\n        <p>Assigned Date: {{t.created_at}}</p>\n        <p>Completed Date: {{t.Completed_Date}}</p>\n      </ion-item>\n\n    </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskclose/taskclose.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* App */]])
-    ], TaskClosePage);
-    return TaskClosePage;
-}());
-
-//# sourceMappingURL=taskclose.js.map
-
-/***/ }),
-
-/***/ 555:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskallPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
@@ -8404,17 +8267,429 @@ var TaskallPage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 553:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskdatePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mytask_mytask__ = __webpack_require__(554);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the TaskdatePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+// @IonicPage()
+var TaskdatePage = /** @class */ (function () {
+    function TaskdatePage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.token = '';
+        this.Start_Date = '';
+        this.End_Date = '';
+        this.timesheet = '';
+        var date = new Date();
+        var firstDay = new Date(date.getFullYear(), date.getMonth(), 2);
+        var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+        this.Start_Date = firstDay.toISOString();
+        this.End_Date = lastDay.toISOString();
+    }
+    TaskdatePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad TaskdatePage');
+    };
+    TaskdatePage.prototype.myFunction = function (date) {
+        var d = new Date(date);
+        var monthNames = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun", "Jul",
+            "Aug", "Sep", "Oct",
+            "Nov", "Dec"
+        ];
+        var day = date.substring(8, 10);
+        var monthIndex = parseInt(date.substring(5, 7)) - 1;
+        var year = date.substring(0, 4);
+        return day + '-' + monthNames[monthIndex] + '-' + year;
+    };
+    TaskdatePage.prototype.submitClaim = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__mytask_mytask__["a" /* MyTaskPage */], {
+            Start_Date: this.myFunction(this.Start_Date),
+            End_Date: this.myFunction(this.End_Date)
+        });
+        // let loading = this.loadingCtrl.create({
+        //   content: "Logging in...",
+        //   spinner: 'crescent'
+        // });
+    };
+    TaskdatePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-taskdate',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdate/taskdate.html"*/'<!--\n  Generated template for the TaskdatePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-title>Task Date</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="ion-content-body">\n  <ion-item class="ion-item">\n    <ion-label stacked color="primary">Start Date</ion-label>\n    <ion-datetime pickerFormat="DD MMM YYYY" displayFormat="DD MM YYYY" placeholder="choose start date" [(ngModel)]="Start_Date">\n    </ion-datetime>\n  </ion-item>\n\n  <ion-item class="ion-item">\n    <ion-label stacked color="primary">End Date</ion-label>\n    <ion-datetime pickerFormat="DD MMM YYYY" displayFormat="DD MM YYYY" placeholder="choose end date" [(ngModel)]="End_Date">\n    </ion-datetime>\n  </ion-item>\n\n  <button ion-button full color="primary" (click)="submitClaim()">SUBMIT</button>\n\n</ion-content>\n\n   '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskdate/taskdate.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
+    ], TaskdatePage);
+    return TaskdatePage;
+}());
+
+//# sourceMappingURL=taskdate.js.map
+
+/***/ }),
+
+/***/ 554:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyTaskPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__taskopen_taskopen__ = __webpack_require__(555);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__taskclose_taskclose__ = __webpack_require__(556);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var MyTaskPage = /** @class */ (function () {
+    function MyTaskPage(http, storage, navCtrl, navParams) {
+        this.http = http;
+        this.storage = storage;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.task = '';
+        this.tab1 = __WEBPACK_IMPORTED_MODULE_4__taskopen_taskopen__["a" /* TaskOpenPage */];
+        this.tab2 = __WEBPACK_IMPORTED_MODULE_5__taskclose_taskclose__["a" /* TaskClosePage */];
+        this.open = 0;
+        this.close = 0;
+        this.loadData();
+        this.start = this.navParams.get('Start_Date');
+        this.end = this.navParams.get('End_Date');
+        this.tab1Params = { start: this.start, end: this.end };
+        this.tab2Params = { start: this.start, end: this.end };
+        console.log(this.start);
+    }
+    MyTaskPage.prototype.loadData = function () {
+        var _this = this;
+        this.storage.get('token').then(function (val) {
+            _this.http.get('https://jmclicks.com/api/notifications/getTask?token=' + val.token, { params: { type: "Open" } }).subscribe(function (result) {
+                _this.open = result.badge_count > 0 ? result.badge_count : null;
+            });
+            _this.http.get('https://jmclicks.com/api/notifications/getTask?token=' + val.token, { params: { type: "Close" } }).subscribe(function (result) {
+                _this.close = result.badge_count > 0 ? result.badge_count : null;
+            });
+        });
+    };
+    MyTaskPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
+            selector: 'page-mytask',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/mytask/mytask.html"*/'<ion-header>\n\n    <ion-navbar color="secondary">\n      <ion-title>My Task</ion-title>\n    </ion-navbar>\n\n  </ion-header>\n\n  <ion-content>\n    <ion-tabs tabsPlacement= \'top\'>\n      <ion-tab [root]="tab1"  [tabBadge]="open" tabTitle="Open" tabsHideOnSubPages="true" [rootParams]="tab1Params"></ion-tab>\n      <ion-tab [root]="tab2"  [tabBadge]="close" tabTitle="Close" tabsHideOnSubPages="true" [rootParams]="tab2Params"></ion-tab>\n    </ion-tabs>\n  </ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/mytask/mytask.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["v" /* NavParams */]])
+    ], MyTaskPage);
+    return MyTaskPage;
+}());
+
+//# sourceMappingURL=mytask.js.map
+
+/***/ }),
+
+/***/ 555:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskOpenPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__taskdetail_taskdetail__ = __webpack_require__(104);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var httpOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        'Content-Type': 'application/json'
+    })
+};
+
+
+
+var TaskOpenPage = /** @class */ (function () {
+    function TaskOpenPage(storage, http, app, navCtrl, navParams) {
+        this.storage = storage;
+        this.http = http;
+        this.app = app;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.task = '';
+        this.notifications = [];
+        this.start = this.navParams.get('start');
+        this.end = this.navParams.get('end');
+        console.log(this.start, this.end);
+    }
+    TaskOpenPage.prototype.loadData = function () {
+        var _this = this;
+        this.storage.get("token").then(function (val) {
+            _this.http.post("https://jmclicks.com/api/gettask?token=" + val.token, {
+                Start_Date: _this.start,
+                End_Date: _this.end,
+            }, httpOptions)
+                .subscribe(function (res) {
+                _this.task = res;
+                // this.groups = this.groupBy(res, 'Date');
+                // this.keys = Object.keys(this.groups);
+            });
+            _this.http.get('https://jmclicks.com/api/notifications/getTask?token=' + val.token, { params: { type: "Open" } }).subscribe(function (result) {
+                var t = _this;
+                result.notifications.map(function (value) {
+                    t.notifications[value.TargetId] = value;
+                });
+            });
+        });
+    };
+    TaskOpenPage.prototype.gotoPage = function (item) {
+        var nav = this.app.getRootNav();
+        nav.push(__WEBPACK_IMPORTED_MODULE_4__taskdetail_taskdetail__["a" /* TaskDetailPage */], item);
+    };
+    TaskOpenPage.prototype.ionViewWillEnter = function () {
+        this.loadData();
+    };
+    TaskOpenPage.prototype.onCancel = function (ev) {
+        // Reset the field
+        console.log('reset');
+        ev.target.value = '';
+        this.loadData();
+    };
+    TaskOpenPage.prototype.getList = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.task = this.task.filter(function (item) {
+                return (item.Project_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.Site_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.Completed_Date.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.Due_Date.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
+    TaskOpenPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["m" /* Component */])({
+            selector: 'page-taskopen',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskopen/taskopen.html"*/'\n\n  <ion-content>\n    <div *ngIf="task && task.length < 1">\n      <p class="none">No record found</p>\n    </div>\n  <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList($event)"></ion-searchbar>\n\n    <ion-item  *ngFor="let t of task" (click)="gotoPage(t)">\n      <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n        <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n      </ion-avatar>\n      <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[t.Id] ? \'New \': \'\'}}</b></p>\n      <h3>Project Name : {{t.Project_Name}}</h3>\n      <p>Site Name: {{t.Site_Name}}</p>\n      <p>Due Date: {{t.Due_Date}}</p>\n      <p>Assigned By: {{t.Created_By}}</p>\n      <p>Assigned Date: {{t.created_at}}</p>\n    </ion-item>\n\n  </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskopen/taskopen.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
+    ], TaskOpenPage);
+    return TaskOpenPage;
+}());
+
+//# sourceMappingURL=taskopen.js.map
+
+/***/ }),
+
 /***/ 556:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskClosePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__taskdetail_taskdetail__ = __webpack_require__(104);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+var httpOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        'Content-Type': 'application/json'
+    })
+};
+
+
+
+var TaskClosePage = /** @class */ (function () {
+    function TaskClosePage(storage, http, app, navCtrl, navParams) {
+        this.storage = storage;
+        this.http = http;
+        this.app = app;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.notifications = [];
+        this.start = this.navParams.get('start');
+        this.end = this.navParams.get('end');
+        console.log(this.start, this.end);
+    }
+    TaskClosePage.prototype.loadData = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var data;
+            return __generator(this, function (_a) {
+                this.storage.get("token").then(function (val) {
+                    _this.http
+                        .post("https://jmclicks.com/api/gettaskclose?token=" + val.token, {
+                        Start_Date: _this.start,
+                        End_Date: _this.end,
+                    }, httpOptions)
+                        .subscribe(function (res) {
+                        _this.task = res;
+                        // this.groups = this.groupBy(res, 'Date');
+                        // this.keys = Object.keys(this.groups);
+                    });
+                    _this.http.get('https://jmclicks.com/api/notifications/getTask?token=' + val.token, { params: { type: "Close" } }).subscribe(function (result) {
+                        var t = _this;
+                        result.notifications.map(function (value) {
+                            t.notifications[value.TargetId] = value;
+                        });
+                    });
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    TaskClosePage.prototype.gotoPage = function (item) {
+        var nav = this.app.getRootNav();
+        nav.push(__WEBPACK_IMPORTED_MODULE_4__taskdetail_taskdetail__["a" /* TaskDetailPage */], item);
+    };
+    TaskClosePage.prototype.ionViewWillEnter = function () {
+        this.loadData();
+    };
+    TaskClosePage.prototype.onCancel = function (ev) {
+        // Reset the field
+        console.log('reset');
+        ev.target.value = '';
+        this.loadData();
+    };
+    TaskClosePage.prototype.getList = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.task = this.task.filter(function (item) {
+                return (item.Project_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.Site_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.Completed_Date.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.Due_Date.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
+    TaskClosePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["m" /* Component */])({
+            selector: 'page-taskclose',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskclose/taskclose.html"*/'\n\n  <ion-content>\n    <div *ngIf="task && task.length < 1">\n      <p class="none">No record found</p>\n    </div>\n    <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList($event)"></ion-searchbar>\n\n      <ion-item  *ngFor="let t of task" (click)="gotoPage(t)">\n        <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n          <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n        </ion-avatar>\n        <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[t.Id] ? \'New \': \'\'}}</b></p>\n        <h3>Project Name : {{t.Project_Name}}</h3>\n        <p>Site Name: {{t.Site_Name}}</p>\n        <p>Due Date: {{t.Due_Date}}</p>\n        <p>Assigned By: {{t.Created_By}}</p>\n        <p>Assigned Date: {{t.created_at}}</p>\n        <p>Completed Date: {{t.Completed_Date}}</p>\n      </ion-item>\n\n    </ion-content>\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/taskclose/taskclose.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
+    ], TaskClosePage);
+    return TaskClosePage;
+}());
+
+//# sourceMappingURL=taskclose.js.map
+
+/***/ }),
+
+/***/ 557:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyJobPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__newjob_newjob__ = __webpack_require__(557);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__alljob_alljob__ = __webpack_require__(559);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__newjob_newjob__ = __webpack_require__(558);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__myjobdate_myjobdate__ = __webpack_require__(560);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8442,7 +8717,8 @@ var MyJobPage = /** @class */ (function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__newjob_newjob__["a" /* NewJobPage */]);
     };
     MyJobPage.prototype.job = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__alljob_alljob__["a" /* AllJobPage */]);
+        // this.navCtrl.push(AllJobPage);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__myjobdate_myjobdate__["a" /* MyjobdatePage */]);
     };
     MyJobPage.prototype.loadData = function () {
         var _this = this;
@@ -8463,8 +8739,8 @@ var MyJobPage = /** @class */ (function () {
             selector: 'page-myjob',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myjob/myjob.html"*/'<ion-header>\n  <ion-navbar color="secondary">\n    <ion-title>Job</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="ion-content">\n  <section class="home-container">\n    <ion-list>\n\n      <ion-item (click)=\'newjob()\'>\n        <button class="round-button button6" >\n          <img src="assets/img/admin (1).png" height="30px" width="30px">\n        </button>\n        <ion-badge color="danger" *ngIf="newBadge > 0" item-end>{{ newBadge }}</ion-badge>\n        New Job\n      </ion-item>\n\n      <ion-item (click)=\'job()\'>\n        <button class="round-button button6" >\n          <img src="assets/img/myapproval (2).png" height="30px" width="30px">\n        </button>\n        <ion-badge color="danger" *ngIf="jobBadge > 0" item-end>{{ jobBadge }}</ion-badge>\n\n        My Job\n      </ion-item>\n\n    </ion-list>\n  </section>\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myjob/myjob.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__["a" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["a" /* HttpClient */]])
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]])
     ], MyJobPage);
     return MyJobPage;
 }());
@@ -8473,7 +8749,7 @@ var MyJobPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 557:
+/***/ 558:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8483,7 +8759,7 @@ var MyJobPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular_navigation_nav_params__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__newjobmodal_newjobmodal__ = __webpack_require__(558);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__newjobmodal_newjobmodal__ = __webpack_require__(559);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8615,7 +8891,7 @@ var NewJobPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 558:
+/***/ 559:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8625,7 +8901,7 @@ var NewJobPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_toast__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular_platform_platform__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file__ = __webpack_require__(27);
@@ -8833,7 +9109,7 @@ var NewJobModalPage = /** @class */ (function () {
     };
     NewJobModalPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: 'page-newjobmodal',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/newjobmodal/newjobmodal.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Details\n    </ion-title>\n    <ion-buttons end>\n      <button color=\'secondary\' ion-button (click)=\'closeModal()\'>Close</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n\n  <ion-item>\n    <p style="color:blueviolet" ALIGN=RIGHT ><b></b></p>\n    <h3>PR NO : {{ pr }} </h3>\n    <p>Project Name : {{project}}</p>\n    <p>Region : {{region}}</p>\n    <p></p>\n  </ion-item>\n\n  <ion-item>\n    <div class="row">\n      <div class="col"></div>\n      <div class="col">\n        <button ion-button block color=\'primary\' (click)=\'accept()\'>Accept</button>\n      </div>\n      <div class="col"></div>\n    </div>\n  </ion-item>\n  <ion-item>\n    <button ion-button block color="primary" (click)="pdf()">View</button>\n  </ion-item>\n  <ion-item>\n    <button ion-button block color="primary" (click)="reject()">Reject</button>\n  </ion-item>\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/newjobmodal/newjobmodal.html"*/,
+            selector: 'page-newjobmodal',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/newjobmodal/newjobmodal.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Details\n    </ion-title>\n    <ion-buttons end>\n      <button color=\'secondary\' ion-button (click)=\'closeModal()\'>Close</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n\n  <ion-item>\n    <p style="color:blueviolet" ALIGN=RIGHT ><b></b></p>\n    <h3>PR NO : {{ pr }} </h3>\n    <p>Project Name : {{project}}</p>\n    <p>Region : {{region}}</p>\n    <p></p>\n  </ion-item>\n\n  <ion-item>\n    <div class="row">\n      <div class="col"></div>\n      <div class="col">\n        <button ion-button block color=\'primary\' (click)=\'accept()\'>Accept</button>\n      </div>\n      <div class="col"></div>\n    </div>\n  </ion-item>\n  <ion-item>\n    <button ion-button block color="primary" (click)="pdf()">View</button>\n  </ion-item>\n  <ion-item hidden>\n    <button ion-button block color="primary" (click)="reject()">Reject</button>\n  </ion-item>\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/newjobmodal/newjobmodal.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__["a" /* ViewController */],
@@ -8846,7 +9122,7 @@ var NewJobModalPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_10__ionic_native_file_opener__["a" /* FileOpener */],
             __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_transfer__["a" /* FileTransfer */],
-            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["y" /* ToastController */]])
+            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["z" /* ToastController */]])
     ], NewJobModalPage);
     return NewJobModalPage;
 }());
@@ -8855,18 +9131,100 @@ var NewJobModalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 559:
+/***/ 560:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyjobdatePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__alljob_alljob__ = __webpack_require__(561);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the MyjobdatePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+// @IonicPage()
+var MyjobdatePage = /** @class */ (function () {
+    function MyjobdatePage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.token = '';
+        this.Start_Date = '';
+        this.End_Date = '';
+        this.timesheet = '';
+        var date = new Date();
+        var firstDay = new Date(date.getFullYear(), date.getMonth(), 2);
+        var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+        this.Start_Date = firstDay.toISOString();
+        this.End_Date = lastDay.toISOString();
+    }
+    MyjobdatePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MyjobdatePage');
+    };
+    MyjobdatePage.prototype.myFunction = function (date) {
+        var d = new Date(date);
+        var monthNames = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun", "Jul",
+            "Aug", "Sep", "Oct",
+            "Nov", "Dec"
+        ];
+        var day = date.substring(8, 10);
+        var monthIndex = parseInt(date.substring(5, 7)) - 1;
+        var year = date.substring(0, 4);
+        return day + '-' + monthNames[monthIndex] + '-' + year;
+    };
+    MyjobdatePage.prototype.submitClaim = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__alljob_alljob__["a" /* AllJobPage */], {
+            Start_Date: this.myFunction(this.Start_Date),
+            End_Date: this.myFunction(this.End_Date)
+        });
+        // let loading = this.loadingCtrl.create({
+        //   content: "Logging in...",
+        //   spinner: 'crescent'
+        // });
+    };
+    MyjobdatePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-myjobdate',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myjobdate/myjobdate.html"*/'<!--\n  Generated template for the MyjobdatePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-title>My Job Date Range</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="ion-content-body">\n  <ion-item class="ion-item">\n    <ion-label stacked color="primary">Start Date</ion-label>\n    <ion-datetime pickerFormat="DD MMM YYYY" displayFormat="DD MM YYYY" placeholder="choose start date" [(ngModel)]="Start_Date">\n    </ion-datetime>\n  </ion-item>\n\n  <ion-item class="ion-item">\n    <ion-label stacked color="primary">End Date</ion-label>\n    <ion-datetime pickerFormat="DD MMM YYYY" displayFormat="DD MM YYYY" placeholder="choose end date" [(ngModel)]="End_Date">\n    </ion-datetime>\n  </ion-item>\n\n  <button ion-button full color="primary" (click)="submitClaim()">SUBMIT</button>\n\n</ion-content>\n\n   '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/myjobdate/myjobdate.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
+    ], MyjobdatePage);
+    return MyjobdatePage;
+}());
+
+//# sourceMappingURL=myjobdate.js.map
+
+/***/ }),
+
+/***/ 561:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AllJobPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jobprogress_jobprogress__ = __webpack_require__(560);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jobkiv_jobkiv__ = __webpack_require__(561);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__jobcomplete_jobcomplete__ = __webpack_require__(562);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__jobrejected_jobrejected__ = __webpack_require__(563);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jobprogress_jobprogress__ = __webpack_require__(562);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__jobkiv_jobkiv__ = __webpack_require__(563);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobcomplete_jobcomplete__ = __webpack_require__(564);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__jobrejected_jobrejected__ = __webpack_require__(565);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__jobdetails_jobdetails__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8883,21 +9241,105 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var AllJobPage = /** @class */ (function () {
-    function AllJobPage(storage, http) {
+    function AllJobPage(storage, http, navCtrl, app, navParams) {
         this.storage = storage;
         this.http = http;
-        this.tab1 = __WEBPACK_IMPORTED_MODULE_1__jobprogress_jobprogress__["a" /* JobProgressPage */];
-        this.tab2 = __WEBPACK_IMPORTED_MODULE_2__jobkiv_jobkiv__["a" /* JobKivPage */];
-        this.tab3 = __WEBPACK_IMPORTED_MODULE_3__jobcomplete_jobcomplete__["a" /* JobCompletePage */];
-        this.tab4 = __WEBPACK_IMPORTED_MODULE_6__jobrejected_jobrejected__["a" /* JobRejectedPage */];
+        this.navCtrl = navCtrl;
+        this.app = app;
+        this.navParams = navParams;
+        this.notifications = [];
+        this.tab1 = __WEBPACK_IMPORTED_MODULE_2__jobprogress_jobprogress__["a" /* JobProgressPage */];
+        this.tab2 = __WEBPACK_IMPORTED_MODULE_3__jobkiv_jobkiv__["a" /* JobKivPage */];
+        this.tab3 = __WEBPACK_IMPORTED_MODULE_4__jobcomplete_jobcomplete__["a" /* JobCompletePage */];
+        this.tab4 = __WEBPACK_IMPORTED_MODULE_7__jobrejected_jobrejected__["a" /* JobRejectedPage */];
         this.progressBadge = 0;
         this.kivBadge = 0;
         this.completeBadge = 0;
         this.rejectedBadge = 0;
+        this.start = this.navParams.get('Start_Date');
+        this.end = this.navParams.get('End_Date');
+        this.tab1Params = { start: this.start, end: this.end };
+        this.tab2Params = { start: this.start, end: this.end };
+        this.tab3Params = { start: this.start, end: this.end };
+        this.tab4Params = { start: this.start, end: this.end };
+        console.log(this.tab1Params);
     }
-    AllJobPage.prototype.ionViewWillEnter = function () {
+    AllJobPage.prototype.ionViewDidEnter = function () {
+        console.log('alljob');
         this.loadData();
+        this.slideChanged();
+    };
+    AllJobPage.prototype.selectedTab = function (index) {
+        this.slider.slideTo(index);
+        console.log("selectedTab", index);
+    };
+    // On slide changed
+    AllJobPage.prototype.slideChanged = function () {
+        var currentIndex = this.slider.getActiveIndex();
+        var slides_count = this.segments.nativeElement.childElementCount;
+        this.page = currentIndex.toString();
+        if (this.page >= slides_count)
+            this.page = (slides_count - 1).toString();
+        console.log("slides_count", slides_count);
+        console.log("this.page", this.page);
+        this.centerScroll();
+    };
+    // Center current scroll
+    AllJobPage.prototype.centerScroll = function () {
+        if (!this.segments || !this.segments.nativeElement)
+            return;
+        var sizeLeft = this.sizeLeft();
+        var sizeCurrent = this.segments.nativeElement.children[this.page].clientWidth;
+        var result = sizeLeft - (window.innerWidth / 2) + (sizeCurrent / 2);
+        result = (result > 0) ? result : 0;
+        this.smoothScrollTo(result);
+    };
+    // Get size start to current
+    AllJobPage.prototype.sizeLeft = function () {
+        var size = 0;
+        for (var i = 0; i < this.page; i++) {
+            size += this.segments.nativeElement.children[i].clientWidth;
+        }
+        return size;
+    };
+    // Easing function
+    AllJobPage.prototype.easeInOutQuart = function (time, from, distance, duration) {
+        if ((time /= duration / 2) < 1)
+            return distance / 2 * time * time * time * time + from;
+        return -distance / 2 * ((time -= 2) * time * time * time - 2) + from;
+    };
+    // Animate scroll
+    AllJobPage.prototype.smoothScrollTo = function (endX) {
+        var _this = this;
+        var startTime = new Date().getTime();
+        var startX = this.segments.nativeElement.scrollLeft;
+        var distanceX = endX - startX;
+        var duration = 400;
+        var timer = setInterval(function () {
+            var time = new Date().getTime() - startTime;
+            var newX = _this.easeInOutQuart(time, startX, distanceX, duration);
+            if (time >= duration) {
+                clearInterval(timer);
+            }
+            _this.segments.nativeElement.scrollLeft = newX;
+        }, 1000 / 60); // 60 fps
+    };
+    AllJobPage.prototype.ngOnInit = function () {
+        // this.slides.effect = 'coverflow';
+        // this.slides.centeredSlides = false;
+        this.slides.slidesPerView = 1;
+        this.slides.spaceBetween = 0;
+        this.slides.coverflow = {
+            rotate: 0,
+            stretch: 0,
+            depth: 0,
+            modifier: 1,
+            slideShadows: false,
+        };
     };
     AllJobPage.prototype.loadData = function () {
         var _this = this;
@@ -8915,13 +9357,244 @@ var AllJobPage = /** @class */ (function () {
                 _this.rejectedBadge = result.badge_count > 0 ? result.badge_count : null;
             });
         });
+        this.storage.get('token').then(function (val) {
+            _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
+                params: {
+                    status: 'All',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
+                }
+            }).subscribe(function (result) {
+                _this.joball = result;
+            });
+            _this.http.get('https://jmclicks.com/api/notifications/getJob?token=' + val.token, { params: { type: "Job In-Progress" } }).subscribe(function (result) {
+                var t = _this;
+                result.notifications.map(function (value) {
+                    t.notifications[value.TargetId] = value;
+                });
+            });
+        });
+        this.storage.get('token').then(function (val) {
+            _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
+                params: {
+                    status: 'In-Progress',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
+                }
+            }).subscribe(function (result) {
+                _this.job = result;
+            });
+            _this.http.get('https://jmclicks.com/api/notifications/getJob?token=' + val.token, { params: { type: "Job In-Progress" } }).subscribe(function (result) {
+                var t = _this;
+                result.notifications.map(function (value) {
+                    t.notifications[value.TargetId] = value;
+                });
+            });
+        });
+        this.storage.get('token').then(function (val) {
+            _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
+                params: {
+                    status: 'KIV',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
+                }
+            }).subscribe(function (result) {
+                _this.job2 = result;
+            });
+            _this.http.get('https://jmclicks.com/api/notifications/getJob?token=' + val.token, { params: { type: "Job KIV" } }).subscribe(function (result) {
+                var t = _this;
+                result.notifications.map(function (value) {
+                    t.notifications[value.TargetId] = value;
+                });
+            });
+        });
+        this.storage.get('token').then(function (val) {
+            _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
+                params: {
+                    status: 'Complete',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
+                }
+            }).subscribe(function (result) {
+                _this.job3 = result;
+            });
+            _this.http.get('https://jmclicks.com/api/notifications/getJob?token=' + val.token, { params: { type: "Job Complete" } }).subscribe(function (result) {
+                var t = _this;
+                result.notifications.map(function (value) {
+                    t.notifications[value.TargetId] = value;
+                });
+            });
+        });
+        this.storage.get('token').then(function (val) {
+            _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
+                params: {
+                    status: 'ISDP Open',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
+                }
+            }).subscribe(function (result) {
+                _this.jobopen = result;
+            });
+            _this.http.get('https://jmclicks.com/api/notifications/getJob?token=' + val.token, { params: { type: "Job ISDP Open" } }).subscribe(function (result) {
+                var t = _this;
+                result.notifications.map(function (value) {
+                    t.notifications[value.TargetId] = value;
+                });
+            });
+        });
+        this.storage.get('token').then(function (val) {
+            _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
+                params: {
+                    status: 'ISDP Close',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
+                }
+            }).subscribe(function (result) {
+                _this.jobclose = result;
+            });
+            _this.http.get('https://jmclicks.com/api/notifications/getJob?token=' + val.token, { params: { type: "Job ISDP Close" } }).subscribe(function (result) {
+                var t = _this;
+                result.notifications.map(function (value) {
+                    t.notifications[value.TargetId] = value;
+                });
+            });
+        });
     };
+    AllJobPage.prototype.details = function (d) {
+        var nav = this.app.getRootNav();
+        nav.push(__WEBPACK_IMPORTED_MODULE_8__jobdetails_jobdetails__["a" /* JobDetailsPage */], d);
+    };
+    AllJobPage.prototype.onCancel = function (ev) {
+        // Reset the field
+        console.log('reset');
+        ev.target.value = '';
+        this.loadData();
+    };
+    AllJobPage.prototype.getList0 = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.joball = this.joball.filter(function (item) {
+                return ((item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1)
+                    // || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    // || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || (item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1)
+                    || (item.Site_ID && item.Site_ID.toLowerCase().indexOf(serVal.toLowerCase()) > -1)
+                    || (item.Site_Name && item.Site_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1));
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
+    AllJobPage.prototype.getList1 = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.job = this.job.filter(function (item) {
+                return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
+    AllJobPage.prototype.getList2 = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.job2 = this.job2.filter(function (item) {
+                return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
+    AllJobPage.prototype.getList3 = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.job3 = this.job3.filter(function (item) {
+                return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
+    AllJobPage.prototype.getList4 = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.jobopen = this.jobopen.filter(function (item) {
+                return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
+    AllJobPage.prototype.getList5 = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.jobclose = this.jobclose.filter(function (item) {
+                return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('slider'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["y" /* Slides */])
+    ], AllJobPage.prototype, "slider", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("segments"),
+        __metadata("design:type", Object)
+    ], AllJobPage.prototype, "segments", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["y" /* Slides */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["y" /* Slides */])
+    ], AllJobPage.prototype, "slides", void 0);
     AllJobPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-alljob',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/alljob/alljob.html"*/'<ion-header>\n\n    <ion-navbar color="secondary">\n      <ion-title>My Job</ion-title>\n    </ion-navbar>\n\n  </ion-header>\n\n  <ion-content>\n    <ion-tabs tabsPlacement= \'top\'>\n      <ion-tab [root]="tab1" [tabBadge]="progressBadge" tabTitle="In-Progress" tabsHideOnSubPages="true"></ion-tab>\n      <ion-tab [root]="tab2" [tabBadge]="kivBadge" tabTitle="KIV" tabsHideOnSubPages="true" ></ion-tab>\n      <ion-tab [root]="tab3" [tabBadge]="completeBadge" tabTitle="Completed" tabsHideOnSubPages="true" ></ion-tab>\n      <ion-tab [root]="tab4" [tabBadge]="rejectedBadge" tabTitle="Rejected" tabsHideOnSubPages="true" ></ion-tab>\n    </ion-tabs>\n  </ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/alljob/alljob.html"*/,
+            selector: 'page-alljob',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/alljob/alljob.html"*/'<!-- \n<ion-header>\n\n  <ion-navbar color="secondary">\n    <ion-list>\n\n    </ion-list>\n    <ion-row>\n      <ion-col>\n        <ion-title>My Job</ion-title>\n      </ion-col>\n      <ion-col>\n        <ion-searchbar showCancelButton="always"></ion-searchbar>\n      </ion-col>\n    </ion-row>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-tabs tabsPlacement= \'top\'>\n    \n    <ion-tab [root]="tab1" [tabBadge]="progressBadge" tabTitle="In-Progress" tabsHideOnSubPages="true" [rootParams]="tab1Params"></ion-tab>\n    <ion-tab [root]="tab2" [tabBadge]="kivBadge" tabTitle="KIV" tabsHideOnSubPages="true" [rootParams]="tab2Params" ></ion-tab>\n    <ion-tab [root]="tab3" [tabBadge]="completeBadge" tabTitle="Completed" tabsHideOnSubPages="true" [rootParams]="tab3Params" ></ion-tab>\n    <ion-tab [root]="tab4" [tabBadge]="rejectedBadge" tabTitle="Rejected" tabsHideOnSubPages="true" [rootParams]="tab4Params" ></ion-tab>\n  </ion-tabs>\n</ion-content> -->\n\n    <!-- <ion-tabs tabsPlacement= \'top\'>\n    <ion-grid>\n      <ion-slides pager>\n\n        <ion-slide>\n          <div class="slide" (click)=int1()>\n            <ion-tab [root]="tab1" [tabBadge]="progressBadge" tabTitle="In-Progress" tabsHideOnSubPages="true" [rootParams]="tab1Params"></ion-tab>\n            <br>\n              <br>\n            </div>\n        </ion-slide>\n\n        <ion-slide>\n          <div class="slide" (click)=int1()>\n            <ion-tab [root]="tab1" [tabBadge]="progressBadge" tabTitle="In-Progress" tabsHideOnSubPages="true" [rootParams]="tab1Params"></ion-tab>\n            <br>\n              <br>\n            </div>\n        </ion-slide>\n  \n        <ion-slide>\n          <ion-tab [root]="tab2" [tabBadge]="kivBadge" tabTitle="KIV" tabsHideOnSubPages="true" [rootParams]="tab2Params" ></ion-tab>\n        </ion-slide>\n  \n        <ion-slide>\n          <ion-tab [root]="tab3" [tabBadge]="completeBadge" tabTitle="Completed" tabsHideOnSubPages="true" [rootParams]="tab3Params" ></ion-tab>\n        </ion-slide>\n  \n        <ion-slide>\n          <ion-tab [root]="tab4" [tabBadge]="rejectedBadge" tabTitle="Rejected" tabsHideOnSubPages="true" [rootParams]="tab4Params" ></ion-tab>\n        </ion-slide>\n\n      </ion-slides>\n    </ion-grid>\n  </ion-tabs>\n  </ion-content> -->\n\n  <ion-header mode="md">\n    <ion-navbar color="secondary">\n      <ion-row>\n        <ion-col>\n          <ion-title>My Job</ion-title>\n        </ion-col>\n        <!-- <ion-col>\n          <ion-searchbar showCancelButton="always"></ion-searchbar>\n        </ion-col> -->\n      </ion-row>    \n    </ion-navbar>\n    <ion-toolbar mode="md" color="light">\n        <ion-segment #segments mode="md" [(ngModel)]="page" >\n            \n            <ion-segment-button value="0" (click)="selectedTab(0)">\n              All Job           \n            </ion-segment-button>\n            <ion-segment-button value="1" (click)="selectedTab(1)">\n              In-Progress            \n            </ion-segment-button>\n            <ion-segment-button value="2" (click)="selectedTab(2)">\n                KIV\n            </ion-segment-button>\n            <ion-segment-button value="3" (click)="selectedTab(3)">\n                Completed\n            </ion-segment-button>\n            <ion-segment-button value="4" (click)="selectedTab(4)">\n                ISDP Open\n            </ion-segment-button>\n            <ion-segment-button value="5" (click)="selectedTab(5)">\n                ISDP Close\n            </ion-segment-button>\n        </ion-segment>\n    </ion-toolbar>\n</ion-header>\n<ion-content padding>\n    <ion-slides #slider (ionSlideDidChange)="slideChanged()">\n        <ion-slide>\n          <div *ngIf="joball && joball.length < 1">\n            <p class="none">No record found</p>\n          </div>\n          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList0($event)"></ion-searchbar>\n      \n          <ion-item  *ngFor="let j of joball" (click)="details(j)">\n            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n              <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n            </ion-avatar>\n            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n            <h3>PR NO: {{j.pr_no}}</h3>\n            <p>Project Name: {{j.Project_Name}}</p>\n            <p>Site Id: {{j.Site_ID}}</p>\n            <p>Site Code: {{j.Site_Name}} </p>\n            <p>Created At: {{j.created_at}}</p>\n          </ion-item>\n        </ion-slide>\n        <ion-slide>\n          <div *ngIf="job && job.length < 1">\n            <p class="none">No record found</p>\n          </div>\n          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList1($event)"></ion-searchbar>\n      \n          <ion-item  *ngFor="let j of job" (click)="details(j)">\n            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n              <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n            </ion-avatar>\n            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n            <h3>PR NO: {{j.pr_no}}</h3>\n            <p>Project Name: {{j.Project_Name}}</p>\n            <p>Site Id: {{j.Site_ID}}</p>\n            <p>Site Code: {{j.Site_Name}} </p>\n            <p>Created At: {{j.created_at}}</p>\n          </ion-item>\n        </ion-slide>\n        <ion-slide>\n          <div *ngIf="job2 && job2.length < 1">\n            <p class="none">No record found</p>\n          </div>\n          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList2($event)"></ion-searchbar>\n        \n          <ion-item  *ngFor="let j of job2" (click)="details(j)">\n            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n              <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n            </ion-avatar>\n            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n            <h3>PR NO: {{j.pr_no}}</h3>\n            <p>Project Name: {{j.Project_Name}}</p>\n            <p>Site Id: {{j.Site_ID}}</p>\n            <p>Site Code: {{j.Site_Name}} </p>\n            <p>Created At: {{j.created_at}}</p>\n        \n          </ion-item>\n        </ion-slide>\n        <ion-slide>\n          <div *ngIf="job3 && job3.length < 1">\n            <p class="none">No record found</p>\n          </div>\n          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList3($event)"></ion-searchbar>\n        \n          <ion-item  *ngFor="let j of job3" (click)="details(j)">\n            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n              <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n            </ion-avatar>\n            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n            <h3>PR NO: {{j.pr_no}}</h3>\n            <p>Project Name: {{j.Project_Name}}</p>\n            <p>Site Id: {{j.Site_ID}}</p>\n            <p>Site Code: {{j.Site_Name}} </p>\n            <p>Created At: {{j.created_at}}</p>\n          </ion-item>\n        </ion-slide>\n        <ion-slide>\n          <div *ngIf="jobopen && jobopen.length < 1">\n            <p class="none">No record found</p>\n          </div>\n          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList4($event)"></ion-searchbar>\n      \n          <ion-item  *ngFor="let j of jobopen" (click)="details(j)">\n            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n              <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n            </ion-avatar>\n            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n            <h3>PR NO: {{j.pr_no}}</h3>\n            <p>Project Name: {{j.Project_Name}}</p>\n            <p>Site Id: {{j.Site_ID}}</p>\n            <p>Site Code: {{j.Site_Name}} </p>\n            <p>Created At: {{j.created_at}}</p>\n          </ion-item>\n        </ion-slide>\n        <ion-slide>\n          <div *ngIf="jobclose && jobclose.length < 1">\n            <p class="none">No record found</p>\n          </div>\n          <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList5($event)"></ion-searchbar>\n      \n          <ion-item  *ngFor="let j of jobclose" (click)="details(j)">\n            <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n              <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n            </ion-avatar>\n            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n            <h3>PR NO: {{j.pr_no}}</h3>\n            <p>Project Name: {{j.Project_Name}}</p>\n            <p>Site Id: {{j.Site_ID}}</p>\n            <p>Site Code: {{j.Site_Name}} </p>\n            <p>Created At: {{j.created_at}}</p>\n          </ion-item>        </ion-slide>\n    </ion-slides>\n</ion-content>'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/alljob/alljob.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
     ], AllJobPage);
     return AllJobPage;
 }());
@@ -8930,16 +9603,16 @@ var AllJobPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 560:
+/***/ 562:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JobProgressPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__jobdetails_jobdetails__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobdetails_jobdetails__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8954,19 +9627,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var JobProgressPage = /** @class */ (function () {
-    function JobProgressPage(http, storage, app) {
+    function JobProgressPage(http, storage, app, navCtrl, navParams) {
         this.http = http;
         this.storage = storage;
         this.app = app;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
         this.notifications = [];
+        this.start = this.navParams.get('start');
+        this.end = this.navParams.get('end');
+        console.log(this.start);
+        console.log(this.end);
     }
     JobProgressPage.prototype.loaddata = function () {
         var _this = this;
         this.storage.get('token').then(function (val) {
             _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
                 params: {
-                    status: 'In-Progress'
+                    status: 'In-Progress',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
                 }
             }).subscribe(function (result) {
                 _this.job = result;
@@ -8981,18 +9663,43 @@ var JobProgressPage = /** @class */ (function () {
     };
     JobProgressPage.prototype.details = function (d) {
         var nav = this.app.getRootNav();
-        nav.push(__WEBPACK_IMPORTED_MODULE_3__jobdetails_jobdetails__["a" /* JobDetailsPage */], d);
+        nav.push(__WEBPACK_IMPORTED_MODULE_4__jobdetails_jobdetails__["a" /* JobDetailsPage */], d);
     };
     JobProgressPage.prototype.ionViewWillEnter = function () {
         this.loaddata();
     };
+    JobProgressPage.prototype.onCancel = function (ev) {
+        // Reset the field
+        console.log('reset');
+        ev.target.value = '';
+        this.loaddata();
+    };
+    JobProgressPage.prototype.getList = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.job = this.job.filter(function (item) {
+                return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
     JobProgressPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-jobprogress',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobprogress/jobprogress.html"*/'<ion-content>\n    <div *ngIf="job && job.length < 1">\n      <p class="none">No record found</p>\n    </div>\n    <ion-item  *ngFor="let j of job" (click)="details(j)">\n      <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n        <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n      </ion-avatar>\n      <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n      <h3>PR NO: {{j.pr_no}}</h3>\n      <p>Project Name: {{j.Project_Name}}</p>\n      <p>Created By: {{j.requestorName}}</p>\n      <p>Created At: {{j.created_at}}</p>\n    </ion-item>\n\n  </ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobprogress/jobprogress.html"*/,
+            selector: 'page-jobprogress',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobprogress/jobprogress.html"*/'<ion-content>\n    <div *ngIf="job && job.length < 1">\n      <p class="none">No record found</p>\n    </div>\n    <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList($event)"></ion-searchbar>\n\n    <ion-item  *ngFor="let j of job" (click)="details(j)">\n      <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n        <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n      </ion-avatar>\n      <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n      <h3>PR NO: {{j.pr_no}}</h3>\n      <p>Project Name: {{j.Project_Name}}</p>\n      <p>Site Id: {{j.Site_ID}}</p>\n      <p>Side Code: {{j.Site_Name}} </p>\n      <p>Created At: {{j.created_at}}</p>\n    </ion-item>\n\n  </ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobprogress/jobprogress.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* App */]])
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["v" /* NavParams */]])
     ], JobProgressPage);
     return JobProgressPage;
 }());
@@ -9001,16 +9708,16 @@ var JobProgressPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 561:
+/***/ 563:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JobKivPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__jobdetails_jobdetails__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobdetails_jobdetails__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9025,19 +9732,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var JobKivPage = /** @class */ (function () {
-    function JobKivPage(http, storage, app) {
+    function JobKivPage(http, storage, app, navCtrl, navParams) {
         this.http = http;
         this.storage = storage;
         this.app = app;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
         this.notifications = [];
+        this.end = this.navParams.get('end');
+        this.start = this.navParams.get('start');
+        console.log(this.start);
     }
     JobKivPage.prototype.loaddata = function () {
         var _this = this;
         this.storage.get('token').then(function (val) {
             _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
                 params: {
-                    status: 'KIV'
+                    status: 'KIV',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
                 }
             }).subscribe(function (result) {
                 _this.job = result;
@@ -9052,18 +9767,43 @@ var JobKivPage = /** @class */ (function () {
     };
     JobKivPage.prototype.details = function (d) {
         var nav = this.app.getRootNav();
-        nav.push(__WEBPACK_IMPORTED_MODULE_3__jobdetails_jobdetails__["a" /* JobDetailsPage */], d);
+        nav.push(__WEBPACK_IMPORTED_MODULE_4__jobdetails_jobdetails__["a" /* JobDetailsPage */], d);
     };
     JobKivPage.prototype.ionViewWillEnter = function () {
         this.loaddata();
     };
+    JobKivPage.prototype.onCancel = function (ev) {
+        // Reset the field
+        console.log('reset');
+        ev.target.value = '';
+        this.loaddata();
+    };
+    JobKivPage.prototype.getList = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.job = this.job.filter(function (item) {
+                return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
     JobKivPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-jobkiv',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobkiv/jobkiv.html"*/'<ion-content>\n  <div *ngIf="job && job.length < 1">\n    <p class="none">No record found</p>\n  </div>\n  <ion-item  *ngFor="let j of job" (click)="details(j)">\n    <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n      <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n    </ion-avatar>\n    <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n    <h3>PR NO: {{j.pr_no}}</h3>\n    <p>Project Name: {{j.Project_Name}}</p>\n    <p>Created By: {{j.requestorName}}</p>\n    <p>Created At: {{j.created_at}}</p>\n\n  </ion-item>\n\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobkiv/jobkiv.html"*/,
+            selector: 'page-jobkiv',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobkiv/jobkiv.html"*/'<ion-content>\n  <div *ngIf="job && job.length < 1">\n    <p class="none">No record found</p>\n  </div>\n  <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList($event)"></ion-searchbar>\n\n  <ion-item  *ngFor="let j of job" (click)="details(j)">\n    <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n      <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n    </ion-avatar>\n    <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n    <h3>PR NO: {{j.pr_no}}</h3>\n    <p>Project Name: {{j.Project_Name}}</p>\n    <p>Site Id: {{j.Site_ID}}</p>\n    <p>Side Code: {{j.Site_Name}} </p>\n    <p>Created At: {{j.created_at}}</p>\n\n\n  </ion-item>\n\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobkiv/jobkiv.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* App */]])
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["v" /* NavParams */]])
     ], JobKivPage);
     return JobKivPage;
 }());
@@ -9072,16 +9812,16 @@ var JobKivPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 562:
+/***/ 564:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JobCompletePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__jobdetails_jobdetails__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobdetails_jobdetails__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9096,19 +9836,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var JobCompletePage = /** @class */ (function () {
-    function JobCompletePage(http, storage, app) {
+    function JobCompletePage(http, storage, app, navCtrl, navParams) {
         this.http = http;
         this.storage = storage;
         this.app = app;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
         this.notifications = [];
+        this.end = this.navParams.get('end');
+        this.start = this.navParams.get('start');
+        console.log(this.start);
     }
     JobCompletePage.prototype.loaddata = function () {
         var _this = this;
         this.storage.get('token').then(function (val) {
             _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
                 params: {
-                    status: 'Complete'
+                    status: 'Complete',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
                 }
             }).subscribe(function (result) {
                 _this.job = result;
@@ -9123,18 +9871,43 @@ var JobCompletePage = /** @class */ (function () {
     };
     JobCompletePage.prototype.details = function (d) {
         var nav = this.app.getRootNav();
-        nav.push(__WEBPACK_IMPORTED_MODULE_3__jobdetails_jobdetails__["a" /* JobDetailsPage */], d);
+        nav.push(__WEBPACK_IMPORTED_MODULE_4__jobdetails_jobdetails__["a" /* JobDetailsPage */], d);
     };
     JobCompletePage.prototype.ionViewWillEnter = function () {
         this.loaddata();
     };
+    JobCompletePage.prototype.onCancel = function (ev) {
+        // Reset the field
+        console.log('reset');
+        ev.target.value = '';
+        this.loaddata();
+    };
+    JobCompletePage.prototype.getList = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.job = this.job.filter(function (item) {
+                return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
     JobCompletePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-jobcomplete',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobcomplete/jobcomplete.html"*/'<ion-content>\n  <div *ngIf="job && job.length < 1">\n    <p class="none">No record found</p>\n  </div>\n  <ion-item  *ngFor="let j of job" (click)="details(j)">\n    <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n      <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n    </ion-avatar>\n    <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n    <h3>PR NO: {{j.pr_no}}</h3>\n    <p>Project Name: {{j.Project_Name}}</p>\n    <p>Created By: {{j.requestorName}}</p>\n    <p>Created At: {{j.created_at}}</p>\n  </ion-item>\n\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobcomplete/jobcomplete.html"*/,
+            selector: 'page-jobcomplete',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobcomplete/jobcomplete.html"*/'<ion-content>\n  <div *ngIf="job && job.length < 1">\n    <p class="none">No record found</p>\n  </div>\n  <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList($event)"></ion-searchbar>\n\n  <ion-item  *ngFor="let j of job" (click)="details(j)">\n    <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n      <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n    </ion-avatar>\n    <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n    <h3>PR NO: {{j.pr_no}}</h3>\n    <p>Project Name: {{j.Project_Name}}</p>\n    <p>Site Id: {{j.Site_ID}}</p>\n    <p>Side Code: {{j.Site_Name}} </p>\n    <p>Created At: {{j.created_at}}</p>\n  </ion-item>\n\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobcomplete/jobcomplete.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* App */]])
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["v" /* NavParams */]])
     ], JobCompletePage);
     return JobCompletePage;
 }());
@@ -9143,16 +9916,16 @@ var JobCompletePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 563:
+/***/ 565:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JobRejectedPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__jobdetails_jobdetails__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobdetails_jobdetails__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9167,19 +9940,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var JobRejectedPage = /** @class */ (function () {
-    function JobRejectedPage(http, storage, app) {
+    function JobRejectedPage(http, storage, app, navCtrl, navParams) {
         this.http = http;
         this.storage = storage;
         this.app = app;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
         this.notifications = [];
+        this.end = this.navParams.get('end');
+        this.start = this.navParams.get('start');
+        console.log(this.start);
     }
     JobRejectedPage.prototype.loaddata = function () {
         var _this = this;
         this.storage.get('token').then(function (val) {
             _this.http.get('https://jmclicks.com/api/myjob/getMyJob?token=' + val.token, {
                 params: {
-                    status: 'Rejected'
+                    status: 'Rejected',
+                    Start_Date: _this.start,
+                    End_Date: _this.end
                 }
             }).subscribe(function (result) {
                 _this.job = result;
@@ -9194,18 +9975,43 @@ var JobRejectedPage = /** @class */ (function () {
     };
     JobRejectedPage.prototype.details = function (d) {
         var nav = this.app.getRootNav();
-        nav.push(__WEBPACK_IMPORTED_MODULE_3__jobdetails_jobdetails__["a" /* JobDetailsPage */], d);
+        nav.push(__WEBPACK_IMPORTED_MODULE_4__jobdetails_jobdetails__["a" /* JobDetailsPage */], d);
     };
     JobRejectedPage.prototype.ionViewWillEnter = function () {
         this.loaddata();
     };
+    JobRejectedPage.prototype.onCancel = function (ev) {
+        // Reset the field
+        console.log('reset');
+        ev.target.value = '';
+        this.loaddata();
+    };
+    JobRejectedPage.prototype.getList = function (ev) {
+        // this.loadData();
+        console.log(ev.target.value);
+        // this.gen();
+        var serVal = ev.target.value;
+        if (serVal && serVal.trim() != '') {
+            this.job = this.job.filter(function (item) {
+                return (item.Company_Name.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.acceptedName.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.payment_terms.toLowerCase().indexOf(serVal.toLowerCase()) > -1
+                    || item.pr_no.toLowerCase().indexOf(serVal.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.onCancel(ev);
+        }
+    };
     JobRejectedPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-jobrejected',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobrejected/jobrejected.html"*/'<ion-content>\n  <div *ngIf="job && job.length < 1">\n    <p class="none">No record found</p>\n  </div>\n  <ion-item  *ngFor="let j of job" (click)="details(j)">\n    <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n      <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n    </ion-avatar>\n    <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n    <h3>PR NO: {{j.pr_no}}</h3>\n    <p>Project Name: {{j.Project_Name}}</p>\n    <p>Created By: {{j.requestorName}}</p>\n    <p>Created At: {{j.created_at}}</p>\n  </ion-item>\n\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobrejected/jobrejected.html"*/,
+            selector: 'page-jobrejected',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobrejected/jobrejected.html"*/'<ion-content>\n  <div *ngIf="job && job.length < 1">\n    <p class="none">No record found</p>\n  </div>\n  <ion-searchbar showCancelButton="always" #mySearchbar (ionInput)="getList($event)"></ion-searchbar>\n\n  <ion-item  *ngFor="let j of job" (click)="details(j)">\n    <ion-avatar item-start width="20px" height="20px" class="ion-avatar">\n      <img src="assets/img/leave status (2).png"  width="20px" height="20px">\n    </ion-avatar>\n    <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[j.Id] ? \'New \': \'\'}}</b></p>\n    <h3>PR NO: {{j.pr_no}}</h3>\n    <p>Project Name: {{j.Project_Name}}</p>\n    <p>Site Id: {{j.Site_ID}}</p>\n    <p>Side Code: {{j.Site_Name}} </p>\n    <p>Created At: {{j.created_at}}</p>\n  </ion-item>\n\n</ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobrejected/jobrejected.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* App */]])
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["v" /* NavParams */]])
     ], JobRejectedPage);
     return JobRejectedPage;
 }());
@@ -9214,7 +10020,7 @@ var JobRejectedPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 564:
+/***/ 566:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9230,7 +10036,7 @@ var JobRejectedPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_opener__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__scheduledetails_scheduledetails__ = __webpack_require__(565);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__scheduledetails_scheduledetails__ = __webpack_require__(567);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9374,7 +10180,7 @@ var SchedulesPage = /** @class */ (function () {
             });
         });
         this.storage.get('token').then(function (val) {
-            _this.http.get('https://jmclicks.com/api/notifications/getnoticebadge?token=' + val.token).subscribe(function (result) {
+            _this.http.get('https://jmclicks.com/api/notifications/getScheduleBadge?token=' + val.token).subscribe(function (result) {
                 var that = _this;
                 result.notifications.map(function (value) {
                     that.notifications[value.TargetId] = value;
@@ -9385,7 +10191,7 @@ var SchedulesPage = /** @class */ (function () {
     };
     SchedulesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-schedules',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/schedules/schedules.html"*/'<!--\n\n  Generated template for the NoticePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="secondary">\n\n      <ion-title>Schedules</ion-title>\n\n    </ion-navbar>\n\n  \n\n  </ion-header>  \n\n    \n\n  <ion-content class="ion-content background">\n\n    <ion-list >\n\n      <ion-col *ngFor="let item of items;">\n\n        <ion-grid [navPush]="scheduledetailspage" [navParams]="item">\n\n          <ion-item>\n\n            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[item.Id] ? \'New \': \'\'}}</b></p>\n\n            <!-- <ion-avatar item-start class="ion-avatar">\n\n              <ion-icon ios="ios-megaphone" md="md-megaphone" style="zoom:2.0;"></ion-icon>\n\n            </ion-avatar> -->\n\n            <div class="date">\n\n              <p>{{item.Start_Date}}</p>\n\n            </div>\n\n            <div text-wrap>\n\n              <h2>{{item.Event}}</h2>\n\n            </div>\n\n          </ion-item>\n\n        </ion-grid>\n\n      </ion-col>\n\n    </ion-list>\n\n  </ion-content>\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/schedules/schedules.html"*/,
+            selector: 'page-schedules',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/schedules/schedules.html"*/'<!--\n\n  Generated template for the NoticePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="secondary">\n\n      <ion-title>Schedules</ion-title>\n\n    </ion-navbar>\n\n  \n\n  </ion-header>  \n\n    \n\n  <ion-content class="ion-content background">\n\n    <ion-list >\n\n      <ion-col *ngFor="let item of items;">\n\n        <ion-grid [navPush]="scheduledetailspage" [navParams]="item">\n\n          <ion-item>\n\n            <p style="color:blueviolet" ALIGN=RIGHT ><b>{{ notifications[item.ScheduleId] ? \'New \': \'\'}}</b></p>\n\n            <!-- <ion-avatar item-start class="ion-avatar">\n\n              <ion-icon ios="ios-megaphone" md="md-megaphone" style="zoom:2.0;"></ion-icon>\n\n            </ion-avatar> -->\n\n            <div class="date">\n\n              <p>{{item.Start_Date}}</p>\n\n            </div>\n\n            <div text-wrap>\n\n              <h2>{{item.Event}}</h2>\n\n            </div>\n\n          </ion-item>\n\n        </ion-grid>\n\n      </ion-col>\n\n    </ion-list>\n\n  </ion-content>\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/schedules/schedules.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
@@ -9409,7 +10215,7 @@ var SchedulesPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 565:
+/***/ 567:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9484,6 +10290,9 @@ var ScheduledetailsPage = /** @class */ (function () {
         this.Venue = this.navParams.get('Venue');
         this.Time = this.navParams.get('Time');
         this.Remarks = this.navParams.get('Remarks');
+        this.ScheduleId = this.navParams.get('ScheduleId');
+        console.log('Id', this.Id);
+        console.log('scheduleid', this.ScheduleId);
     }
     ScheduledetailsPage.prototype.download = function (Attachment, FileName) {
         var _this = this;
@@ -9558,7 +10367,7 @@ var ScheduledetailsPage = /** @class */ (function () {
             data.subscribe(function (result) {
                 _this.items = result;
             });
-            _this.http.post('https://jmclicks.com/api/notifications/updatenoticebadge?token=' + val.token, { TargetId: _this.Id }).subscribe(function (result) {
+            _this.http.post('https://jmclicks.com/api/notifications/updateScheduleCount?token=' + val.token, { TargetId: _this.ScheduleId }).subscribe(function (result) {
                 console.log(result);
             });
         });
@@ -9589,7 +10398,7 @@ var ScheduledetailsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 566:
+/***/ 568:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9605,7 +10414,7 @@ var ScheduledetailsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_opener__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__assetonhand_assetonhand__ = __webpack_require__(567);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__assetonhand_assetonhand__ = __webpack_require__(569);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9781,7 +10590,7 @@ var AssetPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 567:
+/***/ 569:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9793,12 +10602,14 @@ var AssetPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_image_loader__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_document_viewer__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_opener__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__assethistory_assethistory__ = __webpack_require__(568);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__assettransfer_assettransfer__ = __webpack_require__(569);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_opener__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_platform_browser__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_camera__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__assethistory_assethistory__ = __webpack_require__(570);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__assettransfer_assettransfer__ = __webpack_require__(571);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__assetreport_assetreport__ = __webpack_require__(572);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9808,6 +10619,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -9835,7 +10648,7 @@ var httpOptions = {
  * Ionic pages and navigation.
  */
 var AssetonhandPage = /** @class */ (function () {
-    function AssetonhandPage(navCtrl, navParams, camera, domSanitizer, app, http, storage, ionicImageLoader, document, file, transfer, platform, alertCtrl, fileOpener) {
+    function AssetonhandPage(navCtrl, navParams, camera, domSanitizer, app, http, storage, ionicImageLoader, document, file, transfer, toast, platform, alertCtrl, fileOpener) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.camera = camera;
@@ -9847,15 +10660,18 @@ var AssetonhandPage = /** @class */ (function () {
         this.document = document;
         this.file = file;
         this.transfer = transfer;
+        this.toast = toast;
         this.platform = platform;
         this.alertCtrl = alertCtrl;
         this.fileOpener = fileOpener;
-        this.assethistory = __WEBPACK_IMPORTED_MODULE_11__assethistory_assethistory__["a" /* AssethistoryPage */];
-        this.assettransfer = __WEBPACK_IMPORTED_MODULE_12__assettransfer_assettransfer__["a" /* AssettransferPage */];
+        this.assethistory = __WEBPACK_IMPORTED_MODULE_12__assethistory_assethistory__["a" /* AssethistoryPage */];
+        this.assettransfer = __WEBPACK_IMPORTED_MODULE_13__assettransfer_assettransfer__["a" /* AssettransferPage */];
         this.token = '';
         this.TrackingId = '';
         this.asset = '';
         this.transferstaff = '';
+        this.Holder = '';
+        this.Acknowledge_Date_Time = '';
         this.loadData();
         this.Id = this.navParams.get('Id');
         this.Label = this.navParams.get('Label');
@@ -9871,11 +10687,14 @@ var AssetonhandPage = /** @class */ (function () {
         this.Remarks = this.navParams.get('Remarks');
         this.AssetId = this.navParams.get('AssetId');
         this.TrackingId = this.navParams.get('TrackingId');
+        this.Holder = this.navParams.get('Holder');
+        this.Acknowledge_Date_Time = this.navParams.get('Acknowledge_Date_Time');
+        console.log('holder', this.Holder);
         this.asset = { AssetId: this.AssetId };
         this.transferstaff = { AssetId: this.AssetId, Id: this.Id, TrackingId: this.TrackingId };
         console.log(this.Id);
         console.log(this.AssetId);
-        console.log(this.TrackingId);
+        console.log('track', this.TrackingId);
     }
     AssetonhandPage.prototype.loadData = function () {
         var data;
@@ -9891,26 +10710,84 @@ var AssetonhandPage = /** @class */ (function () {
         });
     };
     AssetonhandPage.prototype.Transfer = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_12__assettransfer_assettransfer__["a" /* AssettransferPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_13__assettransfer_assettransfer__["a" /* AssettransferPage */]);
+    };
+    AssetonhandPage.prototype.report = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_14__assetreport_assetreport__["a" /* AssetreportPage */], {
+            AssetId: this.AssetId,
+            TrackingId: this.TrackingId
+        });
+        console.log(this.AssetId, 'asse');
+    };
+    AssetonhandPage.prototype.Acknowledge = function () {
+        var _this = this;
+        this.storage.get("token").then(function (val) {
+            var confirm = _this.alertCtrl.create({
+                title: "Acknowledge",
+                message: "Click for Acknowledge",
+                buttons: [
+                    {
+                        text: "Acknowledge",
+                        handler: function () {
+                            _this.http
+                                .post("https://jmclicks.com/api/assetacknowledge?token=" + val.token, {
+                                TrackingId: _this.TrackingId
+                            }, httpOptions)
+                                .subscribe(function (res) {
+                                if (res == 1) {
+                                    // this.loadData();
+                                    _this.navCtrl.pop();
+                                    _this.toast
+                                        .show("Acknowledged", "3000", "center")
+                                        .subscribe(function (toast) {
+                                        // console.log(toast);
+                                    });
+                                }
+                                else {
+                                    _this.displayErrorAlert("Acknowledge operation failed!");
+                                }
+                            });
+                        },
+                    },
+                    {
+                        text: "Cancel",
+                        handler: function () {
+                            // console.log("no clicked");
+                        },
+                    },
+                ],
+            });
+            confirm.present();
+        });
+    };
+    AssetonhandPage.prototype.displayErrorAlert = function (err) {
+        console.log(err);
+        var alert = this.alertCtrl.create({
+            title: "Error",
+            subTitle: err,
+            buttons: ["OK"],
+        });
+        alert.present();
     };
     AssetonhandPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-assetonhand',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetonhand/assetonhand.html"*/'\n\n<ion-header>\n\n  <ion-navbar color="secondary">\n\n    <ion-title>Asset on hand detail</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n  \n\n<ion-content padding class="ion-content">\n\n  <div class="notice-body">\n\n    <div class="date" hidden>\n\n      <p>{{Start_Date}}</p>\n\n      <p>{{created_at}}</p>\n\n      <p>submitted by: {{Created_By}}</p>\n\n    </div>\n\n\n\n    <div class="title-notice">\n\n      <br>\n\n      <h1>{{Title}}</h1>\n\n    </div>\n\n\n\n    <div class="notice-content">\n\n      <ion-card class="text" text-wrap>\n\n        <pre>Label: {{Label}}</pre>\n\n        <p>Type: {{Type}} </p>\n\n        <p>Serial No: {{Serial_No}} </p>\n\n        <p>IMEI: {{EMEI}} </p>\n\n        <p>Model No: {{Model_No}} </p>\n\n        <p>Car No: {{Car_No}} </p>\n\n        <p>Color: {{Color}}</p>\n\n        <p>Taken Date: {{Date}}</p>\n\n        <p>Transfer To: {{Transfer_To}}</p>\n\n        <p>Transfer Date Time: {{Transfer_Date_Time}}</p>\n\n        <p>Remarks: {{Remarks}}</p>\n\n      </ion-card>\n\n    </div>\n\n\n\n  </div>\n\n\n\n  <br>\n\n  <button full ion-button type="button" [navPush]="assethistory" [navParams]="asset">History</button>\n\n  <button full ion-button type="button" [navPush]="assettransfer" [navParams]="transferstaff">Transfer</button>\n\n</ion-content>\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetonhand/assetonhand.html"*/,
+            selector: 'page-assetonhand',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetonhand/assetonhand.html"*/'\n\n<ion-header>\n\n  <ion-navbar color="secondary">\n\n    <ion-title>Asset on hand detail</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n  \n\n<ion-content padding class="ion-content">\n\n  <div class="notice-body">\n\n    <div class="date" hidden>\n\n      <p>{{Start_Date}}</p>\n\n      <p>{{created_at}}</p>\n\n      <p>submitted by: {{Created_By}}</p>\n\n    </div>\n\n\n\n    <div class="title-notice">\n\n      <br>\n\n      <h1>{{Title}}</h1>\n\n    </div>\n\n\n\n    <div class="notice-content">\n\n      <ion-card class="text" text-wrap>\n\n        <pre>Label: {{Label}}</pre>\n\n        <p>Type: {{Type}} </p>\n\n        <p>Serial No: {{Serial_No}} </p>\n\n        <p>IMEI: {{EMEI}} </p>\n\n        <p>Model No: {{Model_No}} </p>\n\n        <p *ngIf="Type == \'Car\'">Car No: {{Car_No}} </p>\n\n        <p>Color: {{Color}}</p>\n\n        <p>Taken Date: {{Date}}</p>\n\n        <p>Transfer To: {{Transfer_To}}</p>\n\n        <p>Transfer Date Time: {{Transfer_Date_Time}}</p>\n\n        <p>Remarks: {{Remarks}}</p>\n\n      </ion-card>\n\n    </div>\n\n\n\n  </div>\n\n\n\n  <br>\n\n  <div *ngIf="Type == \'Car\' && Transfer_To == Holder">\n\n    <button full ion-button type="button" (click)="Acknowledge()" >Acknowledge</button>\n\n  </div>\n\n\n\n  <button full ion-button type="button" [navPush]="assethistory" [navParams]="asset">History</button>\n\n  <button *ngIf="Type == \'Car\' && Transfer_To != Holder" full ion-button type="button" [navPush]="assettransfer" [navParams]="transferstaff">Transfer</button>\n\n  <button full ion-button type="button" (click)="report()">Report</button>\n\n</ion-content>\n\n  '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetonhand/assetonhand.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__["a" /* Camera */],
-            __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["c" /* DomSanitizer */],
+            __WEBPACK_IMPORTED_MODULE_11__ionic_native_camera__["a" /* Camera */],
+            __WEBPACK_IMPORTED_MODULE_10__angular_platform_browser__["c" /* DomSanitizer */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
             __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_4_ionic_image_loader__["a" /* IonicImageLoader */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_document_viewer__["a" /* DocumentViewer */],
             __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__["a" /* File */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__["a" /* FileTransfer */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__["a" /* FileTransfer */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_toast__["a" /* Toast */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["x" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_opener__["a" /* FileOpener */]])
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_opener__["a" /* FileOpener */]])
     ], AssetonhandPage);
     return AssetonhandPage;
 }());
@@ -9919,748 +10796,7 @@ var AssetonhandPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 568:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssethistoryPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
-        'Content-Type': 'application/json'
-    })
-};
-/**
- * Generated class for the TsdetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var AssethistoryPage = /** @class */ (function () {
-    function AssethistoryPage(navCtrl, app, http, storage, navParams) {
-        this.navCtrl = navCtrl;
-        this.app = app;
-        this.http = http;
-        this.storage = storage;
-        this.navParams = navParams;
-        this.token = '';
-        this.AssetId = '';
-        this.loadData();
-        // this.Id = this.navParams.get('Id');
-        this.Start_Date = this.navParams.get('Start_Date');
-        this.Status = this.navParams.get('Status');
-        this.Time_In = this.navParams.get('Time_In');
-        this.Time_Out = this.navParams.get('Time_Out');
-        this.Check_In_Type = this.navParams.get('Check_In_Type');
-        this.No_of_Days = this.navParams.get('No_of_Days');
-        this.Site_Name = this.navParams.get('Site_Name');
-        this.Project_Name = this.navParams.get('Project_Name');
-        this.Approver = this.navParams.get('Approver');
-        console.log(this.Project_Name);
-        // this.LeaveId = this.navParams.get('Id');
-        this.AssetId = this.navParams.get('AssetId');
-        this.Holder = this.navParams.get('Holder');
-        console.log(this.AssetId);
-        // console.log(this.Id)
-    }
-    AssethistoryPage.prototype.myFunction = function (date) {
-        var d = new Date(date);
-        var weekday = new Array(7);
-        weekday[0] = "Sun";
-        weekday[1] = "Mon";
-        weekday[2] = "Tues";
-        weekday[3] = "Wed";
-        weekday[4] = "Thur";
-        weekday[5] = "Fri";
-        weekday[6] = "Sat";
-        return weekday[d.getDay()];
-    };
-    AssethistoryPage.prototype.loadData = function () {
-        var _this = this;
-        var data;
-        // Or to get a key/value pair
-        this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/assethistory?token=' + val.token + '&AssetId=' + _this.AssetId);
-            data.subscribe(function (result) {
-                _this.items = result;
-            });
-            //   this.http.post('https://jmclicks.com/api/notifications/updatenoticebadge?token='    + val.token, {TargetId: this.Id}).subscribe(result => {
-            //     console.log(result)
-            //   })
-        });
-    };
-    AssethistoryPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-assethistory',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assethistory/assethistory.html"*/'<!--\n\n  Generated template for the TsdetailPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>Item History</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="ion-content">\n\n\n\n  <ion-card *ngFor="let item of items;">\n\n\n\n    <ion-card-header color="primary">\n\n        {{item.Date}} ({{ myFunction(item.Date) }})\n\n    </ion-card-header>\n\n\n\n    <ion-card-content color="primary">\n\n      Project Name: {{item.ProjectId}}<br>        \n\n      Holder: {{item.Name}} <br>\n\n      Transfer To: {{item.TransferName}}<br>\n\n      Car No: {{item.Car_No}}<br>\n\n      Status: {{item.Status}}<br>\n\n    </ion-card-content>\n\n\n\n  </ion-card>\n\n\n\n</ion-content>\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assethistory/assethistory.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
-    ], AssethistoryPage);
-    return AssethistoryPage;
-}());
-
-//# sourceMappingURL=assethistory.js.map
-
-/***/ }),
-
-/***/ 569:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssettransferPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
-        'Content-Type': 'application/json'
-    })
-};
-var AssettransferPage = /** @class */ (function () {
-    function AssettransferPage(navCtrl, app, http, storage, loadingCtrl, toast, alertCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.app = app;
-        this.http = http;
-        this.storage = storage;
-        this.loadingCtrl = loadingCtrl;
-        this.toast = toast;
-        this.alertCtrl = alertCtrl;
-        this.navParams = navParams;
-        this.token = '';
-        this.Department = '';
-        this.Approver = '';
-        this.Staff = '';
-        this.AssetId = '';
-        this.TrackingId = '';
-        this.Staff_Name = '';
-        this.StaffOptions = [];
-        this.PIC_Type = '';
-        //this.loadData();
-        this.Project_Name = this.navParams.get('Project_Name');
-        this.Approver = this.navParams.get('Approver');
-        this.Id = this.navParams.get('Id');
-        this.LeaveId = this.navParams.get('LeaveId');
-        this.AssetId = this.navParams.get('AssetId');
-        this.TrackingId = this.navParams.get('TrackingId');
-        console.log(this.Id);
-        console.log(this.TrackingId);
-    }
-    AssettransferPage.prototype.ngOnInit = function () {
-        this.signupform = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* FormGroup */]({
-            // Department: new FormControl('',[Validators.required]),
-            // Staff: new FormControl('', [Validators.required]),
-            Staff_Name: new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_5__angular_forms__["h" /* Validators */].required]),
-            PIC_Type: new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_5__angular_forms__["h" /* Validators */].required]),
-        });
-    };
-    AssettransferPage.prototype.ionViewWillEnter = function () {
-        this.loadData();
-    };
-    AssettransferPage.prototype.setStaff = function (value) {
-        var staffArr = new Array();
-        for (var _i = 0, _a = this.Staff; _i < _a.length; _i++) {
-            var s = _a[_i];
-            if (s.User_Type == value)
-                staffArr.push(s);
-        }
-        this.StaffOptions = staffArr;
-    };
-    AssettransferPage.prototype.filterPorts = function (StaffOptions, text) {
-        return StaffOptions.filter(function (StaffOptions) {
-            if (StaffOptions.Name.toLowerCase().indexOf(text) !== -1)
-                return StaffOptions.Name;
-            console.log(StaffOptions.Name);
-        }).map(function (obj) {
-            return obj.Name;
-        });
-    };
-    AssettransferPage.prototype.searchStaff = function (event) {
-        var text = event.text.trim().toLowerCase();
-        event.component.startSearch();
-        if (text.length < 1) {
-            event.component.items = [];
-            event.component.endSearch();
-            return;
-        }
-        if (!text) {
-            event.component.items = [];
-            event.component.endSearch();
-            return;
-        }
-        event.component.items = this.filterPorts(this.StaffOptions, text);
-        console.log(event.component.items);
-        event.component.endSearch();
-    };
-    AssettransferPage.prototype.loadData = function () {
-        var _this = this;
-        var data;
-        // Or to get a key/value pair
-        this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/assetuser?token=' + val.token);
-            data.subscribe(function (result) {
-                _this.items = result;
-            });
-        });
-        this.storage.get('token').then(function (val) {
-            data = _this.http.get('https://jmclicks.com/api/getstaffasset?token=' + val.token);
-            data.subscribe(function (result) {
-                console.log(result);
-                _this.Staff = result;
-            });
-        });
-    };
-    AssettransferPage.prototype.transferstaff = function () {
-        var _this = this;
-        var confirm = this.alertCtrl.create({
-            title: 'Transfer to Staff ?',
-            message: 'Are you sure want to transfer ?',
-            buttons: [
-                {
-                    text: 'No',
-                    handler: function () {
-                        console.log('No clicked');
-                    }
-                },
-                {
-                    text: 'Yes',
-                    handler: function () {
-                        console.log('Yes clicked');
-                        _this.storage.get('token').then(function (val) {
-                            _this.http.post('https://jmclicks.com/api/assettransfer?token=' + val.token, {
-                                Name: _this.Staff_Name,
-                                TrackingId: _this.TrackingId
-                            }, httpOptions)
-                                .subscribe(function (res) {
-                                console.log(_this.Staff);
-                                console.log(_this.TrackingId);
-                                _this.navCtrl.popTo(_this.navCtrl.getByIndex(_this.navCtrl.length() - 3));
-                                console.log(res);
-                                _this.toast.show('Redirect succesfull', '5000', 'center').subscribe(function (toast) {
-                                    console.log(toast);
-                                });
-                            });
-                            // this.http.post('http://192.168.0.88:8000/jmclicks/public/api/notifications/updateleavepending?token=' + val.token, {TargetId: this.LeaveId}).subscribe(result => {
-                            //   console.log(result)
-                            // })
-                        });
-                    }
-                }
-            ]
-        });
-        confirm.present();
-    };
-    AssettransferPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-assettransfer',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assettransfer/assettransfer.html"*/'<ion-header>\n\n  <ion-navbar color="darkblue">\n\n        <ion-toolbar>\n\n            <ion-title>Asset Transfer</ion-title>\n\n        </ion-toolbar>\n\n  </ion-navbar>\n\n</ion-header>\n\n  \n\n<ion-content  class="ion-content">      \n\n  <form novalidate (ngSubmit)="transferstaff()" [formGroup]="signupform">\n\n\n\n    <ion-item>\n\n      <ion-label stacked color="primary" class="required">PIC Type</ion-label>\n\n      <ion-select placeholder="Please select" (ngModelChange)="setStaff($event)" \n\n      [(ngModel)]="PIC_Type" formControlName="PIC_Type" \n\n      [class.error1]="!signupform.controls.PIC_Type.valid && signupform.controls.PIC_Type.dirty">\n\n          <ion-option value="Staff" >Staff</ion-option>\n\n      </ion-select>\n\n   </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Transfer to [Staff]</ion-label>\n\n      <P class="error" *ngIf="signupform.get(\'Staff_Name\').hasError(\'required\') && signupform.get(\'Staff_Name\').touched">\n\n        Please select your staff\n\n        </P>\n\n      <ionic-selectable item-content placeholder="Please select"  [(ngModel)]="Staff_Name" \n\n      [items]="StaffOptions" formControlName="Staff_Name" [canSearch]="true" [canClear]="false" \n\n      (onSearch)="searchStaff($event)"\n\n      [class.error1]="!signupform.controls.Staff_Name.valid && signupform.controls.Staff_Name.dirty">\n\n      <!-- <ion-option *ngFor="let item of items" value="{{item.Id}}">{{item.Name}}</ion-option> -->\n\n    </ionic-selectable>\n\n    </ion-item>\n\n\n\n    <br><br>\n\n\n\n    <button ion-button full item-right class="doc-button" [disabled]="signupform.invalid">Submit</button>\n\n  </form>\n\n</ion-content>'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assettransfer/assettransfer.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__["a" /* Toast */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
-    ], AssettransferPage);
-    return AssettransferPage;
-}());
-
-//# sourceMappingURL=assettransfer.js.map
-
-/***/ }),
-
-/***/ 570:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(571);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(575);
-
-
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
-//# sourceMappingURL=main.js.map
-
-/***/ }),
-
-/***/ 575:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_image_loader__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_native_page_transitions__ = __webpack_require__(630);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file_transfer__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_document_viewer__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_photo_viewer__ = __webpack_require__(631);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_geolocation__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_http__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_auth_auth__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_toast__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_file_opener__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_location_accuracy__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_onesignal__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_app_preferences__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_base64__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_image_picker__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_badge__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_ionic_img_viewer__ = __webpack_require__(901);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_ng_fullcalendar__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__ionic_native_android_permissions__ = __webpack_require__(501);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_native_app_version__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ionic_native_file_chooser__ = __webpack_require__(502);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_native_file_path__ = __webpack_require__(503);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_ionic_selectable__ = __webpack_require__(911);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__app_component__ = __webpack_require__(912);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_login_login__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_home_home__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_notice_notice__ = __webpack_require__(544);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_noticedetail_noticedetail__ = __webpack_require__(545);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_leave_leave__ = __webpack_require__(505);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_leave_modal_leave_modal__ = __webpack_require__(507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_myleave_myleave__ = __webpack_require__(506);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_leavestatus_leavestatus__ = __webpack_require__(511);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_leavepending_leavepending__ = __webpack_require__(512);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_leavereject_leavereject__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_leaveapprove_leaveapprove__ = __webpack_require__(515);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_leavecancel_leavecancel__ = __webpack_require__(519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_leavependingdetail_leavependingdetail__ = __webpack_require__(513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_leaveapprovedetail_leaveapprovedetail__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__pages_leaverejectdetail_leaverejectdetail__ = __webpack_require__(518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__pages_leavecanceldetail_leavecanceldetail__ = __webpack_require__(520);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pages_myapproval_myapproval__ = __webpack_require__(508);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__pages_attendance_attendance__ = __webpack_require__(522);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__pages_timesheet_timesheet__ = __webpack_require__(523);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__pages_tsdetail_tsdetail__ = __webpack_require__(524);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__pages_holiday_holiday__ = __webpack_require__(525);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__pages_advance_advance__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__pages_siteadvance_siteadvance__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__pages_mypendingadvance_mypendingadvance__ = __webpack_require__(533);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__pages_myapproveadvance_myapproveadvance__ = __webpack_require__(529);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__pages_myrejectadvance_myrejectadvance__ = __webpack_require__(531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__pages_adminpendingadvance_adminpendingadvance__ = __webpack_require__(536);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__pages_adminapproveadvance_adminapproveadvance__ = __webpack_require__(539);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__pages_adminrejectadvance_adminrejectadvance__ = __webpack_require__(541);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__pages_myadvancestatus_myadvancestatus__ = __webpack_require__(528);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__pages_adminadvancestatus_adminadvancestatus__ = __webpack_require__(535);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__pages_mypendingdetail_mypendingdetail__ = __webpack_require__(534);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__pages_leavependingredirect_leavependingredirect__ = __webpack_require__(514);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__pages_leavebalance_leavebalance__ = __webpack_require__(521);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__pages_myapprovedetail_myapprovedetail__ = __webpack_require__(530);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__pages_myrejectdetail_myrejectdetail__ = __webpack_require__(532);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__pages_adminpendingdetail_adminpendingdetail__ = __webpack_require__(537);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__pages_adminapprovedetail_adminapprovedetail__ = __webpack_require__(540);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__pages_adminrejectdetail_adminrejectdetail__ = __webpack_require__(542);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__pages_myapprovaldetail_myapprovaldetail__ = __webpack_require__(509);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__pages_myapprovalredirect_myapprovalredirect__ = __webpack_require__(510);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__pages_adminpendingadvanceredirect_adminpendingadvanceredirect__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__pages_noticeall_noticeall__ = __webpack_require__(543);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__pages_noticecontractor_noticecontractor__ = __webpack_require__(546);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pages_noticeproject_noticeproject__ = __webpack_require__(548);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pages_noticecontractordetail_noticecontractordetail__ = __webpack_require__(547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pages_noticeprojectdetail_noticeprojectdetail__ = __webpack_require__(549);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pages_task_task__ = __webpack_require__(550);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__pages_taskassign_taskassign__ = __webpack_require__(551);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__pages_mytask_mytask__ = __webpack_require__(552);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__pages_taskdetail_taskdetail__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__pages_taskopen_taskopen__ = __webpack_require__(553);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__pages_taskclose_taskclose__ = __webpack_require__(554);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__pages_taskall_taskall__ = __webpack_require__(555);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_87__pages_myjob_myjob__ = __webpack_require__(556);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_88__pages_newjob_newjob__ = __webpack_require__(557);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_89__pages_newjobmodal_newjobmodal__ = __webpack_require__(558);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_90__pages_alljob_alljob__ = __webpack_require__(559);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_91__pages_jobprogress_jobprogress__ = __webpack_require__(560);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_92__pages_jobdetails_jobdetails__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_93__pages_jobkiv_jobkiv__ = __webpack_require__(561);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_94__pages_jobcomplete_jobcomplete__ = __webpack_require__(562);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_95__pages_jobrejected_jobrejected__ = __webpack_require__(563);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_96__pages_schedules_schedules__ = __webpack_require__(564);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_97__pages_scheduledetails_scheduledetails__ = __webpack_require__(565);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_98__pages_asset_asset__ = __webpack_require__(566);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_99__pages_assetonhand_assetonhand__ = __webpack_require__(567);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_100__pages_assethistory_assethistory__ = __webpack_require__(568);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_101__pages_assettransfer_assettransfer__ = __webpack_require__(569);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_102__ionic_native_device__ = __webpack_require__(504);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var AppModule = /** @class */ (function () {
-    function AppModule() {
-    }
-    AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_32__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_34__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_35__pages_notice_notice__["a" /* NoticePage */],
-                __WEBPACK_IMPORTED_MODULE_36__pages_noticedetail_noticedetail__["a" /* NoticedetailPage */],
-                __WEBPACK_IMPORTED_MODULE_37__pages_leave_leave__["a" /* LeavePage */],
-                __WEBPACK_IMPORTED_MODULE_38__pages_leave_modal_leave_modal__["a" /* LeaveModalPage */],
-                __WEBPACK_IMPORTED_MODULE_39__pages_myleave_myleave__["a" /* MyleavePage */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_leavestatus_leavestatus__["a" /* LeavestatusPage */],
-                __WEBPACK_IMPORTED_MODULE_41__pages_leavepending_leavepending__["a" /* LeavependingPage */],
-                __WEBPACK_IMPORTED_MODULE_42__pages_leavereject_leavereject__["a" /* LeaverejectPage */],
-                __WEBPACK_IMPORTED_MODULE_43__pages_leaveapprove_leaveapprove__["a" /* LeaveapprovePage */],
-                __WEBPACK_IMPORTED_MODULE_44__pages_leavecancel_leavecancel__["a" /* LeavecancelPage */],
-                __WEBPACK_IMPORTED_MODULE_45__pages_leavependingdetail_leavependingdetail__["a" /* LeavependingdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_46__pages_leaveapprovedetail_leaveapprovedetail__["a" /* LeaveapprovedetailPage */],
-                __WEBPACK_IMPORTED_MODULE_47__pages_leaverejectdetail_leaverejectdetail__["a" /* LeaverejectdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_48__pages_leavecanceldetail_leavecanceldetail__["a" /* LeavecanceldetailPage */],
-                __WEBPACK_IMPORTED_MODULE_66__pages_leavebalance_leavebalance__["a" /* LeavebalancePage */],
-                __WEBPACK_IMPORTED_MODULE_49__pages_myapproval_myapproval__["a" /* MyapprovalPage */],
-                __WEBPACK_IMPORTED_MODULE_50__pages_attendance_attendance__["a" /* AttendancePage */],
-                __WEBPACK_IMPORTED_MODULE_51__pages_timesheet_timesheet__["a" /* TimesheetPage */],
-                __WEBPACK_IMPORTED_MODULE_52__pages_tsdetail_tsdetail__["a" /* TsdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_53__pages_holiday_holiday__["a" /* HolidayPage */],
-                __WEBPACK_IMPORTED_MODULE_54__pages_advance_advance__["a" /* AdvancePage */],
-                __WEBPACK_IMPORTED_MODULE_55__pages_siteadvance_siteadvance__["a" /* SiteadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_62__pages_myadvancestatus_myadvancestatus__["a" /* MyadvancestatusPage */],
-                __WEBPACK_IMPORTED_MODULE_63__pages_adminadvancestatus_adminadvancestatus__["a" /* AdminadvancestatusPage */],
-                __WEBPACK_IMPORTED_MODULE_56__pages_mypendingadvance_mypendingadvance__["a" /* MypendingadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_57__pages_myapproveadvance_myapproveadvance__["a" /* MyapproveadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_58__pages_myrejectadvance_myrejectadvance__["a" /* MyrejectadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_59__pages_adminpendingadvance_adminpendingadvance__["a" /* AdminpendingadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_60__pages_adminapproveadvance_adminapproveadvance__["a" /* AdminapproveadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_61__pages_adminrejectadvance_adminrejectadvance__["a" /* AdminrejectadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_64__pages_mypendingdetail_mypendingdetail__["a" /* MypendingdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_67__pages_myapprovedetail_myapprovedetail__["a" /* MyapprovedetailPage */],
-                __WEBPACK_IMPORTED_MODULE_68__pages_myrejectdetail_myrejectdetail__["a" /* MyrejectdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_69__pages_adminpendingdetail_adminpendingdetail__["a" /* AdminpendingdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_70__pages_adminapprovedetail_adminapprovedetail__["a" /* AdminapprovedetailPage */],
-                __WEBPACK_IMPORTED_MODULE_71__pages_adminrejectdetail_adminrejectdetail__["a" /* AdminrejectdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_72__pages_myapprovaldetail_myapprovaldetail__["a" /* MyapprovaldetailPage */],
-                __WEBPACK_IMPORTED_MODULE_65__pages_leavependingredirect_leavependingredirect__["a" /* LeavePendingRedirectPage */],
-                __WEBPACK_IMPORTED_MODULE_73__pages_myapprovalredirect_myapprovalredirect__["a" /* MyApprovalRedirectPage */],
-                __WEBPACK_IMPORTED_MODULE_74__pages_adminpendingadvanceredirect_adminpendingadvanceredirect__["a" /* AdminpendingadvanceredirectPage */],
-                __WEBPACK_IMPORTED_MODULE_75__pages_noticeall_noticeall__["a" /* NoticeallPage */],
-                __WEBPACK_IMPORTED_MODULE_76__pages_noticecontractor_noticecontractor__["a" /* NoticecontractorPage */],
-                __WEBPACK_IMPORTED_MODULE_77__pages_noticeproject_noticeproject__["a" /* NoticeprojectPage */],
-                __WEBPACK_IMPORTED_MODULE_78__pages_noticecontractordetail_noticecontractordetail__["a" /* NoticecontractordetailPage */],
-                __WEBPACK_IMPORTED_MODULE_79__pages_noticeprojectdetail_noticeprojectdetail__["a" /* NoticeprojectdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_80__pages_task_task__["a" /* TaskPage */],
-                __WEBPACK_IMPORTED_MODULE_81__pages_taskassign_taskassign__["a" /* TaskAssignPage */],
-                __WEBPACK_IMPORTED_MODULE_82__pages_mytask_mytask__["a" /* MyTaskPage */],
-                __WEBPACK_IMPORTED_MODULE_83__pages_taskdetail_taskdetail__["a" /* TaskDetailPage */],
-                __WEBPACK_IMPORTED_MODULE_84__pages_taskopen_taskopen__["a" /* TaskOpenPage */],
-                __WEBPACK_IMPORTED_MODULE_85__pages_taskclose_taskclose__["a" /* TaskClosePage */],
-                __WEBPACK_IMPORTED_MODULE_87__pages_myjob_myjob__["a" /* MyJobPage */],
-                __WEBPACK_IMPORTED_MODULE_88__pages_newjob_newjob__["a" /* NewJobPage */],
-                __WEBPACK_IMPORTED_MODULE_89__pages_newjobmodal_newjobmodal__["a" /* NewJobModalPage */],
-                __WEBPACK_IMPORTED_MODULE_90__pages_alljob_alljob__["a" /* AllJobPage */],
-                __WEBPACK_IMPORTED_MODULE_91__pages_jobprogress_jobprogress__["a" /* JobProgressPage */],
-                __WEBPACK_IMPORTED_MODULE_92__pages_jobdetails_jobdetails__["a" /* JobDetailsPage */],
-                __WEBPACK_IMPORTED_MODULE_93__pages_jobkiv_jobkiv__["a" /* JobKivPage */],
-                __WEBPACK_IMPORTED_MODULE_94__pages_jobcomplete_jobcomplete__["a" /* JobCompletePage */],
-                __WEBPACK_IMPORTED_MODULE_95__pages_jobrejected_jobrejected__["a" /* JobRejectedPage */],
-                __WEBPACK_IMPORTED_MODULE_86__pages_taskall_taskall__["a" /* TaskallPage */],
-                __WEBPACK_IMPORTED_MODULE_96__pages_schedules_schedules__["a" /* SchedulesPage */],
-                __WEBPACK_IMPORTED_MODULE_97__pages_scheduledetails_scheduledetails__["a" /* ScheduledetailsPage */],
-                __WEBPACK_IMPORTED_MODULE_98__pages_asset_asset__["a" /* AssetPage */],
-                __WEBPACK_IMPORTED_MODULE_99__pages_assetonhand_assetonhand__["a" /* AssetonhandPage */],
-                __WEBPACK_IMPORTED_MODULE_100__pages_assethistory_assethistory__["a" /* AssethistoryPage */],
-                __WEBPACK_IMPORTED_MODULE_101__pages_assettransfer_assettransfer__["a" /* AssettransferPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_32__app_component__["a" /* MyApp */], {}, {
-                    links: []
-                }),
-                __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_7_ionic_image_loader__["a" /* IonicImageLoader */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_25_ionic_img_viewer__["a" /* IonicImageViewerModule */],
-                __WEBPACK_IMPORTED_MODULE_26_ng_fullcalendar__["b" /* FullCalendarModule */],
-                __WEBPACK_IMPORTED_MODULE_31_ionic_selectable__["a" /* IonicSelectableModule */],
-            ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* IonicApp */]],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_32__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_34__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_35__pages_notice_notice__["a" /* NoticePage */],
-                __WEBPACK_IMPORTED_MODULE_36__pages_noticedetail_noticedetail__["a" /* NoticedetailPage */],
-                __WEBPACK_IMPORTED_MODULE_37__pages_leave_leave__["a" /* LeavePage */],
-                __WEBPACK_IMPORTED_MODULE_38__pages_leave_modal_leave_modal__["a" /* LeaveModalPage */],
-                __WEBPACK_IMPORTED_MODULE_39__pages_myleave_myleave__["a" /* MyleavePage */],
-                __WEBPACK_IMPORTED_MODULE_40__pages_leavestatus_leavestatus__["a" /* LeavestatusPage */],
-                __WEBPACK_IMPORTED_MODULE_41__pages_leavepending_leavepending__["a" /* LeavependingPage */],
-                __WEBPACK_IMPORTED_MODULE_43__pages_leaveapprove_leaveapprove__["a" /* LeaveapprovePage */],
-                __WEBPACK_IMPORTED_MODULE_42__pages_leavereject_leavereject__["a" /* LeaverejectPage */],
-                __WEBPACK_IMPORTED_MODULE_44__pages_leavecancel_leavecancel__["a" /* LeavecancelPage */],
-                __WEBPACK_IMPORTED_MODULE_45__pages_leavependingdetail_leavependingdetail__["a" /* LeavependingdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_46__pages_leaveapprovedetail_leaveapprovedetail__["a" /* LeaveapprovedetailPage */],
-                __WEBPACK_IMPORTED_MODULE_47__pages_leaverejectdetail_leaverejectdetail__["a" /* LeaverejectdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_48__pages_leavecanceldetail_leavecanceldetail__["a" /* LeavecanceldetailPage */],
-                __WEBPACK_IMPORTED_MODULE_66__pages_leavebalance_leavebalance__["a" /* LeavebalancePage */],
-                __WEBPACK_IMPORTED_MODULE_49__pages_myapproval_myapproval__["a" /* MyapprovalPage */],
-                __WEBPACK_IMPORTED_MODULE_50__pages_attendance_attendance__["a" /* AttendancePage */],
-                __WEBPACK_IMPORTED_MODULE_51__pages_timesheet_timesheet__["a" /* TimesheetPage */],
-                __WEBPACK_IMPORTED_MODULE_52__pages_tsdetail_tsdetail__["a" /* TsdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_53__pages_holiday_holiday__["a" /* HolidayPage */],
-                __WEBPACK_IMPORTED_MODULE_54__pages_advance_advance__["a" /* AdvancePage */],
-                __WEBPACK_IMPORTED_MODULE_55__pages_siteadvance_siteadvance__["a" /* SiteadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_62__pages_myadvancestatus_myadvancestatus__["a" /* MyadvancestatusPage */],
-                __WEBPACK_IMPORTED_MODULE_63__pages_adminadvancestatus_adminadvancestatus__["a" /* AdminadvancestatusPage */],
-                __WEBPACK_IMPORTED_MODULE_56__pages_mypendingadvance_mypendingadvance__["a" /* MypendingadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_57__pages_myapproveadvance_myapproveadvance__["a" /* MyapproveadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_58__pages_myrejectadvance_myrejectadvance__["a" /* MyrejectadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_59__pages_adminpendingadvance_adminpendingadvance__["a" /* AdminpendingadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_60__pages_adminapproveadvance_adminapproveadvance__["a" /* AdminapproveadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_61__pages_adminrejectadvance_adminrejectadvance__["a" /* AdminrejectadvancePage */],
-                __WEBPACK_IMPORTED_MODULE_64__pages_mypendingdetail_mypendingdetail__["a" /* MypendingdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_67__pages_myapprovedetail_myapprovedetail__["a" /* MyapprovedetailPage */],
-                __WEBPACK_IMPORTED_MODULE_68__pages_myrejectdetail_myrejectdetail__["a" /* MyrejectdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_69__pages_adminpendingdetail_adminpendingdetail__["a" /* AdminpendingdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_70__pages_adminapprovedetail_adminapprovedetail__["a" /* AdminapprovedetailPage */],
-                __WEBPACK_IMPORTED_MODULE_71__pages_adminrejectdetail_adminrejectdetail__["a" /* AdminrejectdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_72__pages_myapprovaldetail_myapprovaldetail__["a" /* MyapprovaldetailPage */],
-                __WEBPACK_IMPORTED_MODULE_65__pages_leavependingredirect_leavependingredirect__["a" /* LeavePendingRedirectPage */],
-                __WEBPACK_IMPORTED_MODULE_73__pages_myapprovalredirect_myapprovalredirect__["a" /* MyApprovalRedirectPage */],
-                __WEBPACK_IMPORTED_MODULE_74__pages_adminpendingadvanceredirect_adminpendingadvanceredirect__["a" /* AdminpendingadvanceredirectPage */],
-                __WEBPACK_IMPORTED_MODULE_75__pages_noticeall_noticeall__["a" /* NoticeallPage */],
-                __WEBPACK_IMPORTED_MODULE_76__pages_noticecontractor_noticecontractor__["a" /* NoticecontractorPage */],
-                __WEBPACK_IMPORTED_MODULE_77__pages_noticeproject_noticeproject__["a" /* NoticeprojectPage */],
-                __WEBPACK_IMPORTED_MODULE_78__pages_noticecontractordetail_noticecontractordetail__["a" /* NoticecontractordetailPage */],
-                __WEBPACK_IMPORTED_MODULE_79__pages_noticeprojectdetail_noticeprojectdetail__["a" /* NoticeprojectdetailPage */],
-                __WEBPACK_IMPORTED_MODULE_80__pages_task_task__["a" /* TaskPage */],
-                __WEBPACK_IMPORTED_MODULE_81__pages_taskassign_taskassign__["a" /* TaskAssignPage */],
-                __WEBPACK_IMPORTED_MODULE_82__pages_mytask_mytask__["a" /* MyTaskPage */],
-                __WEBPACK_IMPORTED_MODULE_83__pages_taskdetail_taskdetail__["a" /* TaskDetailPage */],
-                __WEBPACK_IMPORTED_MODULE_84__pages_taskopen_taskopen__["a" /* TaskOpenPage */],
-                __WEBPACK_IMPORTED_MODULE_85__pages_taskclose_taskclose__["a" /* TaskClosePage */],
-                __WEBPACK_IMPORTED_MODULE_87__pages_myjob_myjob__["a" /* MyJobPage */],
-                __WEBPACK_IMPORTED_MODULE_88__pages_newjob_newjob__["a" /* NewJobPage */],
-                __WEBPACK_IMPORTED_MODULE_89__pages_newjobmodal_newjobmodal__["a" /* NewJobModalPage */],
-                __WEBPACK_IMPORTED_MODULE_90__pages_alljob_alljob__["a" /* AllJobPage */],
-                __WEBPACK_IMPORTED_MODULE_91__pages_jobprogress_jobprogress__["a" /* JobProgressPage */],
-                __WEBPACK_IMPORTED_MODULE_92__pages_jobdetails_jobdetails__["a" /* JobDetailsPage */],
-                __WEBPACK_IMPORTED_MODULE_93__pages_jobkiv_jobkiv__["a" /* JobKivPage */],
-                __WEBPACK_IMPORTED_MODULE_94__pages_jobcomplete_jobcomplete__["a" /* JobCompletePage */],
-                __WEBPACK_IMPORTED_MODULE_95__pages_jobrejected_jobrejected__["a" /* JobRejectedPage */],
-                __WEBPACK_IMPORTED_MODULE_86__pages_taskall_taskall__["a" /* TaskallPage */],
-                __WEBPACK_IMPORTED_MODULE_96__pages_schedules_schedules__["a" /* SchedulesPage */],
-                __WEBPACK_IMPORTED_MODULE_97__pages_scheduledetails_scheduledetails__["a" /* ScheduledetailsPage */],
-                __WEBPACK_IMPORTED_MODULE_98__pages_asset_asset__["a" /* AssetPage */],
-                __WEBPACK_IMPORTED_MODULE_99__pages_assetonhand_assetonhand__["a" /* AssetonhandPage */],
-                __WEBPACK_IMPORTED_MODULE_100__pages_assethistory_assethistory__["a" /* AssethistoryPage */],
-                __WEBPACK_IMPORTED_MODULE_101__pages_assettransfer_assettransfer__["a" /* AssettransferPage */],
-            ],
-            providers: [
-                __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-                __WEBPACK_IMPORTED_MODULE_13__ionic_native_geolocation__["a" /* Geolocation */],
-                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_16__providers_auth_auth__["a" /* AuthProvider */],
-                __WEBPACK_IMPORTED_MODULE_17__ionic_native_toast__["a" /* Toast */],
-                // GooglePlus,
-                __WEBPACK_IMPORTED_MODULE_8__ionic_native_native_page_transitions__["a" /* NativePageTransitions */],
-                __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__["a" /* File */],
-                __WEBPACK_IMPORTED_MODULE_11__ionic_native_document_viewer__["a" /* DocumentViewer */],
-                __WEBPACK_IMPORTED_MODULE_10__ionic_native_file_transfer__["a" /* FileTransfer */],
-                __WEBPACK_IMPORTED_MODULE_12__ionic_native_photo_viewer__["a" /* PhotoViewer */],
-                __WEBPACK_IMPORTED_MODULE_18__ionic_native_file_opener__["a" /* FileOpener */],
-                __WEBPACK_IMPORTED_MODULE_19__ionic_native_location_accuracy__["a" /* LocationAccuracy */],
-                __WEBPACK_IMPORTED_MODULE_20__ionic_native_onesignal__["a" /* OneSignal */],
-                __WEBPACK_IMPORTED_MODULE_21__ionic_native_app_preferences__["a" /* AppPreferences */],
-                __WEBPACK_IMPORTED_MODULE_15__ionic_native_http__["a" /* HTTP */],
-                __WEBPACK_IMPORTED_MODULE_22__ionic_native_base64__["a" /* Base64 */],
-                __WEBPACK_IMPORTED_MODULE_23__ionic_native_image_picker__["a" /* ImagePicker */],
-                __WEBPACK_IMPORTED_MODULE_24__ionic_native_badge__["a" /* Badge */],
-                __WEBPACK_IMPORTED_MODULE_27__ionic_native_android_permissions__["a" /* AndroidPermissions */],
-                __WEBPACK_IMPORTED_MODULE_28__ionic_native_app_version__["a" /* AppVersion */],
-                __WEBPACK_IMPORTED_MODULE_29__ionic_native_file_chooser__["a" /* FileChooser */],
-                __WEBPACK_IMPORTED_MODULE_30__ionic_native_file_path__["a" /* FilePath */],
-                __WEBPACK_IMPORTED_MODULE_31_ionic_selectable__["a" /* IonicSelectableModule */],
-                __WEBPACK_IMPORTED_MODULE_102__ionic_native_device__["a" /* Device */],
-            ]
-        })
-    ], AppModule);
-    return AppModule;
-}());
-
-//# sourceMappingURL=app.module.js.map
-
-/***/ }),
-
-/***/ 633:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-var environment = {
-    production: false,
-    google: {
-        webClientId: "8076749073-mknj6gcj4qhk4kvvghnci714pn2obgpd.apps.googleusercontent.com",
-        hostedDomain: "siswa.uthm.edu.my"
-    },
-    auth: {
-        codeLoginUrl: "http://172.20.10.4:8000/api/auth/students/login",
-        credentialsLoginUrl: "https://jmclicks.com/api/login",
-        lecturersInviteUrl: "http://172.20.10.4:8000/api/auth/lecturers/invite",
-    }
-};
-//# sourceMappingURL=environment.js.map
-
-/***/ }),
-
-/***/ 77:
+/***/ 57:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10672,7 +10808,7 @@ var environment = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_base64__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__ = __webpack_require__(503);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_chooser__ = __webpack_require__(502);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(27);
@@ -10683,7 +10819,7 @@ var environment = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_ionic_angular_navigation_nav_controller__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_toast__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_toast__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10770,6 +10906,7 @@ var JobDetailsPage = /** @class */ (function () {
         this.countNum = 0;
         this.taskFile = [];
         this.taskFileView = [];
+        this.sitecode = '';
         this.invoicePath = [];
         this.pr = this.navParam.get('pr_no');
         this.project = this.navParam.get('Project_Name');
@@ -10779,6 +10916,10 @@ var JobDetailsPage = /** @class */ (function () {
         this.status = this.navParam.get('status');
         this.oriStatus = this.navParam.get('status');
         this.jobId = this.navParam.get('jobId');
+        this.sitecode = this.navParam.get('Site_ID');
+        this.requestorName = this.navParam.get('requestorName');
+        console.log('jobdetailspage');
+        console.log('oristatus', this.oriStatus);
     }
     JobDetailsPage.prototype.loadData = function () {
         var _this = this;
@@ -11060,7 +11201,7 @@ var JobDetailsPage = /** @class */ (function () {
                                     _this.formData.append('Status', _this.status);
                                     _this.formData.append('Id', _this.id);
                                     _this.formData.append('oriStatus', _this.oriStatus);
-                                    _this.formData.append('jobId', _this.jobId);
+                                    // this.formData.append('jobId', this.jobId);
                                     resolveReady();
                                 });
                             });
@@ -11074,9 +11215,16 @@ var JobDetailsPage = /** @class */ (function () {
                                     console.log(res);
                                     if (res == 1) {
                                         console.log(JSON.stringify(res));
+                                        _this.navCtrl.pop();
                                         _this.toast.show("Job updated", '5000', 'center').subscribe(function (toast) {
                                             console.log(toast);
-                                            _this.navCtrl.pop();
+                                        });
+                                    }
+                                    else if (res == 2) {
+                                        console.log(JSON.stringify(res));
+                                        _this.navCtrl.pop();
+                                        _this.toast.show("Job updated", '5000', 'center').subscribe(function (toast) {
+                                            console.log(toast);
                                         });
                                     }
                                     else {
@@ -11288,7 +11436,7 @@ var JobDetailsPage = /** @class */ (function () {
     };
     JobDetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-jobdetails',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobdetails/jobdetails.html"*/'\n<ion-header>\n\n    <ion-navbar color="secondary">\n      <ion-title>Job</ion-title>\n    </ion-navbar>\n\n  </ion-header>\n\n\n  <ion-content padding>\n\n    <h1 text-center>{{Start_Date}}</h1>\n\n    <ion-item>\n      <ion-label stacked color="primary">PR NO</ion-label>\n      <ion-input    value="{{pr}}" disabled="true" ></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked color="primary">Project Name</ion-label>\n      <ion-input    value="{{project}}" disabled="true" ></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked color="primary">Region</ion-label>\n      <ion-input  value="{{region}}" disabled="true" ></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked color="primary">Payment Terms</ion-label>\n      <ion-input  value="{{payment_term}}" disabled="true" ></ion-input>\n    </ion-item>\n\n    <ion-item *ngIf=\'oriStatus == "Rejected"\'>\n      <ion-label stacked color="primary">Status</ion-label>\n      <ion-input  value="{{oriStatus}}" disabled="true" ></ion-input>\n    </ion-item>\n    <form novalidate (ngSubmit)="updateStatus()" [formGroup]="signupform" *ngIf=\'oriStatus != "Rejected"\'>\n      <ion-item>\n        <ion-label stacked color="primary">Status</ion-label>\n        <ion-select  [(ngModel)]="status" formControlName="status">\n          <ion-option value="In-Progress">In-Progress</ion-option>\n          <ion-option value="KIV">KIV</ion-option>\n          <ion-option value="Complete">Complete</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>Invoice</ion-item>\n\n      <ion-item *ngIf="invoicePath && invoicePath.length > 0">\n        <ion-thumbnail slot="start" *ngIf="invoicePath[0].ext != \'pdf\'">\n            <img [src]="invoicePath[0].path" width="30px" height="30px">\n        </ion-thumbnail>\n        <span *ngIf="invoicePath[0].ext == \'pdf\'">{{invoicePath[0].name}}</span>\n        <ion-icon slot="icon-only"  name="trash" (click)="deleteInvoice()"></ion-icon>\n      </ion-item>\n\n      <button ion-button icon-right type="button" full (click)="selectImage()">\n      <ion-icon name="camera"></ion-icon> Upload Invoice</button>\n\n        <ion-item>\n          Task:\n        </ion-item>\n\n        <ion-item *ngFor="let t of taskFileView;">\n          <ion-thumbnail slot="start" *ngIf="t.ext != \'pdf\'">\n              <img [src]="t.path" width="30px" height="30px">\n          </ion-thumbnail>\n          <span *ngIf="t.ext == \'pdf\'">{{t.name}}</span>\n          <ion-icon slot="icon-only"  name="trash" (click)="deleteTask(t.id)"></ion-icon>\n        </ion-item>\n\n        <button ion-button icon-right type="button" full (click)="selectTask()">\n        <ion-icon name="camera"></ion-icon> Upload Document</button>\n        <button ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Update</button>\n\n      </form>\n  </ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobdetails/jobdetails.html"*/,
+            selector: 'page-jobdetails',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobdetails/jobdetails.html"*/'\n<ion-header>\n\n    <ion-navbar color="secondary">\n      <ion-title>Job</ion-title>\n    </ion-navbar>\n\n  </ion-header>\n\n\n  <ion-content padding>\n\n    <h1 text-center>{{Start_Date}}</h1>\n\n    <ion-item>\n      <ion-label stacked color="primary">PR NO</ion-label>\n      <ion-input    value="{{pr}}" disabled="true" ></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked color="primary">Project Name</ion-label>\n      <ion-input    value="{{project}}" disabled="true" ></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked color="primary">Site Code</ion-label>\n      <ion-input    value="{{sitecode}}" disabled="true" ></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked color="primary">Region</ion-label>\n      <ion-input  value="{{region}}" disabled="true" ></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked color="primary">Payment Terms</ion-label>\n      <ion-label disabled="true" >{{payment_term}}</ion-label>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked color="primary">Created By</ion-label>\n      <ion-input  value="{{requestorName}}" disabled="true" ></ion-input>\n    </ion-item>\n\n    <ion-item *ngIf=\'oriStatus == "Rejected"\'>\n      <ion-label stacked color="primary">Status</ion-label>\n      <ion-input  value="{{oriStatus}}" disabled="true" ></ion-input>\n    </ion-item>\n\n    <form novalidate (ngSubmit)="updateStatus()" [formGroup]="signupform" *ngIf=\'oriStatus != "Rejected" || oriStatus != "ISDP Open" || oriStatus != "ISDP Close"\'>\n      <div  *ngIf="oriStatus != \'ISDP Open\' && oriStatus != \'ISDP Close\'">\n\n        <ion-item *ngIf="oriStatus != \'ISDP Open\' || oriStatus != \'ISDP Close\'">\n          <ion-label stacked color="primary">Status</ion-label>\n          <ion-select  [(ngModel)]="status" formControlName="status">\n            <ion-option value="In-Progress">In-Progress</ion-option>\n            <ion-option value="KIV">KIV</ion-option>\n            <ion-option value="Complete">Complete</ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>Invoice</ion-item>\n        \n        <ion-item *ngIf="invoicePath && invoicePath.length > 0">\n          <ion-thumbnail slot="start" *ngIf="invoicePath[0].ext != \'pdf\'">\n            <img [src]="invoicePath[0].path" width="30px" height="30px">\n          </ion-thumbnail>\n          <span *ngIf="invoicePath[0].ext == \'pdf\'">{{invoicePath[0].name}}</span>\n          <ion-icon slot="icon-only"  name="trash" (click)="deleteInvoice()"></ion-icon>\n        </ion-item>\n        \n        <button ion-button icon-right type="button" full (click)="selectImage()">\n          <ion-icon name="camera"></ion-icon> Upload Invoice\n        </button>\n        \n        <ion-item>\n          Task:\n        </ion-item>\n        \n        <ion-item *ngFor="let t of taskFileView;">\n          <ion-thumbnail slot="start" *ngIf="t.ext != \'pdf\'">\n            <img [src]="t.path" width="30px" height="30px">\n          </ion-thumbnail>\n          <span *ngIf="t.ext == \'pdf\'">{{t.name}}</span>\n          <ion-icon slot="icon-only"  name="trash" (click)="deleteTask(t.id)"></ion-icon>\n        </ion-item>\n        \n        <button ion-button icon-right type="button" full (click)="selectTask()">\n          <ion-icon name="camera"></ion-icon> Upload Document</button>\n          <button *ngIf="oriStatus != \'ISDP Open\' && oriStatus != \'ISDP Close\'" ion-button block color="primary" type="submit" [disabled]="signupform.invalid">Update</button>\n          \n        </div>\n      </form>\n  </ion-content>\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/jobdetails/jobdetails.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */],
@@ -11313,7 +11461,905 @@ var JobDetailsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 910:
+/***/ 570:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssethistoryPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var httpOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        'Content-Type': 'application/json'
+    })
+};
+/**
+ * Generated class for the TsdetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AssethistoryPage = /** @class */ (function () {
+    function AssethistoryPage(navCtrl, app, http, storage, navParams) {
+        this.navCtrl = navCtrl;
+        this.app = app;
+        this.http = http;
+        this.storage = storage;
+        this.navParams = navParams;
+        this.token = '';
+        this.AssetId = '';
+        this.loadData();
+        // this.Id = this.navParams.get('Id');
+        this.Start_Date = this.navParams.get('Start_Date');
+        this.Status = this.navParams.get('Status');
+        this.Time_In = this.navParams.get('Time_In');
+        this.Time_Out = this.navParams.get('Time_Out');
+        this.Check_In_Type = this.navParams.get('Check_In_Type');
+        this.No_of_Days = this.navParams.get('No_of_Days');
+        this.Site_Name = this.navParams.get('Site_Name');
+        this.Project_Name = this.navParams.get('Project_Name');
+        this.Approver = this.navParams.get('Approver');
+        console.log(this.Project_Name);
+        // this.LeaveId = this.navParams.get('Id');
+        this.AssetId = this.navParams.get('AssetId');
+        this.Holder = this.navParams.get('Holder');
+        console.log(this.AssetId);
+        // console.log(this.Id)
+    }
+    AssethistoryPage.prototype.myFunction = function (date) {
+        var d = new Date(date);
+        var weekday = new Array(7);
+        weekday[0] = "Sun";
+        weekday[1] = "Mon";
+        weekday[2] = "Tues";
+        weekday[3] = "Wed";
+        weekday[4] = "Thur";
+        weekday[5] = "Fri";
+        weekday[6] = "Sat";
+        return weekday[d.getDay()];
+    };
+    AssethistoryPage.prototype.loadData = function () {
+        var _this = this;
+        var data;
+        // Or to get a key/value pair
+        this.storage.get('token').then(function (val) {
+            data = _this.http.get('https://jmclicks.com/api/assethistory?token=' + val.token + '&AssetId=' + _this.AssetId);
+            data.subscribe(function (result) {
+                _this.items = result;
+            });
+            //   this.http.post('https://jmclicks.com/api/notifications/updatenoticebadge?token='    + val.token, {TargetId: this.Id}).subscribe(result => {
+            //     console.log(result)
+            //   })
+        });
+    };
+    AssethistoryPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-assethistory',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assethistory/assethistory.html"*/'<!--\n\n  Generated template for the TsdetailPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>Item History</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="ion-content">\n\n\n\n  <ion-card *ngFor="let item of items;">\n\n\n\n    <ion-card-header color="primary">\n\n        {{item.Date}} ({{ myFunction(item.Date) }})\n\n    </ion-card-header>\n\n\n\n    <ion-card-content color="primary">\n\n      Project Name: {{item.ProjectId}}<br>        \n\n      Holder: {{item.Name}} <br>\n\n      Transfer To: {{item.TransferName}}<br>\n\n      Car No: {{item.Car_No}}<br>\n\n      Status: {{item.Status}}<br>\n\n    </ion-card-content>\n\n\n\n  </ion-card>\n\n\n\n</ion-content>\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assethistory/assethistory.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
+    ], AssethistoryPage);
+    return AssethistoryPage;
+}());
+
+//# sourceMappingURL=assethistory.js.map
+
+/***/ }),
+
+/***/ 571:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssettransferPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var httpOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        'Content-Type': 'application/json'
+    })
+};
+var AssettransferPage = /** @class */ (function () {
+    function AssettransferPage(navCtrl, app, http, storage, loadingCtrl, toast, alertCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.app = app;
+        this.http = http;
+        this.storage = storage;
+        this.loadingCtrl = loadingCtrl;
+        this.toast = toast;
+        this.alertCtrl = alertCtrl;
+        this.navParams = navParams;
+        this.token = '';
+        this.Department = '';
+        this.Approver = '';
+        this.Staff = '';
+        this.AssetId = '';
+        this.TrackingId = '';
+        this.Staff_Name = '';
+        this.StaffOptions = [];
+        this.PIC_Type = '';
+        this.StaffAll = '';
+        //this.loadData();
+        this.Project_Name = this.navParams.get('Project_Name');
+        this.Approver = this.navParams.get('Approver');
+        this.Id = this.navParams.get('Id');
+        this.LeaveId = this.navParams.get('LeaveId');
+        this.AssetId = this.navParams.get('AssetId');
+        this.TrackingId = this.navParams.get('TrackingId');
+        console.log(this.Id);
+        console.log(this.TrackingId);
+        console.log('asset', this.AssetId);
+    }
+    AssettransferPage.prototype.ngOnInit = function () {
+        this.signupform = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* FormGroup */]({
+            // Department: new FormControl('',[Validators.required]),
+            // Staff: new FormControl('', [Validators.required]),
+            Staff_Name: new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_5__angular_forms__["h" /* Validators */].required]),
+            PIC_Type: new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_5__angular_forms__["h" /* Validators */].required]),
+        });
+    };
+    AssettransferPage.prototype.ionViewWillEnter = function () {
+        this.loadData();
+    };
+    AssettransferPage.prototype.setStaff = function (value) {
+        var staffArr = new Array();
+        for (var _i = 0, _a = this.Staff; _i < _a.length; _i++) {
+            var s = _a[_i];
+            if (s.User_Type == value)
+                staffArr.push(s);
+        }
+        this.StaffOptions = staffArr;
+    };
+    AssettransferPage.prototype.filterPorts = function (StaffOptions, text) {
+        return StaffOptions.filter(function (StaffOptions) {
+            if (StaffOptions.Name.toLowerCase().indexOf(text) !== -1)
+                return StaffOptions.Name;
+            console.log(StaffOptions.Name);
+        }).map(function (obj) {
+            return obj.Name;
+        });
+    };
+    AssettransferPage.prototype.searchStaff = function (event) {
+        var text = event.text.trim().toLowerCase();
+        event.component.startSearch();
+        if (text.length < 1) {
+            event.component.items = [];
+            event.component.endSearch();
+            return;
+        }
+        if (!text) {
+            event.component.items = [];
+            event.component.endSearch();
+            return;
+        }
+        event.component.items = this.filterPorts(this.StaffOptions, text);
+        console.log(event.component.items);
+        event.component.endSearch();
+    };
+    AssettransferPage.prototype.loadData = function () {
+        var _this = this;
+        var data;
+        // Or to get a key/value pair
+        this.storage.get('token').then(function (val) {
+            data = _this.http.get('https://jmclicks.com/api/assetuser?token=' + val.token);
+            data.subscribe(function (result) {
+                _this.items = result;
+            });
+        });
+        this.storage.get('token').then(function (val) {
+            data = _this.http.get('https://jmclicks.com/api/getstaffasset?token=' + val.token);
+            data.subscribe(function (result) {
+                console.log(result);
+                _this.Staff = result;
+            });
+        });
+    };
+    AssettransferPage.prototype.transferstaff = function () {
+        var _this = this;
+        var a = '';
+        a = this.Staff_Name;
+        var data;
+        this.storage.get('token').then(function (val) {
+            data = _this.http.get('https://jmclicks.com/api/getstaff2?token=' + val.token + '&name=' + _this.Staff_Name);
+            data.subscribe(function (result) {
+                console.log(result);
+                _this.StaffAll = result;
+                console.log('sa', _this.StaffAll.Id);
+            });
+        });
+        console.log('staffallId', this.StaffAll);
+        var confirm = this.alertCtrl.create({
+            title: 'Transfer to Staff ?',
+            message: 'Are you sure want to transfer ?',
+            buttons: [
+                {
+                    text: 'No',
+                    handler: function () {
+                        console.log('No clicked');
+                    }
+                },
+                {
+                    text: 'Yes',
+                    handler: function () {
+                        console.log('Yes clicked');
+                        var a = '';
+                        a = _this.Staff_Name;
+                        var data;
+                        _this.storage.get('token').then(function (val) {
+                            data = _this.http.get('https://jmclicks.com/api/getstaff2?token=' + val.token + '&name=' + _this.Staff_Name);
+                            data.subscribe(function (result) {
+                                console.log(result);
+                                _this.StaffAll = result;
+                                console.log('sa', _this.StaffAll.Id);
+                            });
+                        });
+                        _this.storage.get('token').then(function (val) {
+                            _this.http.post('https://jmclicks.com/api/assettransfer?token=' + val.token, {
+                                Name: _this.Staff_Name,
+                                TrackingId: _this.TrackingId,
+                                AssetId: _this.AssetId,
+                                Transfer_To: _this.StaffAll.Id,
+                            }, httpOptions)
+                                .subscribe(function (res) {
+                                console.log(_this.Staff);
+                                console.log(_this.TrackingId);
+                                _this.navCtrl.popTo(_this.navCtrl.getByIndex(_this.navCtrl.length() - 3));
+                                console.log(res);
+                                _this.toast.show('Redirect succesfull', '5000', 'center').subscribe(function (toast) {
+                                    console.log(toast);
+                                });
+                            });
+                            // this.http.post('http://192.168.0.88:8000/jmclicks/public/api/notifications/updateleavepending?token=' + val.token, {TargetId: this.LeaveId}).subscribe(result => {
+                            //   console.log(result)
+                            // })
+                        });
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    AssettransferPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-assettransfer',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assettransfer/assettransfer.html"*/'<ion-header>\n\n  <ion-navbar color="darkblue">\n\n        <ion-toolbar>\n\n            <ion-title>Asset Transfer</ion-title>\n\n        </ion-toolbar>\n\n  </ion-navbar>\n\n</ion-header>\n\n  \n\n<ion-content  class="ion-content">      \n\n  <form novalidate (ngSubmit)="transferstaff()" [formGroup]="signupform">\n\n\n\n    <ion-item>\n\n      <ion-label stacked color="primary" class="required">PIC Type</ion-label>\n\n      <ion-select placeholder="Please select" (ngModelChange)="setStaff($event)" \n\n      [(ngModel)]="PIC_Type" formControlName="PIC_Type" \n\n      [class.error1]="!signupform.controls.PIC_Type.valid && signupform.controls.PIC_Type.dirty">\n\n          <ion-option value="Staff" >Staff</ion-option>\n\n      </ion-select>\n\n   </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked color="primary">Transfer to [Staff]</ion-label>\n\n      <P class="error" *ngIf="signupform.get(\'Staff_Name\').hasError(\'required\') && signupform.get(\'Staff_Name\').touched">\n\n        Please select your staff\n\n        </P>\n\n      <ionic-selectable item-content placeholder="Please select"  [(ngModel)]="Staff_Name" \n\n      [items]="StaffOptions" formControlName="Staff_Name" [canSearch]="true" [canClear]="false" \n\n      (onSearch)="searchStaff($event)"\n\n      [class.error1]="!signupform.controls.Staff_Name.valid && signupform.controls.Staff_Name.dirty">\n\n      <!-- <ion-option *ngFor="let item of items" value="{{item.Id}}">{{item.Name}}</ion-option> -->\n\n    </ionic-selectable>\n\n    </ion-item>\n\n\n\n    <br><br>\n\n\n\n    <button ion-button full item-right class="doc-button" [disabled]="signupform.invalid">Submit</button>\n\n  </form>\n\n</ion-content>'/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assettransfer/assettransfer.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_toast__["a" /* Toast */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */]])
+    ], AssettransferPage);
+    return AssettransferPage;
+}());
+
+//# sourceMappingURL=assettransfer.js.map
+
+/***/ }),
+
+/***/ 572:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssetreportPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__(14);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var httpOptions = {
+    headers: new __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["c" /* HttpHeaders */]({
+        'Content-Type': 'application/json'
+    })
+};
+/**
+ * Generated class for the AssetreportPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+// @IonicPage()
+var AssetreportPage = /** @class */ (function () {
+    function AssetreportPage(navCtrl, navParams, alertCtrl, domSanitizer, app, http, storage, toast, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
+        this.domSanitizer = domSanitizer;
+        this.app = app;
+        this.http = http;
+        this.storage = storage;
+        this.toast = toast;
+        this.loadingCtrl = loadingCtrl;
+        this.Issue = '';
+        this.Replacement = '';
+        this.AssetId = '';
+        this.AssetId = this.navParams.get('AssetId');
+        this.TrackingId = this.navParams.get('TrackingId');
+        console.log('aasetid', this.AssetId);
+    }
+    AssetreportPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AssetreportPage');
+    };
+    AssetreportPage.prototype.ngOnInit = function () {
+        this.signupform = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormGroup */]({
+            Issue: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required]),
+            Replacement: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required]),
+        });
+    };
+    AssetreportPage.prototype.report = function () {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: 'Submitting ...'
+        });
+        loading.present();
+        setTimeout(function () {
+            loading.dismiss();
+        }, 2000);
+        console.log('issue', this.Issue);
+        console.log('rep', this.Replacement);
+        console.log('traking', this.TrackingId);
+        this.storage.get('token').then(function (val) {
+            return _this.http.post('https://jmclicks.com/api/assetreport?token=' + val.token, {
+                AssetId: _this.AssetId,
+                Issue: _this.Issue,
+                Replacement: _this.Replacement,
+                TrackingId: _this.TrackingId,
+            }, httpOptions)
+                .subscribe(function (res) {
+                _this.navCtrl.pop();
+                console.log(res);
+                _this.toast.show('Report sent', '5000', 'center').subscribe(function (toast) {
+                    console.log(toast);
+                });
+            });
+        });
+    };
+    AssetreportPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-assetreport',template:/*ion-inline-start:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetreport/assetreport.html"*/'<!--\n  Generated template for the AssetreportPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="darkblue">\n        <ion-toolbar>\n            <ion-title>Asset Report</ion-title>\n        </ion-toolbar>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <form novalidate (ngSubmit)="report()" [formGroup]="signupform">\n\n    <div class="div1">\n    <ion-list>\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Issue</ion-label>\n        <ion-textarea type="text" [(ngModel)]="Issue" placeholder="State your issue here" formControlName="Issue" [class.error1]="!signupform.controls.Issue.valid && signupform.controls.Issue.dirty"></ion-textarea>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Issue\').hasError(\'required\') ) && signupform.get(\'Issue\').touched">\n        <div class="error" *ngIf="signupform.get(\'Issue\').hasError(\'required\') && signupform.get(\'Issue\').touched">\n          Please input your Issue\n        </div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked color="primary" class="required">Need Replacement?</ion-label>\n        <ion-select placeholder="please select" [(ngModel)]="Replacement" formControlName="Replacement" [class.error1]="!signupform.controls.Replacement.valid && signupform.controls.Replacement.dirty">\n          <ion-option value="Yes">Yes</ion-option>\n          <ion-option value="No">No</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item no-lines *ngIf="( signupform.get(\'Replacement\').hasError(\'required\') ) && signupform.get(\'Replacement\').touched">\n        <div class="error" *ngIf="signupform.get(\'Replacement\').hasError(\'required\') && signupform.get(\'Replacement\').touched">\n          Need replacement?\n        </div>\n      </ion-item>\n    </ion-list>\n    </div>\n\n    \n\n    <div class="center">\n      <button ion-button block color="primary" type="submit"  [disabled]="signupform.invalid">Submit</button>\n    </div>\n  </form>\n</ion-content>\n      '/*ion-inline-end:"/Users/mohamadazam/Ionic/jmclick-amri/src/pages/assetreport/assetreport.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["v" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__["c" /* DomSanitizer */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* App */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_toast__["a" /* Toast */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* LoadingController */]])
+    ], AssetreportPage);
+    return AssetreportPage;
+}());
+
+//# sourceMappingURL=assetreport.js.map
+
+/***/ }),
+
+/***/ 573:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(574);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(578);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 578:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_image_loader__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_native_page_transitions__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file_transfer__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_document_viewer__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_photo_viewer__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_geolocation__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_http__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_auth_auth__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_toast__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_file_opener__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_location_accuracy__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_onesignal__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_app_preferences__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_base64__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_image_picker__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_badge__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_ionic_img_viewer__ = __webpack_require__(904);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_ng_fullcalendar__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__ionic_native_android_permissions__ = __webpack_require__(501);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_native_app_version__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ionic_native_file_chooser__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_native_file_path__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_ionic_selectable__ = __webpack_require__(914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__app_component__ = __webpack_require__(915);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_login_login__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_home_home__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_notice_notice__ = __webpack_require__(544);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_noticedetail_noticedetail__ = __webpack_require__(545);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_leave_leave__ = __webpack_require__(505);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_leave_modal_leave_modal__ = __webpack_require__(507);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_myleave_myleave__ = __webpack_require__(506);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_leavestatus_leavestatus__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_leavepending_leavepending__ = __webpack_require__(512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_leavereject_leavereject__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_leaveapprove_leaveapprove__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_leavecancel_leavecancel__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_leavependingdetail_leavependingdetail__ = __webpack_require__(513);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_leaveapprovedetail_leaveapprovedetail__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__pages_leaverejectdetail_leaverejectdetail__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__pages_leavecanceldetail_leavecanceldetail__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pages_myapproval_myapproval__ = __webpack_require__(508);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__pages_attendance_attendance__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__pages_timesheet_timesheet__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__pages_tsdetail_tsdetail__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__pages_holiday_holiday__ = __webpack_require__(525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__pages_advance_advance__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__pages_siteadvance_siteadvance__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__pages_mypendingadvance_mypendingadvance__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__pages_myapproveadvance_myapproveadvance__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__pages_myrejectadvance_myrejectadvance__ = __webpack_require__(531);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__pages_adminpendingadvance_adminpendingadvance__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__pages_adminapproveadvance_adminapproveadvance__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__pages_adminrejectadvance_adminrejectadvance__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__pages_myadvancestatus_myadvancestatus__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__pages_adminadvancestatus_adminadvancestatus__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__pages_mypendingdetail_mypendingdetail__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__pages_leavependingredirect_leavependingredirect__ = __webpack_require__(514);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__pages_leavebalance_leavebalance__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__pages_myapprovedetail_myapprovedetail__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__pages_myrejectdetail_myrejectdetail__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__pages_adminpendingdetail_adminpendingdetail__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__pages_adminapprovedetail_adminapprovedetail__ = __webpack_require__(540);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__pages_adminrejectdetail_adminrejectdetail__ = __webpack_require__(542);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__pages_myapprovaldetail_myapprovaldetail__ = __webpack_require__(509);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__pages_myapprovalredirect_myapprovalredirect__ = __webpack_require__(510);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__pages_adminpendingadvanceredirect_adminpendingadvanceredirect__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__pages_noticeall_noticeall__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__pages_noticecontractor_noticecontractor__ = __webpack_require__(546);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pages_noticeproject_noticeproject__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pages_noticecontractordetail_noticecontractordetail__ = __webpack_require__(547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pages_noticeprojectdetail_noticeprojectdetail__ = __webpack_require__(549);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pages_task_task__ = __webpack_require__(550);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__pages_taskassign_taskassign__ = __webpack_require__(551);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__pages_mytask_mytask__ = __webpack_require__(554);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__pages_taskdetail_taskdetail__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__pages_taskopen_taskopen__ = __webpack_require__(555);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__pages_taskclose_taskclose__ = __webpack_require__(556);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__pages_taskall_taskall__ = __webpack_require__(552);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_87__pages_myjob_myjob__ = __webpack_require__(557);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_88__pages_newjob_newjob__ = __webpack_require__(558);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_89__pages_newjobmodal_newjobmodal__ = __webpack_require__(559);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_90__pages_alljob_alljob__ = __webpack_require__(561);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_91__pages_jobprogress_jobprogress__ = __webpack_require__(562);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_92__pages_jobdetails_jobdetails__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_93__pages_jobkiv_jobkiv__ = __webpack_require__(563);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_94__pages_jobcomplete_jobcomplete__ = __webpack_require__(564);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_95__pages_jobrejected_jobrejected__ = __webpack_require__(565);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_96__pages_schedules_schedules__ = __webpack_require__(566);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_97__pages_scheduledetails_scheduledetails__ = __webpack_require__(567);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_98__pages_asset_asset__ = __webpack_require__(568);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_99__pages_assetonhand_assetonhand__ = __webpack_require__(569);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_100__pages_assethistory_assethistory__ = __webpack_require__(570);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_101__pages_assettransfer_assettransfer__ = __webpack_require__(571);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_102__ionic_native_device__ = __webpack_require__(504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_103__pages_taskdate_taskdate__ = __webpack_require__(553);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_104__pages_myjobdate_myjobdate__ = __webpack_require__(560);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_105__pages_assetreport_assetreport__ = __webpack_require__(572);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_32__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_login_login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_35__pages_notice_notice__["a" /* NoticePage */],
+                __WEBPACK_IMPORTED_MODULE_36__pages_noticedetail_noticedetail__["a" /* NoticedetailPage */],
+                __WEBPACK_IMPORTED_MODULE_37__pages_leave_leave__["a" /* LeavePage */],
+                __WEBPACK_IMPORTED_MODULE_38__pages_leave_modal_leave_modal__["a" /* LeaveModalPage */],
+                __WEBPACK_IMPORTED_MODULE_39__pages_myleave_myleave__["a" /* MyleavePage */],
+                __WEBPACK_IMPORTED_MODULE_40__pages_leavestatus_leavestatus__["a" /* LeavestatusPage */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_leavepending_leavepending__["a" /* LeavependingPage */],
+                __WEBPACK_IMPORTED_MODULE_42__pages_leavereject_leavereject__["a" /* LeaverejectPage */],
+                __WEBPACK_IMPORTED_MODULE_43__pages_leaveapprove_leaveapprove__["a" /* LeaveapprovePage */],
+                __WEBPACK_IMPORTED_MODULE_44__pages_leavecancel_leavecancel__["a" /* LeavecancelPage */],
+                __WEBPACK_IMPORTED_MODULE_45__pages_leavependingdetail_leavependingdetail__["a" /* LeavependingdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_46__pages_leaveapprovedetail_leaveapprovedetail__["a" /* LeaveapprovedetailPage */],
+                __WEBPACK_IMPORTED_MODULE_47__pages_leaverejectdetail_leaverejectdetail__["a" /* LeaverejectdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_48__pages_leavecanceldetail_leavecanceldetail__["a" /* LeavecanceldetailPage */],
+                __WEBPACK_IMPORTED_MODULE_66__pages_leavebalance_leavebalance__["a" /* LeavebalancePage */],
+                __WEBPACK_IMPORTED_MODULE_49__pages_myapproval_myapproval__["a" /* MyapprovalPage */],
+                __WEBPACK_IMPORTED_MODULE_50__pages_attendance_attendance__["a" /* AttendancePage */],
+                __WEBPACK_IMPORTED_MODULE_51__pages_timesheet_timesheet__["a" /* TimesheetPage */],
+                __WEBPACK_IMPORTED_MODULE_52__pages_tsdetail_tsdetail__["a" /* TsdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_53__pages_holiday_holiday__["a" /* HolidayPage */],
+                __WEBPACK_IMPORTED_MODULE_54__pages_advance_advance__["a" /* AdvancePage */],
+                __WEBPACK_IMPORTED_MODULE_55__pages_siteadvance_siteadvance__["a" /* SiteadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_62__pages_myadvancestatus_myadvancestatus__["a" /* MyadvancestatusPage */],
+                __WEBPACK_IMPORTED_MODULE_63__pages_adminadvancestatus_adminadvancestatus__["a" /* AdminadvancestatusPage */],
+                __WEBPACK_IMPORTED_MODULE_56__pages_mypendingadvance_mypendingadvance__["a" /* MypendingadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_57__pages_myapproveadvance_myapproveadvance__["a" /* MyapproveadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_58__pages_myrejectadvance_myrejectadvance__["a" /* MyrejectadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_59__pages_adminpendingadvance_adminpendingadvance__["a" /* AdminpendingadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_60__pages_adminapproveadvance_adminapproveadvance__["a" /* AdminapproveadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_61__pages_adminrejectadvance_adminrejectadvance__["a" /* AdminrejectadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_64__pages_mypendingdetail_mypendingdetail__["a" /* MypendingdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_67__pages_myapprovedetail_myapprovedetail__["a" /* MyapprovedetailPage */],
+                __WEBPACK_IMPORTED_MODULE_68__pages_myrejectdetail_myrejectdetail__["a" /* MyrejectdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_69__pages_adminpendingdetail_adminpendingdetail__["a" /* AdminpendingdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_70__pages_adminapprovedetail_adminapprovedetail__["a" /* AdminapprovedetailPage */],
+                __WEBPACK_IMPORTED_MODULE_71__pages_adminrejectdetail_adminrejectdetail__["a" /* AdminrejectdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_72__pages_myapprovaldetail_myapprovaldetail__["a" /* MyapprovaldetailPage */],
+                __WEBPACK_IMPORTED_MODULE_65__pages_leavependingredirect_leavependingredirect__["a" /* LeavePendingRedirectPage */],
+                __WEBPACK_IMPORTED_MODULE_73__pages_myapprovalredirect_myapprovalredirect__["a" /* MyApprovalRedirectPage */],
+                __WEBPACK_IMPORTED_MODULE_74__pages_adminpendingadvanceredirect_adminpendingadvanceredirect__["a" /* AdminpendingadvanceredirectPage */],
+                __WEBPACK_IMPORTED_MODULE_75__pages_noticeall_noticeall__["a" /* NoticeallPage */],
+                __WEBPACK_IMPORTED_MODULE_76__pages_noticecontractor_noticecontractor__["a" /* NoticecontractorPage */],
+                __WEBPACK_IMPORTED_MODULE_77__pages_noticeproject_noticeproject__["a" /* NoticeprojectPage */],
+                __WEBPACK_IMPORTED_MODULE_78__pages_noticecontractordetail_noticecontractordetail__["a" /* NoticecontractordetailPage */],
+                __WEBPACK_IMPORTED_MODULE_79__pages_noticeprojectdetail_noticeprojectdetail__["a" /* NoticeprojectdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_80__pages_task_task__["a" /* TaskPage */],
+                __WEBPACK_IMPORTED_MODULE_81__pages_taskassign_taskassign__["a" /* TaskAssignPage */],
+                __WEBPACK_IMPORTED_MODULE_82__pages_mytask_mytask__["a" /* MyTaskPage */],
+                __WEBPACK_IMPORTED_MODULE_83__pages_taskdetail_taskdetail__["a" /* TaskDetailPage */],
+                __WEBPACK_IMPORTED_MODULE_84__pages_taskopen_taskopen__["a" /* TaskOpenPage */],
+                __WEBPACK_IMPORTED_MODULE_85__pages_taskclose_taskclose__["a" /* TaskClosePage */],
+                __WEBPACK_IMPORTED_MODULE_87__pages_myjob_myjob__["a" /* MyJobPage */],
+                __WEBPACK_IMPORTED_MODULE_88__pages_newjob_newjob__["a" /* NewJobPage */],
+                __WEBPACK_IMPORTED_MODULE_89__pages_newjobmodal_newjobmodal__["a" /* NewJobModalPage */],
+                __WEBPACK_IMPORTED_MODULE_90__pages_alljob_alljob__["a" /* AllJobPage */],
+                __WEBPACK_IMPORTED_MODULE_91__pages_jobprogress_jobprogress__["a" /* JobProgressPage */],
+                __WEBPACK_IMPORTED_MODULE_92__pages_jobdetails_jobdetails__["a" /* JobDetailsPage */],
+                __WEBPACK_IMPORTED_MODULE_93__pages_jobkiv_jobkiv__["a" /* JobKivPage */],
+                __WEBPACK_IMPORTED_MODULE_94__pages_jobcomplete_jobcomplete__["a" /* JobCompletePage */],
+                __WEBPACK_IMPORTED_MODULE_95__pages_jobrejected_jobrejected__["a" /* JobRejectedPage */],
+                __WEBPACK_IMPORTED_MODULE_86__pages_taskall_taskall__["a" /* TaskallPage */],
+                __WEBPACK_IMPORTED_MODULE_96__pages_schedules_schedules__["a" /* SchedulesPage */],
+                __WEBPACK_IMPORTED_MODULE_97__pages_scheduledetails_scheduledetails__["a" /* ScheduledetailsPage */],
+                __WEBPACK_IMPORTED_MODULE_98__pages_asset_asset__["a" /* AssetPage */],
+                __WEBPACK_IMPORTED_MODULE_99__pages_assetonhand_assetonhand__["a" /* AssetonhandPage */],
+                __WEBPACK_IMPORTED_MODULE_100__pages_assethistory_assethistory__["a" /* AssethistoryPage */],
+                __WEBPACK_IMPORTED_MODULE_101__pages_assettransfer_assettransfer__["a" /* AssettransferPage */],
+                __WEBPACK_IMPORTED_MODULE_103__pages_taskdate_taskdate__["a" /* TaskdatePage */],
+                __WEBPACK_IMPORTED_MODULE_104__pages_myjobdate_myjobdate__["a" /* MyjobdatePage */],
+                __WEBPACK_IMPORTED_MODULE_105__pages_assetreport_assetreport__["a" /* AssetreportPage */]
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_32__app_component__["a" /* MyApp */], {}, {
+                    links: []
+                }),
+                __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_7_ionic_image_loader__["a" /* IonicImageLoader */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_25_ionic_img_viewer__["a" /* IonicImageViewerModule */],
+                __WEBPACK_IMPORTED_MODULE_26_ng_fullcalendar__["b" /* FullCalendarModule */],
+                __WEBPACK_IMPORTED_MODULE_31_ionic_selectable__["a" /* IonicSelectableModule */],
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* IonicApp */]],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_32__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_login_login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_35__pages_notice_notice__["a" /* NoticePage */],
+                __WEBPACK_IMPORTED_MODULE_36__pages_noticedetail_noticedetail__["a" /* NoticedetailPage */],
+                __WEBPACK_IMPORTED_MODULE_37__pages_leave_leave__["a" /* LeavePage */],
+                __WEBPACK_IMPORTED_MODULE_38__pages_leave_modal_leave_modal__["a" /* LeaveModalPage */],
+                __WEBPACK_IMPORTED_MODULE_39__pages_myleave_myleave__["a" /* MyleavePage */],
+                __WEBPACK_IMPORTED_MODULE_40__pages_leavestatus_leavestatus__["a" /* LeavestatusPage */],
+                __WEBPACK_IMPORTED_MODULE_41__pages_leavepending_leavepending__["a" /* LeavependingPage */],
+                __WEBPACK_IMPORTED_MODULE_43__pages_leaveapprove_leaveapprove__["a" /* LeaveapprovePage */],
+                __WEBPACK_IMPORTED_MODULE_42__pages_leavereject_leavereject__["a" /* LeaverejectPage */],
+                __WEBPACK_IMPORTED_MODULE_44__pages_leavecancel_leavecancel__["a" /* LeavecancelPage */],
+                __WEBPACK_IMPORTED_MODULE_45__pages_leavependingdetail_leavependingdetail__["a" /* LeavependingdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_46__pages_leaveapprovedetail_leaveapprovedetail__["a" /* LeaveapprovedetailPage */],
+                __WEBPACK_IMPORTED_MODULE_47__pages_leaverejectdetail_leaverejectdetail__["a" /* LeaverejectdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_48__pages_leavecanceldetail_leavecanceldetail__["a" /* LeavecanceldetailPage */],
+                __WEBPACK_IMPORTED_MODULE_66__pages_leavebalance_leavebalance__["a" /* LeavebalancePage */],
+                __WEBPACK_IMPORTED_MODULE_49__pages_myapproval_myapproval__["a" /* MyapprovalPage */],
+                __WEBPACK_IMPORTED_MODULE_50__pages_attendance_attendance__["a" /* AttendancePage */],
+                __WEBPACK_IMPORTED_MODULE_51__pages_timesheet_timesheet__["a" /* TimesheetPage */],
+                __WEBPACK_IMPORTED_MODULE_52__pages_tsdetail_tsdetail__["a" /* TsdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_53__pages_holiday_holiday__["a" /* HolidayPage */],
+                __WEBPACK_IMPORTED_MODULE_54__pages_advance_advance__["a" /* AdvancePage */],
+                __WEBPACK_IMPORTED_MODULE_55__pages_siteadvance_siteadvance__["a" /* SiteadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_62__pages_myadvancestatus_myadvancestatus__["a" /* MyadvancestatusPage */],
+                __WEBPACK_IMPORTED_MODULE_63__pages_adminadvancestatus_adminadvancestatus__["a" /* AdminadvancestatusPage */],
+                __WEBPACK_IMPORTED_MODULE_56__pages_mypendingadvance_mypendingadvance__["a" /* MypendingadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_57__pages_myapproveadvance_myapproveadvance__["a" /* MyapproveadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_58__pages_myrejectadvance_myrejectadvance__["a" /* MyrejectadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_59__pages_adminpendingadvance_adminpendingadvance__["a" /* AdminpendingadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_60__pages_adminapproveadvance_adminapproveadvance__["a" /* AdminapproveadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_61__pages_adminrejectadvance_adminrejectadvance__["a" /* AdminrejectadvancePage */],
+                __WEBPACK_IMPORTED_MODULE_64__pages_mypendingdetail_mypendingdetail__["a" /* MypendingdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_67__pages_myapprovedetail_myapprovedetail__["a" /* MyapprovedetailPage */],
+                __WEBPACK_IMPORTED_MODULE_68__pages_myrejectdetail_myrejectdetail__["a" /* MyrejectdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_69__pages_adminpendingdetail_adminpendingdetail__["a" /* AdminpendingdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_70__pages_adminapprovedetail_adminapprovedetail__["a" /* AdminapprovedetailPage */],
+                __WEBPACK_IMPORTED_MODULE_71__pages_adminrejectdetail_adminrejectdetail__["a" /* AdminrejectdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_72__pages_myapprovaldetail_myapprovaldetail__["a" /* MyapprovaldetailPage */],
+                __WEBPACK_IMPORTED_MODULE_65__pages_leavependingredirect_leavependingredirect__["a" /* LeavePendingRedirectPage */],
+                __WEBPACK_IMPORTED_MODULE_73__pages_myapprovalredirect_myapprovalredirect__["a" /* MyApprovalRedirectPage */],
+                __WEBPACK_IMPORTED_MODULE_74__pages_adminpendingadvanceredirect_adminpendingadvanceredirect__["a" /* AdminpendingadvanceredirectPage */],
+                __WEBPACK_IMPORTED_MODULE_75__pages_noticeall_noticeall__["a" /* NoticeallPage */],
+                __WEBPACK_IMPORTED_MODULE_76__pages_noticecontractor_noticecontractor__["a" /* NoticecontractorPage */],
+                __WEBPACK_IMPORTED_MODULE_77__pages_noticeproject_noticeproject__["a" /* NoticeprojectPage */],
+                __WEBPACK_IMPORTED_MODULE_78__pages_noticecontractordetail_noticecontractordetail__["a" /* NoticecontractordetailPage */],
+                __WEBPACK_IMPORTED_MODULE_79__pages_noticeprojectdetail_noticeprojectdetail__["a" /* NoticeprojectdetailPage */],
+                __WEBPACK_IMPORTED_MODULE_80__pages_task_task__["a" /* TaskPage */],
+                __WEBPACK_IMPORTED_MODULE_81__pages_taskassign_taskassign__["a" /* TaskAssignPage */],
+                __WEBPACK_IMPORTED_MODULE_82__pages_mytask_mytask__["a" /* MyTaskPage */],
+                __WEBPACK_IMPORTED_MODULE_83__pages_taskdetail_taskdetail__["a" /* TaskDetailPage */],
+                __WEBPACK_IMPORTED_MODULE_84__pages_taskopen_taskopen__["a" /* TaskOpenPage */],
+                __WEBPACK_IMPORTED_MODULE_85__pages_taskclose_taskclose__["a" /* TaskClosePage */],
+                __WEBPACK_IMPORTED_MODULE_87__pages_myjob_myjob__["a" /* MyJobPage */],
+                __WEBPACK_IMPORTED_MODULE_88__pages_newjob_newjob__["a" /* NewJobPage */],
+                __WEBPACK_IMPORTED_MODULE_89__pages_newjobmodal_newjobmodal__["a" /* NewJobModalPage */],
+                __WEBPACK_IMPORTED_MODULE_90__pages_alljob_alljob__["a" /* AllJobPage */],
+                __WEBPACK_IMPORTED_MODULE_91__pages_jobprogress_jobprogress__["a" /* JobProgressPage */],
+                __WEBPACK_IMPORTED_MODULE_92__pages_jobdetails_jobdetails__["a" /* JobDetailsPage */],
+                __WEBPACK_IMPORTED_MODULE_93__pages_jobkiv_jobkiv__["a" /* JobKivPage */],
+                __WEBPACK_IMPORTED_MODULE_94__pages_jobcomplete_jobcomplete__["a" /* JobCompletePage */],
+                __WEBPACK_IMPORTED_MODULE_95__pages_jobrejected_jobrejected__["a" /* JobRejectedPage */],
+                __WEBPACK_IMPORTED_MODULE_86__pages_taskall_taskall__["a" /* TaskallPage */],
+                __WEBPACK_IMPORTED_MODULE_96__pages_schedules_schedules__["a" /* SchedulesPage */],
+                __WEBPACK_IMPORTED_MODULE_97__pages_scheduledetails_scheduledetails__["a" /* ScheduledetailsPage */],
+                __WEBPACK_IMPORTED_MODULE_98__pages_asset_asset__["a" /* AssetPage */],
+                __WEBPACK_IMPORTED_MODULE_99__pages_assetonhand_assetonhand__["a" /* AssetonhandPage */],
+                __WEBPACK_IMPORTED_MODULE_100__pages_assethistory_assethistory__["a" /* AssethistoryPage */],
+                __WEBPACK_IMPORTED_MODULE_101__pages_assettransfer_assettransfer__["a" /* AssettransferPage */],
+                __WEBPACK_IMPORTED_MODULE_103__pages_taskdate_taskdate__["a" /* TaskdatePage */],
+                __WEBPACK_IMPORTED_MODULE_104__pages_myjobdate_myjobdate__["a" /* MyjobdatePage */],
+                __WEBPACK_IMPORTED_MODULE_105__pages_assetreport_assetreport__["a" /* AssetreportPage */]
+            ],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_13__ionic_native_geolocation__["a" /* Geolocation */],
+                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* IonicErrorHandler */] },
+                __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */],
+                __WEBPACK_IMPORTED_MODULE_16__providers_auth_auth__["a" /* AuthProvider */],
+                __WEBPACK_IMPORTED_MODULE_17__ionic_native_toast__["a" /* Toast */],
+                // GooglePlus,
+                __WEBPACK_IMPORTED_MODULE_8__ionic_native_native_page_transitions__["a" /* NativePageTransitions */],
+                __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__["a" /* File */],
+                __WEBPACK_IMPORTED_MODULE_11__ionic_native_document_viewer__["a" /* DocumentViewer */],
+                __WEBPACK_IMPORTED_MODULE_10__ionic_native_file_transfer__["a" /* FileTransfer */],
+                __WEBPACK_IMPORTED_MODULE_12__ionic_native_photo_viewer__["a" /* PhotoViewer */],
+                __WEBPACK_IMPORTED_MODULE_18__ionic_native_file_opener__["a" /* FileOpener */],
+                __WEBPACK_IMPORTED_MODULE_19__ionic_native_location_accuracy__["a" /* LocationAccuracy */],
+                __WEBPACK_IMPORTED_MODULE_20__ionic_native_onesignal__["a" /* OneSignal */],
+                __WEBPACK_IMPORTED_MODULE_21__ionic_native_app_preferences__["a" /* AppPreferences */],
+                __WEBPACK_IMPORTED_MODULE_15__ionic_native_http__["a" /* HTTP */],
+                __WEBPACK_IMPORTED_MODULE_22__ionic_native_base64__["a" /* Base64 */],
+                __WEBPACK_IMPORTED_MODULE_23__ionic_native_image_picker__["a" /* ImagePicker */],
+                __WEBPACK_IMPORTED_MODULE_24__ionic_native_badge__["a" /* Badge */],
+                __WEBPACK_IMPORTED_MODULE_27__ionic_native_android_permissions__["a" /* AndroidPermissions */],
+                __WEBPACK_IMPORTED_MODULE_28__ionic_native_app_version__["a" /* AppVersion */],
+                __WEBPACK_IMPORTED_MODULE_29__ionic_native_file_chooser__["a" /* FileChooser */],
+                __WEBPACK_IMPORTED_MODULE_30__ionic_native_file_path__["a" /* FilePath */],
+                __WEBPACK_IMPORTED_MODULE_31_ionic_selectable__["a" /* IonicSelectableModule */],
+                __WEBPACK_IMPORTED_MODULE_102__ionic_native_device__["a" /* Device */],
+            ]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 636:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+var environment = {
+    production: false,
+    google: {
+        webClientId: "8076749073-mknj6gcj4qhk4kvvghnci714pn2obgpd.apps.googleusercontent.com",
+        hostedDomain: "siswa.uthm.edu.my"
+    },
+    auth: {
+        codeLoginUrl: "http://172.20.10.4:8000/api/auth/students/login",
+        credentialsLoginUrl: "https://jmclicks.com/api/login",
+        lecturersInviteUrl: "http://172.20.10.4:8000/api/auth/lecturers/invite",
+    }
+};
+//# sourceMappingURL=environment.js.map
+
+/***/ }),
+
+/***/ 913:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -11580,11 +12626,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 910;
+webpackContext.id = 913;
 
 /***/ }),
 
-/***/ 912:
+/***/ 915:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11598,7 +12644,7 @@ webpackContext.id = 910;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_onesignal__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_app_preferences__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_app_preferences__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_location_accuracy__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_android_permissions__ = __webpack_require__(501);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11732,5 +12778,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[570]);
+},[573]);
 //# sourceMappingURL=main.js.map

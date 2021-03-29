@@ -445,6 +445,14 @@ module.exports = [
         "clobbers": [
             "fileChooser"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
+        "id": "cordova-plugin-ionic-webview.IonicWebView",
+        "pluginId": "cordova-plugin-ionic-webview",
+        "clobbers": [
+            "Ionic.WebView"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -475,7 +483,8 @@ module.exports.metadata =
     "cordova-plugin-app-version": "0.1.9",
     "cordova-plugin-filechooser": "1.2.0",
     "cordova-plugin-filepath": "1.5.5",
-    "cordova-android-support-gradle-release": "3.0.1"
+    "cordova-android-support-gradle-release": "3.0.1",
+    "cordova-plugin-ionic-webview": "4.1.0"
 }
 // BOTTOM OF METADATA
 });

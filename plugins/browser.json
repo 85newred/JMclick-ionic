@@ -84,6 +84,9 @@
     },
     "cordova-android-support-gradle-release": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
   "dependent_plugins": {}

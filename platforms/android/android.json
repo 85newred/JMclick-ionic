@@ -21,6 +21,10 @@
         "parents": {
           "/manifest/application": [
             {
+              "xml": "<activity android:label=\"@string/multi_app_name\" android:name=\"com.synconset.MultiImageChooserActivity\" android:theme=\"@style/Theme.AppCompat.Light\"></activity>",
+              "count": 1
+            },
+            {
               "xml": "<amazon:enable-feature android:name=\"com.amazon.device.messaging\" android:required=\"false\" xmlns:amazon=\"http://schemas.amazon.com/apk/res/android\" />",
               "count": 1
             },
@@ -34,7 +38,7 @@
             },
             {
               "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
-              "count": 6,
+              "count": 5,
               "mode": "merge",
               "id": "config.xml",
               "oldAttrib": {
@@ -50,15 +54,15 @@
           "/*": [
             {
               "xml": "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\" />",
-              "count": 7
+              "count": 6
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
-              "count": 9
+              "count": 8
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 10
+              "count": 9
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
@@ -76,7 +80,7 @@
           "application": [
             {
               "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"org.apache.cordova.camera.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/camera_provider_paths\" /></provider>",
-              "count": 8
+              "count": 7
             }
           ],
           "/manifest": [

@@ -141,6 +141,11 @@
 		FB39F7D229164E7BBC894B93 /* Reader-Email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E4700B25436457CB1A2449D /* Reader-Email@2x.png */; };
 		FD0326B052504C3B903E8DC5 /* SDVReader-CoverPage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2A99845AD1745D298503F0D /* SDVReader-CoverPage@2x.png */; };
 		FFF40AFB1E844FB984D3C62E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43BE0033BE64C129EEBEE3D /* Accelerate.framework */; };
+		9C8517C4E7B84783BA71EEBF /* CDVWKWebViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F550DEB8883946149EC079F0 /* CDVWKWebViewEngine.m */; };
+		52D2BBA7A80A49449D8912BD /* CDVWKWebViewUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C8B3EC3E6431A90946093 /* CDVWKWebViewUIDelegate.m */; };
+		533136B1A8494AB69BBB133B /* CDVWKProcessPoolFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0F8AD75AA45A6944A1873 /* CDVWKProcessPoolFactory.m */; };
+		842D4EA595EF4182A0952D46 /* IONAssetHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA78F83D09D7454AA638933F /* IONAssetHandler.m */; };
+		C77CF4CFD8F544C285335B21 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0158EC11387745FCA74EC2EE /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -394,6 +399,15 @@
 		F925DEFE45954A3BAB50572E /* GMSelected.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = GMSelected.png; sourceTree = "<group>"; };
 		FD45E2DBB10F4892B13D8282 /* Reader-Thumbs@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = "Reader-Thumbs@2x.png"; sourceTree = "<group>"; };
 		FF6BB9A646ED4BD9895CA51B /* SDVReaderMainPagebar.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = SDVReaderMainPagebar.m; path = "cordova-plugin-document-viewer/SDVReaderMainPagebar.m"; sourceTree = "<group>"; };
+		F550DEB8883946149EC079F0 /* CDVWKWebViewEngine.m */ = {isa = PBXFileReference; name = "CDVWKWebViewEngine.m"; path = "cordova-plugin-ionic-webview/CDVWKWebViewEngine.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		8A9C8B3EC3E6431A90946093 /* CDVWKWebViewUIDelegate.m */ = {isa = PBXFileReference; name = "CDVWKWebViewUIDelegate.m"; path = "cordova-plugin-ionic-webview/CDVWKWebViewUIDelegate.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		FCD0F8AD75AA45A6944A1873 /* CDVWKProcessPoolFactory.m */ = {isa = PBXFileReference; name = "CDVWKProcessPoolFactory.m"; path = "cordova-plugin-ionic-webview/CDVWKProcessPoolFactory.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		AA78F83D09D7454AA638933F /* IONAssetHandler.m */ = {isa = PBXFileReference; name = "IONAssetHandler.m"; path = "cordova-plugin-ionic-webview/IONAssetHandler.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		2393C0EEEA76458BB358D6DA /* CDVWKWebViewEngine.h */ = {isa = PBXFileReference; name = "CDVWKWebViewEngine.h"; path = "cordova-plugin-ionic-webview/CDVWKWebViewEngine.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		859EE21D43B843C5A12F5E92 /* CDVWKWebViewUIDelegate.h */ = {isa = PBXFileReference; name = "CDVWKWebViewUIDelegate.h"; path = "cordova-plugin-ionic-webview/CDVWKWebViewUIDelegate.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		99063609D0D8499BA588DFD4 /* CDVWKProcessPoolFactory.h */ = {isa = PBXFileReference; name = "CDVWKProcessPoolFactory.h"; path = "cordova-plugin-ionic-webview/CDVWKProcessPoolFactory.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		B10316E47A1747F7AA811FEE /* IONAssetHandler.h */ = {isa = PBXFileReference; name = "IONAssetHandler.h"; path = "cordova-plugin-ionic-webview/IONAssetHandler.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		0158EC11387745FCA74EC2EE /* WebKit.framework */ = {isa = PBXFileReference; name = "WebKit.framework"; path = "System/Library/Frameworks/WebKit.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,6 +428,7 @@
 				FFF40AFB1E844FB984D3C62E /* Accelerate.framework in Frameworks */,
 				C5B56E5EA70949679C3FA95D /* Photos.framework in Frameworks */,
 				83B740C194F0B8E89DABA122 /* libPods-JMClicks.a in Frameworks */,
+				C77CF4CFD8F544C285335B21 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +553,7 @@
 				C43BE0033BE64C129EEBEE3D /* Accelerate.framework */,
 				27229ABFCD934C57B3102A0D /* Photos.framework */,
 				1113F74AE037D189D8DFF59F /* libPods-JMClicks.a */,
+				0158EC11387745FCA74EC2EE /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -715,6 +731,14 @@
 				363B098CCF674D1BB1C139E9 /* Toast.h */,
 				AC5C37E3D3C8435385E5123F /* OneSignalPush.m */,
 				18CD4261D58242238B2AC150 /* OneSignalPush.h */,
+				F550DEB8883946149EC079F0 /* CDVWKWebViewEngine.m */,
+				8A9C8B3EC3E6431A90946093 /* CDVWKWebViewUIDelegate.m */,
+				FCD0F8AD75AA45A6944A1873 /* CDVWKProcessPoolFactory.m */,
+				AA78F83D09D7454AA638933F /* IONAssetHandler.m */,
+				2393C0EEEA76458BB358D6DA /* CDVWKWebViewEngine.h */,
+				859EE21D43B843C5A12F5E92 /* CDVWKWebViewUIDelegate.h */,
+				99063609D0D8499BA588DFD4 /* CDVWKProcessPoolFactory.h */,
+				B10316E47A1747F7AA811FEE /* IONAssetHandler.h */,
 			);
 			name = Plugins;
 			path = JMClicks/Plugins;
@@ -994,6 +1018,10 @@
 				7011571010B1477B889BB835 /* Toast+UIView.m in Sources */,
 				8976D67E9FD44B4E9B2F58EB /* Toast.m in Sources */,
 				658760E15C5949D9871DB851 /* OneSignalPush.m in Sources */,
+				9C8517C4E7B84783BA71EEBF /* CDVWKWebViewEngine.m in Sources */,
+				52D2BBA7A80A49449D8912BD /* CDVWKWebViewUIDelegate.m in Sources */,
+				533136B1A8494AB69BBB133B /* CDVWKProcessPoolFactory.m in Sources */,
+				842D4EA595EF4182A0952D46 /* IONAssetHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,9 +1054,9 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "JMClicks/JMClicks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.softoya.jmclicks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softoya.jmclicks2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1050,9 +1078,9 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "JMClicks/JMClicks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.softoya.jmclicks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softoya.jmclicks2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1094,10 +1122,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.softoya.jmclicks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softoya.jmclicks2;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				WK_WEB_VIEW_ONLY = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
@@ -1135,10 +1164,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.softoya.jmclicks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softoya.jmclicks2;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				WK_WEB_VIEW_ONLY = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};
